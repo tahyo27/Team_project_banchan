@@ -1,6 +1,5 @@
-
--------- BANCHAN_MEMBER --------------------------
-CREATE TABLE BANCHAN_MEMBER 
+-------- MEMBER --------------------------
+CREATE TABLE MEMBER 
 (
   NUM NUMBER NOT NULL 
 , MEMBER_ID VARCHAR2(20) 
@@ -15,42 +14,41 @@ CREATE TABLE BANCHAN_MEMBER
 , MEMBER_REGDATE DATE DEFAULT sysdate 
 , MEMBER_NICKNAME VARCHAR2(20) 
 , MEMBER_PROFILE VARCHAR2(20) DEFAULT 'default.png'
-, CONSTRAINT BANCHAN_MEMBER_PK PRIMARY KEY 
+, CONSTRAINT MEMBER_PK PRIMARY KEY 
   (
     NUM 
   )
   ENABLE 
 );
 
-ALTER TABLE BANCHAN_MEMBER
-ADD CONSTRAINT BANCHAN_MEMBER_UK1 UNIQUE 
+ALTER TABLE MEMBER
+ADD CONSTRAINT MEMBER_UK1 UNIQUE 
 (
   MEMBER_ID 
 )
 ENABLE;
 
-시퀀스 : CREATE SEQUENCE SEQ_BANCHAN_MEMBER;
+시퀀스 : CREATE SEQUENCE SEQ_MEMBER;
 
 테스트 값 
 
-INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, member_email)
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
   (seq_banchan_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'user001@example.com');
 
-INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, member_email)
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
-  (seq_banchan_member.NEXTVAL, 'user002', 'pw002', 'User002', '010-1234-02', 'user002@example.com');
+  (seq_member.NEXTVAL, 'user002', 'pw002', 'User002', '010-1234-02', 'user002@example.com');
 
-INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, member_email)
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
-  (seq_banchan_member.NEXTVAL, 'user003', 'pw003', 'User003', '010-1234-03', 'user003@example.com');
+  (seq_member.NEXTVAL, 'user003', 'pw003', 'User003', '010-1234-03', 'user003@example.com');
 
-INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, member_email)
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
-  (seq_banchan_member.NEXTVAL, 'user004', 'pw004', 'User004', '010-1234-04', 'user004@example.com');
+  (seq_member.NEXTVAL, 'user004', 'pw004', 'User004', '010-1234-04', 'user004@example.com');
 
-INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, member_email)
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
-  (seq_banchan_member.NEXTVAL, 'user005', 'pw005', 'User005', '010-1234-05', 'user005@example.com');
+  (seq_member.NEXTVAL, 'user005', 'pw005', 'User005', '010-1234-05', 'user005@example.com');
 --------------------------------------------------------
-

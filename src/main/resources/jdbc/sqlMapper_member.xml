@@ -6,46 +6,46 @@
 <mapper namespace="idle.com.banchan.member">
 	<select id="M_SELECT_ALL"
 		resultType="idle.com.banchan.member.model.MemberVO">
-		select * from banchan_member order by num desc
+		select * from member order by num desc
 	</select>
 
 	<select id="M_SELECT_ONE"
 		resultType="idle.com.banchan.member.model.MemberVO">
-		select * from banchan_member where num = #{num}
+		select * from member where num = #{num}
 	</select>
 
 	<select id="LOGIN"
 		resultType="idle.com.banchan.member.model.MemberVO">
-		select * from banchan_member where member_id = #{member_id}
+		select * from member where member_id = #{member_id}
 		and member_pw = #{member_pw}
 	</select>
 
 	<select id="M_SEARCH_LIST_NAME"
 		resultType="idle.com.banchan.member.model.MemberVO">
-		select * from banchan_member where member_name like
+		select * from member where member_name like
 		#{searchWord}
 	</select>
 	
 	<select id="M_ID_CHECK" resultType="idle.com.banchan.member.model.MemberVO">
-		select member_id from banchan_member where member_id = #{member_id}
+		select member_id from member where member_id = #{member_id}
 	</select>
 
 	<insert id="M_INSERT"
 		parameterType="idle.com.banchan.member.model.MemberVO">
 		insert into
-		banchan_member(num,member_id,member_pw,member_name,member_tel,member_email,member_profile)
-		values(seq_banchan_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_tel},#{member_email},#{member_profile})
+		member(num,member_id,member_pw,member_name,member_tel,member_email,member_profile)
+		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_tel},#{member_email},#{member_profile})
 	</insert>
 
 	<update id="M_UPDATE"
 		parameterType="idle.com.banchan.member.model.MemberVO">
-		update banchan_member set member_pw=#{member_pw} , member_name=#{member_name} , member_tel=#{member_tel} ,
+		update member set member_pw=#{member_pw} , member_name=#{member_name} , member_tel=#{member_tel} ,
 		member_profile=#{member_profile}
 		where num = #{num}
 	</update>
 
 	<delete id="M_DELETE">
-		delete from banchan_member where num = #{num}
+		delete from member where num = #{num}
 	</delete>
 
 </mapper>
