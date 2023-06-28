@@ -1,4 +1,4 @@
--------- BANCHAN_MEMBER --------------------------
+-------- MEMBER --------------------------
 CREATE TABLE MEMBER 
 (
   NUM NUMBER NOT NULL 
@@ -14,7 +14,7 @@ CREATE TABLE MEMBER
 , MEMBER_REGDATE DATE DEFAULT sysdate 
 , MEMBER_NICKNAME VARCHAR2(20) 
 , MEMBER_PROFILE VARCHAR2(20) DEFAULT 'default.png'
-, CONSTRAINT BANCHAN_MEMBER_PK PRIMARY KEY 
+, CONSTRAINT MEMBER_PK PRIMARY KEY 
   (
     NUM 
   )
@@ -34,7 +34,7 @@ ENABLE;
 
 INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
-  (seq_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'user001@example.com');
+  (seq_banchan_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'user001@example.com');
 
 INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
 VALUES 
