@@ -1,3 +1,4 @@
+
 -------- BANCHAN_MEMBER --------------------------
 CREATE TABLE BANCHAN_MEMBER 
 (
@@ -52,3 +53,4 @@ INSERT INTO banchan_member (num, member_id, member_pw, member_name, member_tel, 
 VALUES 
   (seq_banchan_member.NEXTVAL, 'user005', 'pw005', 'User005', '010-1234-05', 'user005@example.com');
 --------------------------------------------------------
+
