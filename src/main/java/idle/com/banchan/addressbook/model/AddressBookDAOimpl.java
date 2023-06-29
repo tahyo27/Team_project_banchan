@@ -33,15 +33,15 @@ public class AddressBookDAOimpl implements AddressBookDAO{
 	}
 
 	@Override
-	public int update(AddressBookVO vo) {
+	public int update(AddressBookVO vo) { //기본배송을 여기로 할지 생각중 참고한곳에선 수정이 없음
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int delete(AddressBookVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		log.info("delete()...{}", vo);
+		return sqlSession.delete("AB_DELETE", vo);
 	}
 
 }

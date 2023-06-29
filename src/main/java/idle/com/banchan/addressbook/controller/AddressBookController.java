@@ -21,7 +21,7 @@ public class AddressBookController {
 	
 	
 	@RequestMapping(value = "/ab_selectAll.do", method = RequestMethod.GET)
-	public String m_selectAll(Model model, AddressBookVO vo) {
+	public String ab_selectAll(Model model, AddressBookVO vo) {
 		log.info("/ab_selectAll.do.....");
 
 		List<AddressBookVO> vos = service.selectAll(vo);
@@ -32,4 +32,19 @@ public class AddressBookController {
 
 		return "addressbook/selectAll";
 	}
-}
+	
+	@RequestMapping(value = "/ab_insertOK.do", method = RequestMethod.POST)
+	public String ab_insertOK(AddressBookVO vo) {
+		log.info("AddressBook_insertOK.do...{}", vo);
+		
+		int result = service.insert(vo);
+		
+		log.info("AddressBook_insertOK result:", result);
+		
+		if (result == 1) {
+			return "redirect:ab_selectAll.do?member_num=" + vo.getMember_num();
+		} else {
+			return "redirect:home";
+		}
+	}
+}//end class
