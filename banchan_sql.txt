@@ -52,3 +52,62 @@ INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_e
 VALUES 
   (seq_member.NEXTVAL, 'user005', 'pw005', 'User005', '010-1234-05', 'user005@example.com');
 --------------------------------------------------------
+
+------ADDRESSBOOK--------------------------------------
+
+CREATE TABLE ADDRESSBOOK 
+(
+  NUM NUMBER NOT NULL 
+, MEMBER_NUM NUMBER NOT NULL 
+, AB_NAME VARCHAR2(20) 
+, AB_ZIPCODE VARCHAR2(10) 
+, AB_ADDRESS1 VARCHAR2(100) 
+, AB_ADDRESS2 VARCHAR2(100) 
+, AB_TEL VARCHAR2(20) 
+, AB_BASE NUMBER 
+, CONSTRAINT ADDRESSBOOK_PK PRIMARY KEY 
+  (
+    NUM 
+  )
+  ENABLE 
+);
+
+ALTER TABLE ADDRESSBOOK
+ADD CONSTRAINT ADDRESSBOOK_FK1 FOREIGN KEY
+(
+  MEMBER_NUM 
+)
+REFERENCES MEMBER
+(
+  NUM 
+)
+ENABLE;
+
+COMMENT ON COLUMN ADDRESSBOOK.AB_BASE IS '1:O 0:X';
+
+ALTER TABLE ADDRESSBOOK  
+MODIFY (AB_BASE DEFAULT 0 );
+
+
+CREATE SEQUENCE SEQ_ADDRESSBOOK;
+
+---test----
+INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
+VALUES 
+  (seq_addressbook.NEXTVAL, 1, 'kim1', '13612', '경기도 성남시 분당구 내정로 27-1', '구두수선대', '010-111-2222');
+
+INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
+VALUES 
+  (seq_addressbook.NEXTVAL, 1, 'kim2', '13612', '경기도 성남시 분당구 내정로 29', '금곡프라자', '010-111-2222');
+
+INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
+VALUES 
+  (seq_addressbook.NEXTVAL, 2, 'lee1', '13602', '경기도 성남시 분당구 내정로 24', '정든마을한진6단지', '010-111-2222');
+
+INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
+VALUES 
+  (seq_addressbook.NEXTVAL, 2, 'lee2', '13602', '경기도 성남시 분당구 내정로 20', '탄천초등학교', '010-222-3333');
+
+INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
+VALUES 
+  (seq_addressbook.NEXTVAL, 2, 'lee3', '13602', '경기도 성남시 분당구 내정로 10', '정든마을한진7단지', '010-333-4444');
