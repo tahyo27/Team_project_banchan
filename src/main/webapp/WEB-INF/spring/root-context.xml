@@ -33,6 +33,7 @@
 				<value>classpath:jdbc/sqlMapper_member.xml</value>
 				<value>classpath:jdbc/sqlMapper_cart.xml</value>
 				<value>classpath:jdbc/sqlMapper_product.xml</value>
+				<value>classpath:jdbc/sqlMapper_order.xml</value>
 			</list>
 		</property>
 	</bean>
