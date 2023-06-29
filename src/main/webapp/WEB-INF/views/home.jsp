@@ -18,7 +18,6 @@
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert</a>
 <hr>
-<!-- <a href="c_selectAll.do?member_id=user001">cart selectAll</a> -->
 
 
 </body>
