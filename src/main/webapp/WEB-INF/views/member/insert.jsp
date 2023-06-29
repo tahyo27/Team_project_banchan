@@ -11,6 +11,7 @@
 <script type="text/javascript">
 	$(function() {
 		console.log("onload....");
+		$('.myButton').prop('disabled', true); //submit 비활성화
 	});
 
 	function idCheck() {
@@ -71,6 +72,7 @@
 			$resultMsg.css('color', 'green');
 			$('#mail-Check-Btn').attr('disabled', true);
 			$('#userEmail').prop('readonly', true);
+			$('.myButton').prop('disabled', false);// 인증완료시 submit 활성화
 		} else {
 			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
 			$resultMsg.css('color', 'red');
