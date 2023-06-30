@@ -1,10 +1,7 @@
 package idle.com.banchan.addressbook.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,32 +12,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class AddressBookController {
-
+public class AddressBookRestController {
+	
 	@Autowired
 	AddressBookService service;
 	
-	
-	@RequestMapping(value = "/ab_selectAll.do", method = RequestMethod.GET)
-	public String ab_selectAll(Model model, AddressBookVO vo) {
-		log.info("/ab_selectAll.do.....");
-
-		List<AddressBookVO> vos = service.selectAll(vo);
+	@ResponseBody
+	@RequestMapping(value = "/ab_updateOK.do", method = RequestMethod.POST)
+	public String ab_updateOK(AddressBookVO vo) {
+		log.info("AddressBook_ab_updateOK.do...{}", vo);
 		
-		log.info("vos:{}", vos);
+		int result = service.update(vo);
 		
-		model.addAttribute("vos", vos);
-
-		return "addressbook/selectAll";
-	}
-	
-	@RequestMapping(value = "/ab_insertOK.do", method = RequestMethod.POST)
-	public String ab_insertOK(AddressBookVO vo) {
-		log.info("AddressBook_insertOK.do...{}", vo);
-		
-		int result = service.insert(vo);
-		
-		log.info("AddressBook_insertOK result:", result);
+		log.info("AddressBook_ab_updateOK result:" + result);
 		
 		if (result == 1) {
 			return "redirect:ab_selectAll.do?member_num=" + vo.getMember_num();
@@ -48,7 +32,5 @@ public class AddressBookController {
 			return "redirect:home";
 		}
 	}
-	
-	
 	
 }//end class

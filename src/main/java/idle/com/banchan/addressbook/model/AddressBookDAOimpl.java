@@ -34,8 +34,8 @@ public class AddressBookDAOimpl implements AddressBookDAO{
 
 	@Override
 	public int update(AddressBookVO vo) { //기본배송을 여기로 할지 생각중 참고한곳에선 수정이 없음
-		// TODO Auto-generated method stub
-		return 0;
+		log.info("AddressBook_update().....vo: {}", vo);
+		return sqlSession.update("AB_UPDATE", vo);
 	}
 
 	@Override

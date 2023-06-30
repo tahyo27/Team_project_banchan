@@ -68,9 +68,25 @@
 			}
 		}).open();
 	};
-	
+
 	function hide_form() {
 		$('#myForm').hide();
+	};
+
+	function baseUpdate(num) {
+		
+		$.ajax({
+			url : 'ab_updateOK.do',
+			data : {num: num},
+			method : 'POST',
+			success : function(response) {
+				console.log('Update successful');
+				location.reload(); // 페이지 새로고침
+			},
+			error : function(xhr, status, error) {
+				console.error('Update failed:', error);
+			}
+		});
 	};
 </script>
 
@@ -88,28 +104,30 @@
 			</tr>
 			<tr>
 				<td><label for="ab_zipcode">우편번호:</label></td>
-				<td><input id="ab_zipcode" name="ab_zipcode" readonly="readonly"></td>
+				<td><input id="ab_zipcode" name="ab_zipcode"
+					readonly="readonly"></td>
 				<td><button type="button" onclick="daum_address_find()">우편번호찾기</button></td>
 			</tr>
 			<tr>
-			<td><label for="ab_address1">주소:</label></td>
-			<td><input id="ab_address1" name="ab_address1"
-				readonly="readonly"></td>
+				<td><label for="ab_address1">주소:</label></td>
+				<td><input id="ab_address1" name="ab_address1"
+					readonly="readonly"></td>
 			</tr>
 			<tr>
-			<td><label for="ab_address2">상세주소:</label></td>
-			<td><input id="ab_address2" name="ab_address2" readonly="readonly"></td>
+				<td><label for="ab_address2">상세주소:</label></td>
+				<td><input id="ab_address2" name="ab_address2"
+					readonly="readonly"></td>
 			</tr>
 			<tr>
-			<td><label for="ab_tel">전화번호:</label></td>
-			<td><input id="ab_tel" name="ab_tel"></td>
+				<td><label for="ab_tel">전화번호:</label></td>
+				<td><input id="ab_tel" name="ab_tel"></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit">
 				<td><button type="button" onclick="hide_form()">취소</button></td>
 			</tr>
 			<tr>
-			<input type="hidden" id="member_num" name="member_num" value="${param.member_num}">
+				<input type="hidden" id="member_num" name="member_num" value="${param.member_num}">
 			</tr>
 		</table>
 	</form>
@@ -123,6 +141,8 @@
 				<th>address1</th>
 				<th>address2</th>
 				<th>tel</th>
+				<th>base</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -134,6 +154,8 @@
 					<td>${vo.ab_address1}</td>
 					<td>${vo.ab_address2}</td>
 					<td>${vo.ab_tel}</td>
+					<td>${vo.ab_base}</td>
+					<td><button type="button" onclick="baseUpdate(${vo.num})">기본배송지 설정</button></td>
 				</tr>
 			</c:forEach>
 		</tbody>
