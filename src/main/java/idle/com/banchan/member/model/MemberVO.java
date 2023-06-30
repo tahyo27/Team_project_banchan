@@ -1,5 +1,7 @@
 package idle.com.banchan.member.model;
 
+import java.sql.Timestamp;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -17,6 +19,7 @@ public class MemberVO {
 	private String member_address2;
 	private String member_tel;
 	private String member_nickname;
+	private Timestamp member_regdate;
 	private String member_profile;
 	private MultipartFile file;
 	

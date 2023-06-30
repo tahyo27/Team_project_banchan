@@ -33,8 +33,8 @@
 	<insert id="M_INSERT"
 		parameterType="idle.com.banchan.member.model.MemberVO">
 		insert into
-		member(num,member_id,member_pw,member_name,member_tel,member_email,member_profile)
-		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_tel},#{member_email},#{member_profile})
+		member(num,member_id,member_pw,member_name,member_tel,member_email,member_zipcode,member_address1,member_address2,member_profile)
+		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_tel},#{member_email},#{member_zipcode},#{member_address1},#{member_address2},#{member_profile})
 	</insert>
 
 	<update id="M_UPDATE"
