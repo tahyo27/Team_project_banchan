@@ -18,7 +18,7 @@
 
 	<update id="AB_UPDATE"
 		parameterType="idle.com.banchan.addressbook.model.AddressBookVO">
-		update addressbook set ab_zipcode=#{ab_zipcode}, ab_address1=#{ab_address1}, ab_address2=#{ab_address2} where num = #{num}
+		update addressbook set ab_base = (case when num = #{num} then 1 else 0 end)
 	</update>
 
 	<delete id="AB_DELETE">

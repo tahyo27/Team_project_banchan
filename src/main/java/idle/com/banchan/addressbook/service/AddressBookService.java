@@ -24,15 +24,15 @@ public class AddressBookService {
 		return dao.selectAll(vo);
 	}
 	
-	int insert(AddressBookVO vo) {
+	public int insert(AddressBookVO vo) {
 		return dao.insert(vo);
 	}
 
-	int update(AddressBookVO vo) {
+	public int update(AddressBookVO vo) {
 		return dao.update(vo);
 	}
 
-	int delete(AddressBookVO vo) {
+	public int delete(AddressBookVO vo) {
 		return dao.delete(vo);
 	}
 }
