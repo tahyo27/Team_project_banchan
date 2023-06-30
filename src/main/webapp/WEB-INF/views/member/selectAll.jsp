@@ -30,6 +30,10 @@
 			<th>name</th>
 			<th>tel</th>
 			<th>email</th>
+			<th>zipcode</th>
+			<th>address1</th>
+			<th>address2</th>
+			<th>regdate</th>
 			<th>profile</th>
 		</tr>
 	</thead>
@@ -42,6 +46,10 @@
 				<td>${vo.member_name}</td>
 				<td>${vo.member_tel}</td>
 				<td>${vo.member_email}</td>
+				<td>${vo.member_zipcode}</td>
+				<td>${vo.member_address1}</td>
+				<td>${vo.member_address2}</td>
+				<td>${vo.member_regdate}</td>
 				<td><img width="35px" src="resources/uploadimg/thumb_${vo.member_profile}"></td>
 			</tr>
 		</c:forEach>
