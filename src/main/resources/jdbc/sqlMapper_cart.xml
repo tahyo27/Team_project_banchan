@@ -10,6 +10,16 @@
 		select c.num, c.member_id,c.product_num,p.product_name,p.product_img,p.product_price,c.amount
 		from cart c join product p on (c.product_num = p.num) where member_id=#{member_id} order by num
 	</select>
+	
+	<insert id="C_INSERT" parameterType="idle.com.banchan.cart.model.CartVO">
+	insert into cart(num,product_num,member_id,amount)
+	values(seq_cart.nextval,#{product_num},#{member_id},#{amount})
+	</insert>
+	
+	<delete id="C_DELETE">
+		delete from cart where num = #{num}
+	</delete>
+
 
 
 

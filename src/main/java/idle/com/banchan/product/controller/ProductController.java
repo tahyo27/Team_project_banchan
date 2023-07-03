@@ -15,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import idle.com.banchan.cart.model.CartVO;
+import idle.com.banchan.cart.service.CartService;
+import idle.com.banchan.member.model.MemberVO;
 import idle.com.banchan.product.model.ProductVO;
 import idle.com.banchan.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +29,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductService service;
+	
+	@Autowired
+	CartService cartService;
 	
 	@Autowired
 	ServletContext sContext;
@@ -46,12 +52,18 @@ public class ProductController {
 	@RequestMapping(value = "/pr_selectOne.do", method = RequestMethod.GET)
 	public String pr_selectOne(ProductVO vo,Model model) {
 		log.info("/pr_selectOne.do.....");
+		
+		CartVO cvo = new CartVO();
+		cvo.setNum(vo.getNum());
+		model.addAttribute("cvo", cvo);
+		log.info("cvo:{}",cvo);
 
+		
 		ProductVO vo2 = service.selectOne(vo);
 		log.info("vo2:{}",vo2);
-
 		model.addAttribute("vo2",vo2);
-
+		
+		
 		return "product/selectOne";
 	}
 	

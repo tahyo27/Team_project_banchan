@@ -34,7 +34,10 @@ public class CartDAOimpl implements CartDAO {
 	@Override
 	public int delete(CartVO vo) {
 		log.info("delete()...");
-		return 0;
+		
+		int flag = sqlSession.delete("C_DELETE",vo);
+		
+		return flag;
 	}
 
 	@Override
@@ -45,6 +48,8 @@ public class CartDAOimpl implements CartDAO {
 		
 		return vos;
 	}
+
+
 
 	
 	
