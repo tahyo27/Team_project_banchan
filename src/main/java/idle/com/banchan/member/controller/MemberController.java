@@ -186,7 +186,27 @@ public class MemberController {
 
 	}
 	
+	@RequestMapping(value = "/findPwView.do", method = RequestMethod.GET)
+	public String findPwView() {
+		log.info("findPwView.do....");
+		
+		return "findPw/findPwView";
+	}
 	
-	
+	@RequestMapping(value = "/findPw.do", method = RequestMethod.POST)
+	public String findPw(MemberVO vo, Model model) {
+		log.info("findPw.do....vo:{}", vo);
+		
+		if(service.findPwCheck(vo)==0) { // 아이디 이메일 일치하지 않는경우
+			log.info("Member FindPWCheck");
+			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
+			
+			return "findPw/findPwView";
+		} else { //아이디 이메일 일치하는 않는경우
+			service.findPw(vo.getMember_email(), vo.getMember_id());
+			model.addAttribute("member_email", vo.getMember_email());
+			return "findPw/findPw";
+		}
+	}
 	
 }//end class

@@ -1,6 +1,8 @@
 package idle.com.banchan.member.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +79,22 @@ public class MemberDAOimpl implements MemberDAO {
 	public MemberVO idCheck(MemberVO vo) {
 		log.info("Member_idCheck()...{}", vo);
 		return sqlSession.selectOne("M_ID_CHECK", vo);
+	}
+
+	@Override
+	public int findPwCheck(MemberVO vo) {
+		log.info("findPwCheck()...{}", vo);
+		return sqlSession.selectOne("FIND_PW_CHECK", vo);
+	}
+//
+	@Override
+	public int findPw(String member_pw, String member_email, String member_id) {
+		log.info("findPw()..." + "pw:"+member_pw +"email:" + member_email+"id:"+member_id);
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("member_email", member_email);
+		map.put("member_id", member_id);
+		map.put("member_pw", member_pw);
+		return sqlSession.update("FIND_PW", map);
 	}
 
 }
