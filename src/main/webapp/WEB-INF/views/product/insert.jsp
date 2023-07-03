@@ -29,8 +29,8 @@
 				<td><input type="text" id="product_price" name="product_price" value="5000"></td>
 			</tr>
 			<tr>
-				<td><label for="prodoct_stock">실시간재고</label></td>
-				<td><input type="text" id="prodoct_stock" name="prodoct_stock" value="100"></td>
+				<td><label for="product_stock">실시간재고</label></td>
+				<td><input type="text" id="product_stock" name="product_stock" value="100"></td>
 			</tr>
 			<tr>
 				<td><label for="product_content">반찬설명</label></td>
