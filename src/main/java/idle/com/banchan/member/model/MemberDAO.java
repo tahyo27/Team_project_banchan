@@ -21,4 +21,7 @@ public interface MemberDAO {
 
 	MemberVO idCheck(MemberVO vo);
 	
+	int findPwCheck(MemberVO vo);
+	
+	int findPw(String member_pw, String member_email, String member_id);
 }

@@ -17,7 +17,8 @@
 	<select id="LOGIN"
 		resultType="idle.com.banchan.member.model.MemberVO">
 		select * from member where member_id = #{member_id}
-		and member_pw = #{member_pw}
+		and
+		member_pw = #{member_pw}
 	</select>
 
 	<select id="M_SEARCH_LIST_NAME"
@@ -25,10 +26,22 @@
 		select * from member where member_name like
 		#{searchWord}
 	</select>
-	
-	<select id="M_ID_CHECK" resultType="idle.com.banchan.member.model.MemberVO">
+
+	<select id="M_ID_CHECK"
+		resultType="idle.com.banchan.member.model.MemberVO">
 		select member_id from member where member_id = #{member_id}
 	</select>
+
+	<select id="FIND_PW_CHECK" resultType="int">
+		select count(*) from member
+		where member_email = #{member_email} and
+		member_id = #{member_id}
+	</select>
+
+	<update id="FIND_PW" parameterType="idle.com.banchan.member.model.MemberVO">
+		update member set member_pw = #{member_pw} where member_email =
+		#{member_email} and member_id = #{member_id}
+	</update>
 
 	<insert id="M_INSERT"
 		parameterType="idle.com.banchan.member.model.MemberVO">
@@ -39,7 +52,8 @@
 
 	<update id="M_UPDATE"
 		parameterType="idle.com.banchan.member.model.MemberVO">
-		update member set member_pw=#{member_pw} , member_name=#{member_name} , member_tel=#{member_tel} ,
+		update member set member_pw=#{member_pw} ,
+		member_name=#{member_name} , member_tel=#{member_tel} ,
 		member_profile=#{member_profile}
 		where num = #{num}
 	</update>
