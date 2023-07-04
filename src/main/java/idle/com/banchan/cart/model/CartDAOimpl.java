@@ -50,6 +50,16 @@ public class CartDAOimpl implements CartDAO {
 	}
 
 
+	@Override
+	public int update(CartVO vo) {
+		log.info("update()...");
+		
+		int flag = sqlSession.update("C_UPDATE", vo);
+		
+		return flag;
+	}
+
+
 
 	
 	
