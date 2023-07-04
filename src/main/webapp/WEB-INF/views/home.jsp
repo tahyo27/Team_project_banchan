@@ -15,6 +15,7 @@
 <a href="m_insert.do">member insert</a>
 <a href="ab_selectAll.do?member_num=2">addressbook selectAll</a>
 <a href="findPwView.do">findPw</a>
+<a href="login.do">login</a>
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert</a>

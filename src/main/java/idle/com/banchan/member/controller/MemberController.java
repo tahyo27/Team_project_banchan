@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MemberController {
 
+	@Autowired
+	HttpSession session;
+	
 	@Autowired
 	MemberService service;
 	
@@ -209,4 +213,38 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+	public String login(String message,Model model) {
+		log.info("/login.do....{}",message);
+
+		if(message!=null) message = "아이디/비번 을 확인하세요";
+		model.addAttribute("msg", message);
+		
+		return "member/login";
+	}
+	
+	@RequestMapping(value = "/loginOK.do", method = RequestMethod.POST)
+	public String loginOK(MemberVO vo) {
+		log.info("/loginOK.do...{}",vo);
+		
+		MemberVO vo2 = service.login(vo);
+		log.info("vo2...{}",vo2);
+		
+		if(vo2 == null) {
+			return "redirect:login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
+		}else {
+			session.setAttribute("user_id", vo2.getMember_id());
+			return "redirect:home";
+		}
+
+	}
+	
+	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+	public String logout() {
+		log.info("/logout.do");
+		
+		session.invalidate(); //로그인 세션 제거
+
+		return "redirect:home";
+	}
 }//end class
