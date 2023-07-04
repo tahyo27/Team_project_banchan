@@ -23,11 +23,11 @@
 	
 	<context:component-scan base-package="idle.com.banchan" />
 	
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/*.do" /> -->
-<!-- 			<beans:bean class="idle.com.banchan.interceptor.LoginInterceptor"></beans:bean> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/*.do" />
+			<beans:bean class="idle.com.banchan.interceptor.LoginInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>
