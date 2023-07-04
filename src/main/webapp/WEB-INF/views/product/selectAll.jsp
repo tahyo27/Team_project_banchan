@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +38,7 @@
 					<td><a href="pr_selectOne.do?num=${vo.num}"><img
 							width="100px" src="resources/uploadimg/${vo.product_img}"></a></td>
 					<td>${vo.product_name}</td>
-					<td>${vo.product_price}</td>
+					<td><fmt:formatNumber value="${vo.product_price}" pattern="#,###"/>원</td>
 <%-- 				<td>${vo.category_num}</td> --%>
 				</tr>
 			</c:forEach>

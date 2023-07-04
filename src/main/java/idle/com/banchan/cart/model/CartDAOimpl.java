@@ -1,6 +1,8 @@
 package idle.com.banchan.cart.model;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class CartDAOimpl implements CartDAO {
 
 	@Override
 	public int delete(CartVO vo) {
-		log.info("delete()...");
+		log.info("delete()...{}",vo);
 		
 		int flag = sqlSession.delete("C_DELETE",vo);
 		
@@ -52,11 +54,37 @@ public class CartDAOimpl implements CartDAO {
 
 	@Override
 	public int update(CartVO vo) {
-		log.info("update()...");
+		log.info("update()...{}",vo);
 		
 		int flag = sqlSession.update("C_UPDATE", vo);
 		
 		return flag;
+	}
+
+
+	@Override
+	public int sumMoney(CartVO vo) {
+		log.info("sumMoney()...{}",vo);
+		
+		int flag = sqlSession.selectOne("C_SUM_MONEY", vo);
+		
+		return flag;
+	}
+
+
+	@Override
+	public int countCheck(CartVO vo) {
+		log.info("countCheck()...{}",vo);
+		
+		return sqlSession.selectOne("C_COUNT_CHECK", vo);
+	}
+
+
+	@Override
+	public int updateCart(CartVO vo) {
+		log.info("updateCart()...{}",vo);
+		
+		return sqlSession.update("C_COUNT_UPDATE",vo);
 	}
 
 
