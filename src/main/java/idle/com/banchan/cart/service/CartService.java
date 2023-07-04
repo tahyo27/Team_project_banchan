@@ -39,6 +39,18 @@ public class CartService {
 		return dao.delete(vo);
 	}
 
+	public int sumMoney(CartVO vo) {
+		return dao.sumMoney(vo);
+	}
+	
+	public int countCheck(CartVO vo) {
+		return dao.countCheck(vo);
+	}
+	
+	public int updateCart(CartVO vo) {
+		return dao.updateCart(vo);
+	}
+	
 
 
 

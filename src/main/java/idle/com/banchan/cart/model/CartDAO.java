@@ -12,6 +12,12 @@ public interface CartDAO {
 	
 	public List<CartVO> selectAll(CartVO vo); // 장바구니 목록 리스트
 
+	public int sumMoney(CartVO vo); // 장바구니 합계 금액
+
+	public int countCheck(CartVO vo); // 장바구니 상품 확인
+
+	public int updateCart(CartVO vo); // 장바구니 상품 겹칠시 하나로 업데이트
+
 
 
 }
