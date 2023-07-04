@@ -16,6 +16,9 @@
 	values(seq_cart.nextval,#{product_num},#{member_id},#{amount})
 	</insert>
 	
+	<update id="C_UPDATE">
+		update cart set amount=#{amount} where num=#{num} </update>
+	
 	<delete id="C_DELETE">
 		delete from cart where num = #{num}
 	</delete>

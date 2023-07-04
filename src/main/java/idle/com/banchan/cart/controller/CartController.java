@@ -79,4 +79,21 @@ public class CartController {
 			return "redirect:c_selectAll.do?member_id="+vo.getMember_id();
 	}
 	
+	
+	@RequestMapping(value = "/c_updateOK.do", method = RequestMethod.POST)
+	public String c_updateOK(CartVO vo) {
+		log.info("/c_updateOK.do...");
+		
+		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
+		vo.setMember_id((String)session.getAttribute("member_id"));
+		
+		int result = service.update(vo);
+		log.info("result:{}",result);
+
+		
+		return "redirect:c_selectAll.do?member_id="+vo.getMember_id();
+	}
+	
+	
+	
 }

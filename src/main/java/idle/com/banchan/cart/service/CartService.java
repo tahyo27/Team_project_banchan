@@ -29,10 +29,16 @@ public class CartService {
 	public int insert(CartVO vo) { 
 		return dao.insert(vo);
 	}
+	
+	public int update(CartVO vo) { 
+		return dao.update(vo);
+	}
+	
 
 	public int delete(CartVO vo) {
 		return dao.delete(vo);
 	}
+
 
 
 
