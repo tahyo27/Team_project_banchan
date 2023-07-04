@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class OrderDetailVO {
 	private int num;
-	private int productNum;
-	private int orderNum;
+	private int product_num;
+	private int order_num;
 	private int amount;
 	private int price;
 }
