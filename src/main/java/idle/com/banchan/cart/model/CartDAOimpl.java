@@ -88,6 +88,14 @@ public class CartDAOimpl implements CartDAO {
 	}
 
 
+	@Override
+	public int updateAll(CartVO vo) {
+		log.info("deleteAll()...{}",vo);
+		
+		return sqlSession.delete("C_DELETE_ALL", vo);
+	}
+
+
 
 	
 	

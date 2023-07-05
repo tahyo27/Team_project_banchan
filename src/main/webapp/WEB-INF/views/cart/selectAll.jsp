@@ -17,6 +17,8 @@ function updateQuantity(form) {
 </head>
 <body>
 	<h1>장바구니</h1>
+	
+	<a href="c_deleteAllOK.do?member_id=${param.member_id}">장바구니 비우기</a>
 
 	<table border="1">
 		<tr>
@@ -50,7 +52,7 @@ function updateQuantity(form) {
 		</c:forEach>
 		<tr>
 			<td colspan="5">
-				50,000원 이상 구입시 배송비 무료입니다<br>
+				50,000원 이상 구매 시 배송비 무료입니다<br>
 				장바구니 금액 합계 : <fmt:formatNumber value="${map.sumMoney}" pattern="#,###" />원<br>
 				배송비 :  <fmt:formatNumber value="${map.fee}" pattern="#,###" />원<br>
 				전체 주문 금액 : <fmt:formatNumber value="${map.allSum}" pattern="#,###" />원<br>

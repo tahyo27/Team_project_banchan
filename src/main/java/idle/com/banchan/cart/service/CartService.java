@@ -50,6 +50,10 @@ public class CartService {
 	public int updateCart(CartVO vo) {
 		return dao.updateCart(vo);
 	}
+
+	public int deleteAll(CartVO vo) {
+		return dao.updateAll(vo);
+	}
 	
 
 
