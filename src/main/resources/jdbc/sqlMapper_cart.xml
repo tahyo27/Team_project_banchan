@@ -33,6 +33,11 @@
 		delete from cart where num = #{num}
 	</delete>
 	
+	<delete id="C_DELETE_ALL">
+		delete from cart where member_id=#{member_id}
+	</delete>
+	
+	
 	<select id="C_COUNT_CHECK" resultType="int">
 		select count(*) from cart where member_id=#{member_id} and product_num=#{product_num}
 	</select>

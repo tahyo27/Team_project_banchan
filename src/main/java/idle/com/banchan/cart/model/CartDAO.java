@@ -18,6 +18,8 @@ public interface CartDAO {
 
 	public int updateCart(CartVO vo); // 장바구니 상품 겹칠시 하나로 업데이트
 
+	public int updateAll(CartVO vo); // 장바구니 전체 비우기
+
 
 
 }
