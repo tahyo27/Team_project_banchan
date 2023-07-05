@@ -20,6 +20,8 @@
 <a href="pr_insert.do">product insert</a>
 <hr>
 <a href="c_selectAll.do?member_id=user001">cart selectAll</a>
+<hr>
+<a href="re_selectAll.do?member_id=user001">review selectAll</a>
 
 
 </body>
