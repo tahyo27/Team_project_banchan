@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import idle.com.banchan.cart.model.CartVO;
 import idle.com.banchan.cart.service.CartService;
-import idle.com.banchan.member.model.MemberVO;
 import idle.com.banchan.product.model.ProductVO;
 import idle.com.banchan.product.service.ProductService;
+import idle.com.banchan.review.model.ReviewVO;
+import idle.com.banchan.review.service.ReviewService;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -32,6 +33,9 @@ public class ProductController {
 	
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	ReviewService reviewService;
 	
 	@Autowired
 	ServletContext sContext;
@@ -57,6 +61,12 @@ public class ProductController {
 		cvo.setNum(vo.getNum());
 		model.addAttribute("cvo", cvo);
 		log.info("cvo:{}",cvo);
+		
+		ReviewVO rvo = new ReviewVO();
+		rvo.setNum(vo.getNum());
+		List<ReviewVO> rvos = reviewService.selectAllTotal(rvo);
+		log.info("rvos:{}",rvos);
+		model.addAttribute("rvos",rvos);
 
 		
 		ProductVO vo2 = service.selectOne(vo);
