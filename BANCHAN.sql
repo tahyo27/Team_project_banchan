@@ -123,7 +123,6 @@ CREATE TABLE "CATEGORY"
 , MEMBER_ID VARCHAR2(20 BYTE) NOT NULL 
 , WDATE DATE DEFAULT sysdate NOT NULL 
 , REVIEW_CONTENT VARCHAR2(1000 BYTE) NOT NULL 
-, REVIEW_PHOTO VARCHAR2(1000 BYTE) 
 , CONSTRAINT REVIEW_PK PRIMARY KEY 
   (
     NUM 
@@ -461,4 +460,11 @@ values(seq_product.nextval,2,'떡갈비',13000,100,'맛있는 떡갈비입니다
 INSERT INTO REVIEW(NUM,PRODUCT_NUM,MEMBER_ID,REVIEW_CONTENT)
 VALUES (SEQ_REVIEW.NEXTVAL,1,'user001','감자볶음 맛있어요');
 
+
+-----------
+insert into review(num,product_num,member_id,review_content) 
+values(seq_review.nextval,1, 'user001','맛있어요');
+
+insert into review(num,product_num,member_id,review_content) 
+values(seq_review.nextval,1, 'user002','1인가구가 먹기 적당해요');
 
