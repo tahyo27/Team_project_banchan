@@ -24,7 +24,7 @@ public class OrderController {
 	public String insert() {
 		log.info("/insert.do...");
 
-		return "order/insert";
+		return ".order/insert";
 	}
 
 	@RequestMapping(value = "/insertOk.do", method = RequestMethod.POST)
@@ -49,7 +49,7 @@ public class OrderController {
 
 		model.addAttribute("vo", result);
 
-		return "order/update";
+		return ".order/update";
 	}
 
 	@RequestMapping(value = "/updateOk.do", method = RequestMethod.POST)
@@ -87,7 +87,7 @@ public class OrderController {
 
 		model.addAttribute("vo", result);
 
-		return "order/selectOne";
+		return ".order/selectOne";
 	}
 
 	@RequestMapping(value = "/selectAll.do", method = RequestMethod.GET)
@@ -99,6 +99,6 @@ public class OrderController {
 
 		model.addAttribute("vos", result);
 
-		return "order/selectAll";
+		return ".order/selectAll";
 	}
 }
