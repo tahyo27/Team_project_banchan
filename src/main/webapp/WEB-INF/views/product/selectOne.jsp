@@ -10,6 +10,10 @@
 </head>
 <body>
 	<h1>반찬정보</h1>
+			
+			<a href="pr_update.do?num=${param.num}">상품수정(관리자)</a>
+			<a href="pr_deleteOK.do?num=${param.num}">상품삭제(관리자)</a>
+			
 
 	<table border=1>
 		<tr>
@@ -50,12 +54,30 @@
 		<tr>
 		<td>${vo2.product_content}</td>
 		</tr>
-		<tr>
-			<td>
-			<a href="pr_update.do?num=${param.num}">상품수정(관리자)</a>
-			<a href="pr_deleteOK.do?num=${param.num}">상품삭제(관리자)</a>
-			</td>
-			</tr>
 	</table>
+	<hr>
+	<h3>리뷰 목록</h3>
+	
+	<table border="1">
+	<thead>
+		<tr>
+			<td>상품명</td>
+			<td>작성자</td>
+			<td>리뷰작성일</td>
+			<td>리뷰내용</td>
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach var="vo" items="${rvos}">
+		<tr>
+			<td>${vo.product_name}</td>
+			<td>${vo.member_id}</td>
+			<td>${vo.wdate}</td>
+			<td>${vo.review_content}</td>
+		</tr>
+		</c:forEach>
+		</tbody>
+	</table>
+	
 </body>
 </html>
