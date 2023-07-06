@@ -12,6 +12,8 @@ public interface MemberDAO {
 	MemberVO selectOne(MemberVO vo);
 
 	int insert(MemberVO vo);
+	
+	int sns_insert(MemberVO vo);
 
 	int update(MemberVO vo);
 

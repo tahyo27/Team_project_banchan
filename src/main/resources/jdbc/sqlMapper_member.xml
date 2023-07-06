@@ -61,5 +61,11 @@
 	<delete id="M_DELETE">
 		delete from member where num = #{num}
 	</delete>
-
+	
+	<insert id="SNS_INSERT"
+		parameterType="idle.com.banchan.member.model.MemberVO">
+		insert into
+		member(num,member_id,member_pw,member_name,member_email)
+		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_email})
+	</insert>
 </mapper>

@@ -30,4 +30,7 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- naver -->
+	<beans:bean id="naverLoginBO" class="idle.com.banchan.sns.NaverLoginBO" />
+	
 </beans:beans>

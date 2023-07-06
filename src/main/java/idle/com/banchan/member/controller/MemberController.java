@@ -247,4 +247,6 @@ public class MemberController {
 
 		return "redirect:home";
 	}
+	
+	
 }//end class

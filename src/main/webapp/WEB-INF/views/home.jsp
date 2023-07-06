@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -16,6 +18,8 @@
 <a href="ab_selectAll.do?member_num=2">addressbook selectAll</a>
 <a href="findPwView.do">findPw</a>
 <a href="login.do">login</a>
+<a href="logout.do">logout</a>
+<a href="SNSlogin.do">SNS 로그인</a>
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert</a>

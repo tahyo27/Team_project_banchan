@@ -69,5 +69,8 @@ public class MemberService {
 		return dao.findPw(member_pw, member_email, member_id);
 	
 	}
-
+	
+	public int sns_insert(MemberVO vo) {
+		return dao.sns_insert(vo);
+	}
 }

@@ -97,4 +97,10 @@ public class MemberDAOimpl implements MemberDAO {
 		return sqlSession.update("FIND_PW", map);
 	}
 
+	@Override
+	public int sns_insert(MemberVO vo) {
+		log.info("Member_sns_insert()...{}", vo);
+		return sqlSession.insert("SNS_INSERT", vo);
+	}
+
 }
