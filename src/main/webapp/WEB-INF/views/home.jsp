@@ -19,7 +19,9 @@
 <a href="findPwView.do">findPw</a>
 <a href="login.do">login</a>
 <a href="logout.do">logout</a>
-<a href="SNSlogin.do">SNS 로그인</a>
+<a href="SNS_Login.do">SNS 로그인</a>
+<!-- <a href="Naverlogin.do">Naver 로그인</a> -->
+<!-- <a href="Google_login.do">Google 로그인</a> -->
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert</a>

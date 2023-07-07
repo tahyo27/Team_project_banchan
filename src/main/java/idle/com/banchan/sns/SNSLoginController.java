@@ -5,16 +5,15 @@ import java.io.IOException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 
 import idle.com.banchan.member.model.MemberVO;
 import idle.com.banchan.member.service.MemberService;
@@ -24,87 +23,106 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class SNSLoginController {
 
-	/* NaverLoginBO */
-	private NaverLoginBO naverLoginBO;
-	private String apiResult = null;
-	
+	/* GoogleLogin */
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+
+	@Autowired
+	private SnsValue naverSns;
+
+	@Autowired
+	private SnsValue googleSns;
+
 	@Autowired
 	MemberService service;
-	
+
 	@Autowired
 	HttpSession session;
 
-	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		log.info("setNaverLoginBO()..... naverLoginBO:{}", naverLoginBO);
-		this.naverLoginBO = naverLoginBO;
-	}
-
 	// 로그인 첫 화면 요청 메소드
-	@RequestMapping(value = "/SNSlogin.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
+	@RequestMapping(value = "/SNS_Login.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String SNS_login(Model model, HttpSession session) {
 
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		// naver 코드 발급받는 url
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		log.info("네이버", snsLogin.getNaverAuthURL());
 
-		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
-		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
-		log.info("네이버:" + naverAuthUrl);
+		model.addAttribute("naver_url", snsLogin.getNaverAuthURL());
 
-		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 
-		/* 생성한 인증 URL을 View로 전달 */
+		log.info("구글:" + url);
+
+		model.addAttribute("google_url", url); // google_url에 로그인 url 넣음
+
 		return "SNS/login";
 	}
 
 	// 네이버 로그인 성공시 callback호출 메소드
-	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException {
+	@RequestMapping(value = "/naver_callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String NaverCallback(Model model, @RequestParam String code, HttpSession session) throws Exception {
 		log.info("Naver 로그인 callback");
-		OAuth2AccessToken oauthToken;
-		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		// 로그인 사용자 정보를 읽어온다.
-		apiResult = naverLoginBO.getUserProfile(oauthToken);
-		log.info("apiResult:{}", apiResult);
+		log.info("받은 code:" + code);
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		MemberVO vo = snsLogin.getUserProfie(code);
 
-		MemberVO vo = new MemberVO();
-		String member_id = null;
-		String member_name = null;
-		String member_email = null; // id로 사용할 apiResult에서 가져올 이메일
+		log.info("naver profile:" + vo);
 
-		try {
-			// JSON 파싱을 위한 라이브러리를 사용하여 apiResult에서 email 값을 추출
-			// Gson 라이브러리를 사용
-			JsonObject jsonObject = new Gson().fromJson(apiResult, JsonObject.class);
-			JsonObject response = jsonObject.getAsJsonObject("response");
-			member_id = response.get("id").getAsString();
-			member_name = response.get("name").getAsString();
-			member_email = response.get("email").getAsString();
-		} catch (JsonSyntaxException e) {
-			e.printStackTrace();
-		}
-		vo.setMember_id(member_id);
-		vo.setMember_pw(member_id);
-		vo.setMember_name(member_name);
-		vo.setMember_email(member_email);
-
-		log.info("naver member vo:{}", vo);
-		
 		MemberVO vo2 = service.login(vo);
 		
-		if(vo2 == null) { //널이면 새로 DB에 저장
-			int result = service.sns_insert(vo); //vo에 값을 넣어놓음
-			log.info("sns insert result:", result);
+		if (vo2 == null) {
+			log.info("naver로그인 회원가입 안되어있음");
+			int result = service.sns_insert(vo);
+			log.info("naverSNS 회원가입 result:{}", result);
+			if (result == 1) {
+				session.setAttribute("user_id", vo.getMember_name());
+			} else {
+				return "redirect:SNS_Login.do";
+			}
+		} else {
+			log.info("naver로그인 회원가입 되어있음");
+			session.setAttribute("user_id", vo.getMember_name());
 		}
-		
-		session.setAttribute("user_id", member_email);
-
-		model.addAttribute("result", apiResult);
-
-		/* 네이버 로그인 성공 페이지 View 호출 */
 		return "SNS/NaverSuccess";
+	}
+
+	// 구글 Callback호출 메소드
+	@RequestMapping(value = "/google_callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String googleCallback(Model model, @RequestParam String code) throws Exception {
+		// 1.code를 이용해 access token 받기
+		// 2.access token으로 사용자 정보 받기
+		// 3.db에 해당 이용자 존재하는지 체크
+		// 4.존재하면 로그인 아니면 가입
+		log.info("googleCallback 호출");
+		log.info("받은 code:" + code);
+		SNSLogin snsLogin = new SNSLogin(googleSns);
+		MemberVO vo = snsLogin.getUserProfie(code);
+		log.info("google profile:" + vo);
+
+		MemberVO vo2 = service.login(vo);
+
+		if (vo2 == null) {
+			log.info("google로그인 회원가입 안되어있음");
+			int result = service.sns_insert(vo);
+			log.info("googleSNS 회원가입 result:{}", result);
+			if (result == 1) {
+				session.setAttribute("user_id", vo.getMember_name());
+			} else {
+				return "redirect:SNS_Login.do";
+			}
+		} else {
+			log.info("google로그인 회원가입 되어있음");
+			session.setAttribute("user_id", vo.getMember_name());
+		}
+
+//		model.addAttribute("result", vo);
+
+		return "SNS/GoogleSuccess";
+
 	}
 
 }// end class
