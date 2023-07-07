@@ -12,7 +12,7 @@
 
 	<select id="PR_SELECT_ONE"
 		resultType="idle.com.banchan.product.model.ProductVO">
-		select * from product where product_name=#{product_name}
+		select * from product where num = #{num}
 	</select>
 
 	<select id="PR_SEARCH_LIST_NAME"
@@ -31,7 +31,7 @@
 	<insert id="PR_UPDATE"
 		parameterType="idle.com.banchan.product.model.ProductVO">
 		update product set
-		product_price=#{product_price},
+		product_img=#{product_img},product_name=#{product_name},product_price=#{product_price},
 		product_stock=#{product_stock}, product_content=#{product_content}
 		where num = #{num}
 	</insert>

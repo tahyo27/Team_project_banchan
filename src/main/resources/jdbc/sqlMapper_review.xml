@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="idle.com.banchan.cart">
+
+	<select id="RE_SELECT_ALL" resultType="idle.com.banchan.review.model.ReviewVO">
+		select r.num, p.product_name, r.wdate, r.review_content
+		from review r join product p on (r.product_num = p.num) where member_id=#{member_id} 
+		order by num desc
+	</select>
+	
+	<select id="RE_SELECT_ALL_TOTAL" resultType="idle.com.banchan.review.model.ReviewVO">
+		select r.num, p.product_name, r.wdate, r.review_content, r.member_id
+		from review r join product p on (r.product_num = p.num) 
+		where r.product_num = #{num} order by num desc
+	</select>
+
+<!-- 	<insert id="RE_INSERT" -->
+<!-- 		parameterType="idle.com.banchan.review.model.ReviewVO"> -->
+<!-- 		insert into review(num,product_num,member_id,review_content,review_rating)  -->
+<!-- 		values(seq_review.nextval,#{product_num}, #{member_id}, #{review_content}, #{review_rating}) -->
+<!-- 	</insert> 
+			구매완료한 상품만 리뷰를 남길 수 있기 때문에 주문과 연동해야 함 / 잠시 보류 -->
+
+	<delete id="RE_DELETE">
+		delete from review where num = #{num}
+	</delete>
+	
+	
+
+
+
+
+</mapper>

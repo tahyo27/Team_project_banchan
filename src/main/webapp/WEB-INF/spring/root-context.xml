@@ -31,7 +31,8 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:jdbc/sqlMapper_member.xml</value>
-<!-- 				<value>classpath:jdbc/sqlMapper_cart.xml</value> -->
+				<value>classpath:jdbc/sqlMapper_cart.xml</value>
+				<value>classpath:jdbc/sqlMapper_review.xml</value>
 				<value>classpath:jdbc/sqlMapper_product.xml</value>
 				<value>classpath:jdbc/sqlMapper_order.xml</value>
 				<value>classpath:jdbc/sqlMapper_addressbook.xml</value>
@@ -69,9 +70,25 @@
 				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
 			</props>
 		</property>
-
 	</bean>
 
-
+	<!-- 타일즈 관련 설정 -->
+	<!-- 설정파일 지정하기 -->
+	<bean id="tilesConfig"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 뷰를 타일즈로 지정하기 -->
+	<bean
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="0" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles2.TilesView" />
+		<property name="viewNames" value=".*" />
+	</bean>
 
 </beans>
