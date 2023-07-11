@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<%-- <%@ page session="false" %> --%>
 <html>
 <head>
 	<title>Home</title>
@@ -26,11 +26,16 @@
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert</a>
 <hr>
-<a href="c_selectAll.do?member_id=user001">cart selectAll</a>
+<a href="c_selectAll.do?member_id=${user_id}">cart selectAll</a>
 <hr>
-<a href="re_selectAll.do?member_id=user001">review selectAll</a>
+<a href="re_selectAll.do?member_id=${user_id}">review selectAll</a>
+<hr>
+<a href="pr_selectCategory.do?category_num=1">category select 볶음·구이</a>
+<a href="pr_selectCategory.do?category_num=2">category select 고기반찬</a>
+<a href="pr_selectCategory.do?category_num=3">category select 국·탕·찌개</a>
+<a href="pr_selectCategory.do?category_num=4">category select 조림·나물·무침</a>
+<a href="pr_selectCategory.do?category_num=5">category select 김치</a>
 
-test
 
 
 
