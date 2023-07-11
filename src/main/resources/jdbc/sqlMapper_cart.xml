@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="idle.com.banchan.cart">
+<mapper namespace="com.banchan.cart">
 
 	<select id="C_SUM_MONEY" resultType="int">
 		select nvl(sum(product_price*amount),0) money
@@ -12,7 +12,7 @@
 	</select>
 
 	<select id="C_SELECT_ALL"
-		resultType="idle.com.banchan.cart.model.CartVO">
+		resultType="com.banchan.cart.model.CartVO">
 		select c.num,
 		c.member_id,c.product_num,p.product_name,p.product_img,p.product_price,c.amount
 		from cart c join product p on (c.product_num = p.num) where
@@ -20,7 +20,7 @@
 	</select>
 
 	<insert id="C_INSERT"
-		parameterType="idle.com.banchan.cart.model.CartVO">
+		parameterType="com.banchan.cart.model.CartVO">
 		insert into cart(num,product_num,member_id,amount)
 		values(seq_cart.nextval,#{product_num},#{member_id},#{amount})
 	</insert>

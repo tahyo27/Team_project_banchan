@@ -18,7 +18,7 @@
 	<table border=1>
 		<tr>
 			<td><img width="300px"
-				src="resources/uploadimg/${vo2.product_img}"></td>
+				src="resources/uploadimg/product/${vo2.product_img}"></td>
 			<td>
 				<table border=1>
 					<tr>

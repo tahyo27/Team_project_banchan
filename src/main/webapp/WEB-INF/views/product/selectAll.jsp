@@ -36,7 +36,7 @@
 
 					<td>${vo.num}</td>
 					<td><a href="pr_selectOne.do?num=${vo.num}"><img
-							width="100px" src="resources/uploadimg/${vo.product_img}"></a></td>
+							width="300px" src="resources/uploadimg/product/${vo.product_img}"></a></td>
 					<td>${vo.product_name}</td>
 					<td><fmt:formatNumber value="${vo.product_price}" pattern="#,###"/>원</td>
 <%-- 				<td>${vo.category_num}</td> --%>

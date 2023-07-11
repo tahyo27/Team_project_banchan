@@ -11,7 +11,7 @@
 	</select>
 
 	<select id="PR_SELECT_ONE"
-		resultType="idle.com.banchan.product.model.ProductVO">
+		resultType="com.banchan.product.model.ProductVO">
 		select * from product where num = #{num}
 	</select>
 
