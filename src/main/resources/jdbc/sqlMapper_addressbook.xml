@@ -3,21 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="idle.com.banchan.addressbook">
+<mapper namespace="com.banchan.addressbook">
 	<select id="AB_SELECT_ALL"
-		resultType="idle.com.banchan.addressbook.model.AddressBookVO">
+		resultType="com.banchan.addressbook.model.AddressBookVO">
 		select * from addressbook where member_num = #{member_num} order by num desc
 	</select>
 
 	<insert id="AB_INSERT"
-		parameterType="idle.com.banchan.addressbook.model.AddressBookVO">
+		parameterType="com.banchan.addressbook.model.AddressBookVO">
 		insert into
 		addressbook(num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
 		values(seq_addressbook.nextval,#{member_num},#{ab_name},#{ab_zipcode},#{ab_address1},#{ab_address2},#{ab_tel})
 	</insert>
 
 	<update id="AB_UPDATE"
-		parameterType="idle.com.banchan.addressbook.model.AddressBookVO">
+		parameterType="com.banchan.addressbook.model.AddressBookVO">
 		update addressbook set ab_base = (case when num = #{num} then 1 else 0 end)
 	</update>
 
