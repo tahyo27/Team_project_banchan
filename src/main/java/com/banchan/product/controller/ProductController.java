@@ -51,7 +51,7 @@ public class ProductController {
 		
 		model.addAttribute("vos", vos);
 
-		return "product/selectAll";
+		return ".product/selectAll";
 	}
 	
 	@RequestMapping(value = "/pr_selectCategory.do", method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class ProductController {
 		
 		model.addAttribute("cvos", cvos);
 
-		return "product/categoryselect";
+		return ".product/categoryselect";
 	}
 	
 	

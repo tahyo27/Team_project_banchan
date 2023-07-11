@@ -7,12 +7,12 @@
 
 	<select id="PR_SELECT_ALL"
 		resultType="com.banchan.product.model.ProductVO">
-		select * from product order by num desc
+		select * from product order by num
 	</select>
 	
 		<select id="PR_SELECT_CATEGORY"
 		resultType="com.banchan.product.model.ProductVO">
-		 select p.num, p.product_name, p.product_price, p.product_img, c.category_name
+		 select p.num, p.product_name, p.product_price, p.product_img, c.category_name, p.category_num
 		 from product p join category c  on (p.category_num = c.num)
 		 where category_num=#{category_num}
 	</select>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- Start Top Nav -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
 	<div class="container text-light">
@@ -45,16 +45,19 @@
 			<div class="flex-fill">
 				<ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="index.html">Home</a>
+						<a class="nav-link" href="pr_selectAll.do">전체</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="about.html">About</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=4">조림·나물·무침</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="shop.html">Shop</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=2">고기반찬</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="contact.html">Contact</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=3">국·탕·찌개</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="pr_selectCategory.do?category_num=5">김치</a>
 					</li>
 				</ul>
 			</div>
