@@ -1,3 +1,13 @@
 /*
 Custom Css
 */
+
+.nav-item .nav-link {
+  font-size: 17px !important;
+}
+
+.navbar-brand {
+  padding-left: 10px;
+  margin-top: 8px;
+}
+
