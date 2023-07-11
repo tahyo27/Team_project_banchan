@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="idle.com.banchan.product">
+<mapper namespace="com.banchan.product">
 
 	<select id="PR_SELECT_ALL"
-		resultType="idle.com.banchan.product.model.ProductVO">
+		resultType="com.banchan.product.model.ProductVO">
 		select * from product order by num desc
 	</select>
 
@@ -16,20 +16,20 @@
 	</select>
 
 	<select id="PR_SEARCH_LIST_NAME"
-		resultType="idle.com.banchan.product.model.ProductVO">
+		resultType="com.banchan.product.model.ProductVO">
 		select * from product where product_name like #{searchWord}
 	</select>
 
 
 	<insert id="PR_INSERT"
-		parameterType="idle.com.banchan.product.model.ProductVO">
+		parameterType="com.banchan.product.model.ProductVO">
 		insert into
 		product(num,category_num,product_name,product_price,product_img,product_stock,product_content)
 		values(seq_product.nextval,#{category_num},#{product_name},#{product_price},#{product_img},#{product_stock},#{product_content})
 	</insert>
 
 	<insert id="PR_UPDATE"
-		parameterType="idle.com.banchan.product.model.ProductVO">
+		parameterType="com.banchan.product.model.ProductVO">
 		update product set
 		product_img=#{product_img},product_name=#{product_name},product_price=#{product_price},
 		product_stock=#{product_stock}, product_content=#{product_content}

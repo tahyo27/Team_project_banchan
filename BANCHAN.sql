@@ -176,8 +176,8 @@ CREATE TABLE "NOTICE"
 CREATE TABLE "MEMBER"
 (
     "NUM"              NUMBER               NOT NULL,
-    "MEMBER_ID"        VARCHAR2(20)         NULL,
-    "MEMBER_PW"        VARCHAR2(20)         NOT NULL,
+    "MEMBER_ID"        VARCHAR2(60)         NULL,
+    "MEMBER_PW"        VARCHAR2(60)         NOT NULL,
     "MEMBER_NAME"      VARCHAR2(20)         NOT NULL,
     "MEMBER_EMAIL"     VARCHAR2(40)         NOT NULL,
     "MEMBER_ZIPCODE"   VARCHAR2(10)         NULL,
