@@ -3,32 +3,32 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="idle.com.banchan.member">
+<mapper namespace="com.banchan.member">
 	<select id="M_SELECT_ALL"
-		resultType="idle.com.banchan.member.model.MemberVO">
+		resultType="com.banchan.member.model.MemberVO">
 		select * from member order by num desc
 	</select>
 
 	<select id="M_SELECT_ONE"
-		resultType="idle.com.banchan.member.model.MemberVO">
+		resultType="com.banchan.member.model.MemberVO">
 		select * from member where num = #{num}
 	</select>
 
 	<select id="LOGIN"
-		resultType="idle.com.banchan.member.model.MemberVO">
+		resultType="com.banchan.member.model.MemberVO">
 		select * from member where member_id = #{member_id}
 		and
 		member_pw = #{member_pw}
 	</select>
 
 	<select id="M_SEARCH_LIST_NAME"
-		resultType="idle.com.banchan.member.model.MemberVO">
+		resultType="com.banchan.member.model.MemberVO">
 		select * from member where member_name like
 		#{searchWord}
 	</select>
 
 	<select id="M_ID_CHECK"
-		resultType="idle.com.banchan.member.model.MemberVO">
+		resultType="com.banchan.member.model.MemberVO">
 		select member_id from member where member_id = #{member_id}
 	</select>
 
@@ -38,20 +38,20 @@
 		member_id = #{member_id}
 	</select>
 
-	<update id="FIND_PW" parameterType="idle.com.banchan.member.model.MemberVO">
+	<update id="FIND_PW" parameterType="com.banchan.member.model.MemberVO">
 		update member set member_pw = #{member_pw} where member_email =
 		#{member_email} and member_id = #{member_id}
 	</update>
 
 	<insert id="M_INSERT"
-		parameterType="idle.com.banchan.member.model.MemberVO">
+		parameterType="com.banchan.member.model.MemberVO">
 		insert into
 		member(num,member_id,member_pw,member_name,member_tel,member_email,member_zipcode,member_address1,member_address2,member_profile)
 		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_tel},#{member_email},#{member_zipcode},#{member_address1},#{member_address2},#{member_profile})
 	</insert>
 
 	<update id="M_UPDATE"
-		parameterType="idle.com.banchan.member.model.MemberVO">
+		parameterType="com.banchan.member.model.MemberVO">
 		update member set member_pw=#{member_pw} ,
 		member_name=#{member_name} , member_tel=#{member_tel} ,
 		member_profile=#{member_profile}
@@ -63,7 +63,7 @@
 	</delete>
 	
 	<insert id="SNS_INSERT"
-		parameterType="idle.com.banchan.member.model.MemberVO">
+		parameterType="com.banchan.member.model.MemberVO">
 		insert into
 		member(num,member_id,member_pw,member_name,member_email)
 		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_email})

@@ -16,16 +16,41 @@
   	padding: 0.6em;
   }
   </style>
+<!--   <script src ="https://developers.kakao.com/sdk/js/kakao.js"></script> -->
+  <script>
+//   	//9f9b6274a42390123b0cd5f400f78e06
+//   	window.Kakao.init("9f9b6274a42390123b0cd5f400f78e06");
+  	
+//   	function kakaoLogin() {
+//   		window.Kakao.Auth.login({
+//   			scope:'profile_nickname, account_email',
+//   			success: function(authObj) {
+//   				console.log(authObj);
+//   				window.Kakao.API.request({
+//   					url:'/v2/user/me',
+//   					success: res => {
+//   						const kakao_account = res.kakao_account;
+//   						console.log(kakao_account);
+//   					}
+  					
+//   				});
+//   			}
+//   		});
+//   	}
+ </script>
 </head>
 <body>
 <div style="background-color:#15a181; width: 100%; height: 50px;text-align: center; color: white; "><h3>NAVER SNS Login</h3></div>
 <br>
 <!-- 네이버 로그인 화면으로 이동 시키는 URL -->
 <!-- 네이버 로그인 화면에서 ID, PW를 올바르게 입력하면 callback 메소드 실행 요청 -->
-<div id="naver_id_login" style="text-align:center"><a href="${naver_url}"><img width="223" src="${pageContext.request.contextPath}/resources/SNSimg/btnG_완성형.png"/></a></div>
+<div id="naver_id_login" style="text-align:center"><a href="${naver_url}"><img width="230" src="${pageContext.request.contextPath}/resources/SNSimg/btnG_완성형.png"/></a></div>
 <br>
 <!-- 구글 로그인 화면으로 이동 시키는 URL -->
 <!-- 구글 로그인 화면에서 ID, PW를 올바르게 입력하면 oauth2callback 메소드 실행 요청-->
 <div id="google_id_login" style="text-align:center"><a href="${google_url}"><img width="230" src="${pageContext.request.contextPath}/resources/SNSimg/btn_google_signin_dark_normal.png"/></a></div>
+<!-- 카카오 로그인 화면으로 이동 시키는 URL -->
+<!-- 카카오 로그인 화면에서 ID, PW를 올바르게 입력하면 oauth2callback 메소드 실행 요청-->
+<div id="kakao_id_login" style="text-align:center"><a href="${kakao_url}"><img width="230" src="${pageContext.request.contextPath}/resources/SNSimg/kakao_login_large_narrow.png"/></a></div>
 </body>
 </html>

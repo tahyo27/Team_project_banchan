@@ -27,19 +27,17 @@
 	</beans:bean>
 
 	<context:component-scan
-		base-package="idle.com.banchan" />
+		base-package="com.banchan" />
 
 	<interceptors>
 		<interceptor>
 			<mapping path="/*.do" />
 			<beans:bean
-				class="idle.com.banchan.interceptor.LoginInterceptor"></beans:bean>
+				class="com.banchan.interceptor.LoginInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 
-	<!-- naver -->
-	<!-- <beans:bean id="naverLoginBO" -->
-	<!-- class="idle.com.banchan.sns.NaverLoginBO" /> -->
+	<!-- Naver -->
 	<beans:bean id="naverClientID" class="java.lang.String">
 		<beans:constructor-arg value="H5fpXpYMk29cDnIiqfJh" />
 	</beans:bean>
@@ -52,15 +50,34 @@
 			value="http://localhost:8088/banchan/naver_callback" />
 	</beans:bean>
 
-	<beans:bean id="naverSns" class="idle.com.banchan.sns.SnsValue">
+	<beans:bean id="naverSns" class="com.banchan.sns.SnsValue">
 		<beans:constructor-arg value="naver" />
 		<beans:constructor-arg ref="naverClientID" />
 		<beans:constructor-arg ref="naverClientSecret" />
 		<beans:constructor-arg ref="naverRedirectUrl" />
 	</beans:bean>
+	<!-- Kakao -->
+	<beans:bean id="kakaoClientID" class="java.lang.String">
+		<beans:constructor-arg value="cf7418151150a8a40ca81fe385016a92" />
+	</beans:bean>
+	<beans:bean id="kakaoClientSecret" class="java.lang.String">
+		<beans:constructor-arg
+			value="PBGNAN0b7ByjIKwhuVBjIGTePZUb9Cds" />
+	</beans:bean>
+	<beans:bean id="kakaoRedirectUrl" class="java.lang.String">
+		<beans:constructor-arg
+			value="http://localhost:8088/banchan/kakao_callback" />
+	</beans:bean>
 
+	<beans:bean id="kakaoSns" class="com.banchan.sns.SnsValue">
+		<beans:constructor-arg value="kakao" />
+		<beans:constructor-arg ref="kakaoClientID" />
+		<beans:constructor-arg ref="kakaoClientSecret" />
+		<beans:constructor-arg ref="kakaoRedirectUrl" />
+	</beans:bean>
+	
 
-
+	<!-- Google -->
 	<beans:bean id="googleClientID" class="java.lang.String">
 		<beans:constructor-arg
 			value="584887696344-9ltorjp0h2kj3rd8u00g9aaach56lu0b.apps.googleusercontent.com" />
@@ -75,7 +92,7 @@
 	</beans:bean>
 
 	<beans:bean id="googleSns"
-		class="idle.com.banchan.sns.SnsValue">
+		class="com.banchan.sns.SnsValue">
 		<beans:constructor-arg value="google" />
 		<beans:constructor-arg ref="googleClientID" />
 		<beans:constructor-arg ref="googleClientSecret" />
