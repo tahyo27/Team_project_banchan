@@ -44,6 +44,9 @@ public class ProductService {
 	public int delete(ProductVO vo) {
 		return dao.delete(vo);
 	}
+	public List<ProductVO> selectCategory(ProductVO vo) {
+		return dao.selectCategory(vo);
+	}
 
 
 }

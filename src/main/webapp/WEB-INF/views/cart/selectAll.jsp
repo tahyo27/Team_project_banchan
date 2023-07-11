@@ -16,9 +16,9 @@ function updateQuantity(form) {
 
 </head>
 <body>
-	<h1>장바구니</h1>
+	<h1>${user_id}의 장바구니</h1>
 	
-	<a href="c_deleteAllOK.do?member_id=${param.member_id}">장바구니 비우기</a>
+	<a href="c_deleteAllOK.do?member_id=${user_id}">장바구니 비우기</a>
 
 	<table border="1">
 		<tr>
@@ -39,6 +39,7 @@ function updateQuantity(form) {
 				<td>
 					<form action="c_updateOK.do" method="post" onsubmit="updateQuantity(this); return false;">
 						<input type="hidden" name="num" value="${vo.num}">
+						<input type="hidden" name="member_id" value="${user_id}">
 						<select name="amount">
 							<c:forEach begin="1" end="20" var="i">
 								<option value="${i}" ${i == vo.amount ? 'selected' : ''}>${i}</option>
@@ -47,7 +48,8 @@ function updateQuantity(form) {
 						<input type="submit" value="변경">
 					</form>
 				</td>
-				<td><a href="c_deleteOK.do?num=${vo.num}">삭제하기</a></td>
+				<td>
+				<a href="c_deleteOK.do?num=${vo.num}&member_id=${user_id}">삭제하기</a></td>
 			</tr>
 		</c:forEach>
 		<tr>

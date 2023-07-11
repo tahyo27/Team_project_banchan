@@ -54,6 +54,21 @@ public class ProductController {
 		return "product/selectAll";
 	}
 	
+	@RequestMapping(value = "/pr_selectCategory.do", method = RequestMethod.GET)
+	public String pr_selectCategory(ProductVO vo,Model model) {
+		log.info("/pr_selectCategory.do....{}",vo);
+
+		List<ProductVO> cvos = service.selectCategory(vo);
+		log.info("cvos:{}", cvos);
+		
+		model.addAttribute("cvos", cvos);
+
+		return "product/categoryselect";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/pr_selectOne.do", method = RequestMethod.GET)
 	public String pr_selectOne(ProductVO vo,Model model) {
 		log.info("/pr_selectOne.do.....");

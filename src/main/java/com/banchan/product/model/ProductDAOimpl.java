@@ -72,5 +72,11 @@ public class ProductDAOimpl implements ProductDAO {
 		
 		return sqlSession.delete("PR_DELETE",vo);
 	}
+
+	@Override
+	public List<ProductVO> selectCategory(ProductVO vo) {
+		
+		return sqlSession.selectList("PR_SELECT_CATEGORY", vo);
+	}
 	
 }
