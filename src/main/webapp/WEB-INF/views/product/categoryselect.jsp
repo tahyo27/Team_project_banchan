@@ -9,15 +9,6 @@
 <title>product Test</title>
 </head>
 <body>
-<!-- 		<div> -->
-<!-- 			<form action="pr_searchList.do"> -->
-<!-- 				<select name="searchKey" id="searchKey"> -->
-<!-- 				<option value="name">상품명</option> -->
-<!-- 			</select>  -->
-<!-- 			<input type="text" name="searchWord" id="searchWord" value=""> -->
-<!-- 			<input type="submit" value="상품검색">  -->
-<!-- 			</form> -->
-<!-- 		</div> -->
 
 	<table>
 		<thead>
@@ -37,7 +28,6 @@
 							width="300px" src="resources/uploadimg/product/${vo.product_img}"></a></td>
 					<td>${vo.product_name}</td>
 					<td><fmt:formatNumber value="${vo.product_price}" pattern="#,###"/>원</td>
-<%-- 				<td>${vo.category_num}</td> --%>
 				</tr>
 			</c:forEach>
 
