@@ -14,9 +14,14 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <style>
-.my-text {
+.banchan_text {
 	font-family: 'Roboto', sans-serif;
-	font-weight: 400;
+	font-weight: bold;
+	color: rgb(89, 171, 110);
+}
+.roboto_font {
+font-family: 'Roboto', sans-serif;
+font-weight: 400;
 }
 </style>
 
@@ -27,22 +32,22 @@
 			<div class="col-md-6">
 				<div class="card">
 					<div class="card-header">
-						<h3 class="text-center">비밀번호 찾기</h3>
+						<h1 class="banchan_text text-center" style="margin-top: 40px;">BANCHAN</h1>
+						<h3 class="text-center roboto_font" style="font-size: 20px;">Find PW</h3>
 					</div>
 					<div class="card-body">
 						<form action="findPw.do" method="post">
 							<div class="form-group">
-								<label for="member_id">아이디</label> <input type="text"
+								<label for="member_id" class="roboto_font">ID</label> <input type="text"
 									class="form-control" id="member_id" name="member_id"
 									placeholder="아이디를 입력하세요">
 							</div>
-							<div class="form-group">
-								<label for="member_email">이메일</label> <input type="email"
+							<div class="form-group" style="margin-top: 15px;">
+								<label for="member_email" class="roboto_font">EMAIL</label> <input type="email"
 									class="form-control" id="member_email" name="member_email"
 									placeholder="이메일을 입력하세요">
 							</div>
-							<button type="submit" class="btn btn-primary btn-block">비밀번호
-								찾기</button>
+							<button type="submit" class="btn btn-primary btn-block roboto_font" style="margin-top: 20px;" >비밀번호 찾기</button>
 						</form>
 					</div>
 				</div>

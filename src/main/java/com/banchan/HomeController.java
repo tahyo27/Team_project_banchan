@@ -37,11 +37,11 @@ public class HomeController {
 	}
 	
 	//CSS테스트
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@RequestMapping(value = "/jsptest", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 	
 		
-		return "CssTest";
+		return "findPw/findPwResult";
 	}
 
 }//end class

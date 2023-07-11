@@ -195,7 +195,7 @@ public class MemberController {
 	public String findPwView() {
 		log.info("findPwView.do....");
 		
-		return "findPw/findpwtest";
+		return "findPw/findPwView";
 	}
 	
 	@RequestMapping(value = "/findPw.do", method = RequestMethod.POST)
@@ -210,7 +210,7 @@ public class MemberController {
 		} else { //아이디 이메일 일치하는 않는경우
 			service.findPw(vo.getMember_email(), vo.getMember_id());
 			model.addAttribute("member_email", vo.getMember_email());
-			return "findPw/findPw";
+			return "findPw/findPwResult";
 		}
 	}
 	

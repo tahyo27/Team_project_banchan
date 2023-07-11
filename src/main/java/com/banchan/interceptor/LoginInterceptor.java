@@ -11,38 +11,42 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class LoginInterceptor extends HandlerInterceptorAdapter {
-	
+
 	@Autowired
 	HttpSession session;
-	
+
 	@Override
-	public boolean preHandle(HttpServletRequest request, 
-			HttpServletResponse response, Object handler)
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		log.info("preHandle()....");
-		
+
 		String sPath = request.getServletPath();
-		log.info("preHandle()....{}",sPath);
-		
+		log.info("preHandle()....{}", sPath);
+
 		String user_id = (String) session.getAttribute("user_id");
-		log.info("preHandle()....user_id : {}",user_id);
+		log.info("preHandle()....user_id : {}", user_id);
 		
-		
-		if(sPath.equals("/m_selectAll.do")) {
+		if (sPath.equals("/m_selectAll.do")) {
+			if(user_id==null) {
+				log.info("계정이 null입니다");
+				response.sendRedirect("login.do");
+				return false;
+			}
 			
-			if(!user_id.equals("admin")) {
+			if (!user_id.equals("admin")) {
 				log.info("admin계정이 아닙니다.");
 				response.sendRedirect("home");
 				return false;
 			}
+
 		}
-		
+
 		return true;
 	}
-	
+
 //	@Override
 //	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 //			ModelAndView modelAndView) throws Exception {
 //		log.info("postHandle()....");
 //	}
-}//end class
+}// end class
