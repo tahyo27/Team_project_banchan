@@ -10,10 +10,20 @@ public class OrderVO {
 	private int num;
 	private int member_num;
 	private Date order_date;
-	private String order_status;
-	private int order_amount;
-	private int order_del;
-	private int order_total;
+	private String status;
+
+	private String receiver_name;
+	private String tel;
+	private String zipcode;
+	private String address1;
+	private String address2;
+	private String memo;
+
+	private int order_price;
+	private int delivery_fee;
+	private int discount_coupon;
+	private int use_point;
+	private int total_price;
 
 	private List<OrderDetailVO> details;
 }
