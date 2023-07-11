@@ -32,9 +32,7 @@ public class CartController {
 	public String c_selectAll(CartVO vo,Model model) {
 		log.info("/c_selectAll.do...{}",vo);
 		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
-		
+		String user_id = (String)session.getAttribute("user_id");
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<CartVO> vos = service.selectAll(vo);
@@ -46,6 +44,7 @@ public class CartController {
 		map.put("sumMoney", sumMoney);
 		map.put("fee", fee);
 		map.put("allSum", sumMoney+fee);
+		map.put("user_id", user_id);
 		
 		model.addAttribute("map",map);
 
@@ -65,8 +64,6 @@ public class CartController {
 	public String c_insertOK(CartVO vo, Model model) {
 	    log.info("/c_insertOK.do...{}", vo);
 
-	    session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-	    vo.setMember_id((String) session.getAttribute("member_id"));
 
 	    int count = service.countCheck(vo);
 	    log.info("count:{}",count);
@@ -84,8 +81,6 @@ public class CartController {
 	public String c_deleteOK(CartVO vo) {
 		log.info("/c_deleteOK.do...{}",vo);
 		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
 		
 		
 		int result = service.delete(vo);
@@ -97,9 +92,6 @@ public class CartController {
 	@RequestMapping(value = "/c_deleteAllOK.do", method = RequestMethod.GET)
 	public String c_deleteAllOK(CartVO vo) {
 		log.info("/c_deleteAllOK.do...{}",vo);
-		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
 		
 		
 		int result = service.deleteAll(vo);
@@ -114,8 +106,6 @@ public class CartController {
 	public String c_updateOK(CartVO vo) {
 		log.info("/c_updateOK.do...");
 		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
 		
 		int result = service.update(vo);
 		log.info("result:{}",result);
