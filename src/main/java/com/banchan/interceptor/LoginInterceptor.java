@@ -30,7 +30,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		if(sPath.equals("/m_selectAll.do")) {
 			
-			if(user_id == null) {
+			if(!user_id.equals("admin")) {
+				log.info("admin계정이 아닙니다.");
 				response.sendRedirect("home");
 				return false;
 			}

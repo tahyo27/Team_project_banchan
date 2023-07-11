@@ -20,6 +20,8 @@ public interface MemberDAO {
 	int delete(MemberVO vo);
 
 	MemberVO login(MemberVO vo);
+	
+	int admin_check(MemberVO vo);
 
 	MemberVO idCheck(MemberVO vo);
 	
