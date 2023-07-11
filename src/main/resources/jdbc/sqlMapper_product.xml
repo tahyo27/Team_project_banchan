@@ -9,6 +9,14 @@
 		resultType="com.banchan.product.model.ProductVO">
 		select * from product order by num desc
 	</select>
+	
+		<select id="PR_SELECT_CATEGORY"
+		resultType="com.banchan.product.model.ProductVO">
+		 select p.num, p.product_name, p.product_price, p.product_img, c.category_name
+		 from product p join category c  on (p.category_num = c.num)
+		 where category_num=#{category_num}
+	</select>
+	
 
 	<select id="PR_SELECT_ONE"
 		resultType="com.banchan.product.model.ProductVO">

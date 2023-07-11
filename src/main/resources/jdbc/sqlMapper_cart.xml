@@ -26,11 +26,11 @@
 	</insert>
 
 	<update id="C_UPDATE">
-		update cart set amount=#{amount} where num=#{num}
+		update cart set amount=#{amount} where num=#{num} and member_id=#{member_id}
 	</update>
 
 	<delete id="C_DELETE">
-		delete from cart where num = #{num}
+		delete from cart where num = #{num} and member_id=#{member_id}
 	</delete>
 	
 	<delete id="C_DELETE_ALL">

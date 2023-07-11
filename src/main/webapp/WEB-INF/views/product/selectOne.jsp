@@ -37,6 +37,7 @@
 						<td colspan="2">
 							<form action="c_insertOK.do" method="post">
 								<input type="hidden" name="product_num" value="${vo2.num}"> 
+								<input type="hidden" name="member_id" value="${user_id}"> 
 								<select	name="amount">
 									<c:forEach begin="1" end="10" var="i">
 										<option value="${i}">${i}</option>
