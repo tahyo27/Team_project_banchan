@@ -192,13 +192,21 @@ CREATE TABLE "ADDRESSBOOK"
 
 CREATE TABLE "ORDER"
 (
-    "NUM"          NUMBER                       NOT NULL,
-    "MEMBER_NUM"   NUMBER                       NOT NULL,
-    "ORDER_DATE"   DATE         DEFAULT SYSDATE NULL,
-    "ORDER_STATUS" VARCHAR2(20) DEFAULT '배송준비중' NULL,
-    "ORDER_AMOUNT" NUMBER                       NULL,
-    "ORDER_DEL"    NUMBER       DEFAULT 3000    NULL,
-    "ORDER_TOTAL"  NUMBER                       NULL
+    "NUM"             NUMBER                       NOT NULL,
+    "MEMBER_NUM"      NUMBER                       NOT NULL,
+    "ORDER_DATE"      DATE         DEFAULT SYSDATE NULL,
+    "STATUS"          VARCHAR2(20) DEFAULT '배송준비중' NULL,
+    "RECEIVER_NAME"   VARCHAR2(20)                 NULL,
+    "TEL"             VARCHAR2(20)                 NULL,
+    "ZIPCODE"         VARCHAR2(8)                  NULL,
+    "ADDRESS1"        VARCHAR2(100)                NULL,
+    "ADDRESS2"        VARCHAR2(100)                NULL,
+    "MEMO"            VARCHAR2(100)                NULL,
+    "ORDER_PRICE"     NUMBER                       NULL,
+    "DELIVERY_FEE"    NUMBER       DEFAULT 3000    NULL,
+    "DISCOUNT_COUPON" NUMBER                       NULL,
+    "USE_POINT"       NUMBER                       NULL,
+    "TOTAL_PRICE"     NUMBER                       NULL
 );
 
 CREATE TABLE "PAYMENT"
