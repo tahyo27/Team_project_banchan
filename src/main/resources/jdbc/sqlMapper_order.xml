@@ -3,27 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="idle.com.banchan.order">
-	<select id="selectAll" resultType="idle.com.banchan.order.model.OrderVO">
+<mapper namespace="com.banchan.order">
+	<select id="selectAll" resultType="com.banchan.order.model.OrderVO">
 		select * from "ORDER"
 	</select>
 
-	<select id="selectOne" resultType="idle.com.banchan.order.model.OrderVO">
+	<select id="selectOne" resultType="com.banchan.order.model.OrderVO">
 		select * from "ORDER" where NUM = #{num}
 	</select>
 
-	<insert id="insert" parameterType="idle.com.banchan.order.model.OrderVO">
+	<insert id="insert" parameterType="com.banchan.order.model.OrderVO">
 		insert into "ORDER"(NUM, MEMBER_NUM, ORDER_STATUS, ORDER_AMOUNT, ORDER_DEL, ORDER_TOTAL)
 		values (SEQ_ORDER.nextval, #{memberNum}, #{orderStatus}, #{orderAmount}, #{orderDel}, #{orderTotal})
 	</insert>
 
-	<update id="update" parameterType="idle.com.banchan.order.model.OrderVO">
+	<update id="update" parameterType="com.banchan.order.model.OrderVO">
 		update "ORDER"
 		set ORDER_STATUS = #{orderStatus}, ORDER_AMOUNT = #{orderAmount}, ORDER_DEL = #{orderDel}, ORDER_TOTAL = #{orderTotal}
 		where NUM = #{num}
 	</update>
 
-	<delete id="delete" parameterType="idle.com.banchan.order.model.OrderVO">
+	<delete id="delete" parameterType="com.banchan.order.model.OrderVO">
 		delete from "ORDER" where NUM = #{num}
 	</delete>
 </mapper>

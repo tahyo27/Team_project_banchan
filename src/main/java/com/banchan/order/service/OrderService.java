@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import idle.com.banchan.order.model.OrderDAO;
-import idle.com.banchan.order.model.OrderVO;
+import com.banchan.order.model.OrderDAO;
+import com.banchan.order.model.OrderVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

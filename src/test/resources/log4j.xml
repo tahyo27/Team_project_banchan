@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="idle.com.banchan">
+	<logger name="com.banchan">
 		<level value="info" />
 	</logger>
 	
