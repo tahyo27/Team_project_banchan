@@ -413,25 +413,10 @@ INSERT INTO CATEGORY (NUM, CATEGORY_NAME)
 VALUES (SEQ_CATEGORY.NEXTVAL, '국·탕·찌개');
 
 INSERT INTO CATEGORY (NUM, CATEGORY_NAME)
-VALUES (SEQ_CATEGORY.NEXTVAL, '조림·나물·무침');
-
-INSERT INTO CATEGORY (NUM, CATEGORY_NAME)
 VALUES (SEQ_CATEGORY.NEXTVAL, '김치');
 
 
 ------------
-insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
-values (seq_product.nextval, 1, '햄감자볶음', 5000, 'img0101.png', 100, '가족 모두 좋아하는 대표적 밑반찬');
-
-insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
-values (seq_product.nextval, 1, '쭈꾸미볶음', 18000, 'img0102.png', 100, '통통한 식감과 매콤한 양념');
-
-insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
-values (seq_product.nextval, 1, '계란말이', 8000, 'img0103.png', 100, '아이들이 좋아하는 부드러운 계란말이');
-
-insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
-values (seq_product.nextval, 1, '납작만두', 6000, 'img0104.png', 100, '출출할 때 간편하게~ 납작만두');
-
 
 insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
 values (seq_product.nextval, 2, '떡갈비', 14000, 'img0201.png', 100, '부드럽고 담백한 떡갈비');
@@ -490,7 +475,6 @@ values (seq_product.nextval, 4, '애호박볶음', 5200, 'img0405.png', 100, '�
 insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
 values (seq_product.nextval, 4, '잡채', 5200, 'img0406.png', 100, '다양한 채소와 탱글한 당면');
 
-
 insert into product(num, category_num, product_name, product_price, product_img, product_stock, product_content)
 values (seq_product.nextval, 4, '비빔밥', 8000, 'img0409.png', 100, '속을 든든하게 채워줄 비빔밥 한그릇');
 
@@ -515,14 +499,7 @@ values (seq_product.nextval, 5, '나박김치', 11000, 'img0506.png', 100, '시�
 
 ------------
 INSERT INTO REVIEW(NUM, PRODUCT_NUM, MEMBER_ID, REVIEW_CONTENT)
-VALUES (SEQ_REVIEW.NEXTVAL, 1, 'user001', '감자볶음 맛있어요');
+VALUES (SEQ_REVIEW.NEXTVAL, 5, 'user001', '떡갈비 부드럽고 맛있어요~');
 
 
------------
-
-insert into review(num, product_num, member_id, review_content)
-values (seq_review.nextval, 1, 'user002', '1인가구가 먹기 적당해요');
-
-insert into review(num, product_num, member_id, review_content)
-values (seq_review.nextval, 2, 'user001', '괜찮아서 재구매 했어요');
 
