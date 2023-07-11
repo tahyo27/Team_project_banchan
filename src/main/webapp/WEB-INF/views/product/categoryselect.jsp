@@ -17,7 +17,6 @@
 				<th>상품이미지</th>
 				<th>상품이름</th>
 				<th>상품가격</th>
-<!-- 			<th>카테고리번호</th> -->
 			</tr>
 		</thead>
 		<tbody id="cvos">
