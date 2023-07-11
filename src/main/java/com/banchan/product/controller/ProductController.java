@@ -15,13 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-<<<<<<< HEAD:src/main/java/idle/com/banchan/product/controller/ProductController.java
-import idle.com.banchan.cart.model.CartVO;
-import idle.com.banchan.cart.service.CartService;
-import idle.com.banchan.product.model.ProductVO;
-import idle.com.banchan.product.service.ProductService;
-import idle.com.banchan.review.model.ReviewVO;
-import idle.com.banchan.review.service.ReviewService;
+import com.banchan.cart.model.CartVO;
+import com.banchan.cart.service.CartService;
+import com.banchan.product.model.ProductVO;
+import com.banchan.product.service.ProductService;
+import com.banchan.review.model.ReviewVO;
+import com.banchan.review.service.ReviewService;
+
 import lombok.extern.slf4j.Slf4j;
 
 
