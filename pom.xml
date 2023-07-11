@@ -229,7 +229,8 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>2.2.2</version>
-
+		</dependency>
+		
 		<!-- scribejava sns -->
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
