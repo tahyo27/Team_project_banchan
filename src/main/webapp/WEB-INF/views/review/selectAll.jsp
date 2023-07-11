@@ -10,7 +10,7 @@
 
 </head>
 <body>
-	<h3>사용자 리뷰 목록(나의 리뷰)</h3>
+	<h3>${user_id}님의 리뷰목록</h3>
 	
 
 	<table border="1">

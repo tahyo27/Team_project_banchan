@@ -16,4 +16,6 @@ public interface ProductDAO {
 
 	public int delete(ProductVO vo);
 
+	public List<ProductVO> selectCategory(ProductVO vo); // 카테고리 선택
+
 }
