@@ -41,7 +41,7 @@ public class HomeController {
 	public String main(Locale locale, Model model) {
 	
 		
-		return "findPw/findPwResult";
+		return "CssTest";
 	}
 
 }//end class

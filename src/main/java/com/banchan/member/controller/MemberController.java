@@ -214,16 +214,13 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
-	public String login(String message,Model model) {
-		log.info("/login.do....{}",message);
-
-		if(message!=null) message = "아이디/비번 을 확인하세요";
-		model.addAttribute("msg", message);
-		
-		return "member/login";
-	}
-	
+//	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
+//	public String login(String message,Model model) {
+//		log.info("/login.do....{}",message);
+//		
+//		return "member/login";
+//	}
+//	
 	@RequestMapping(value = "/loginOK.do", method = RequestMethod.POST)
 	public String loginOK(MemberVO vo) {
 		log.info("/loginOK.do...{}",vo);
@@ -236,7 +233,7 @@ public class MemberController {
 			log.info("Member login vo3...{}",vo2);
 			
 			if(vo2 == null) {
-				return "redirect:login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
+				return "redirect:SNS_Login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
 			}else {
 				session.setAttribute("user_id", vo2.getMember_id());
 				return "redirect:home";

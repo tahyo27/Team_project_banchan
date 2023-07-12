@@ -15,13 +15,6 @@
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script type="text/javascript">
-	var msg = "${msg}";
-
-	if (msg != "") {
-		alert(msg);
-	}
-</script>
 <style>
 .banchan_text {
 	font-family: 'Roboto', sans-serif;
