@@ -11,3 +11,15 @@ Custom Css
   margin-top: 8px;
 }
 
+#searchKey_header {
+  display: none;
+}
+  
+  #searchKey_header,
+  #searchWord {
+    width: 150px; 
+  }
+  
+  .btn-outline-success {
+     margin-right: 16px;
+  }

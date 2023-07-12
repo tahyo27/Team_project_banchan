@@ -90,7 +90,7 @@ public class ProductController {
 		model.addAttribute("vo2",vo2);
 		
 		
-		return "product/selectOne";
+		return ".product/selectOne";
 	}
 	
 	@RequestMapping(value = "/pr_searchList.do", method = RequestMethod.GET)
@@ -103,7 +103,7 @@ public class ProductController {
 
 		model.addAttribute("vos",vos);
 
-		return "product/selectAll";
+		return ".product/selectAll";
 	}
 	
 	
@@ -112,7 +112,7 @@ public class ProductController {
 		
 		log.info("/pr_insert.do.....");
 
-		return "product/insert";
+		return ".product/insert";
 	}
 	
 	
@@ -174,7 +174,7 @@ public class ProductController {
 		
 		model.addAttribute("vo2",vo2);
 		
-		return "product/update";
+		return ".product/update";
 	}
 	
 	@RequestMapping(value = "/pr_updateOK.do", method = RequestMethod.POST)

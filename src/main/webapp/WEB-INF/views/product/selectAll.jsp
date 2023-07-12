@@ -9,6 +9,7 @@
 			<div class="col-lg-6 m-auto">
 			</div>
 		</div>
+		
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     	<c:forEach var="vo" items="${vos}">
