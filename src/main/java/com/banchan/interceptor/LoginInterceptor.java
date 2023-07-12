@@ -41,8 +41,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		}
 		if (sPath.equals("/c_insertOK.do") // 장바구니 넣기
 				|| sPath.equals("/c_selectAll.do") // 장바구니 목록
-				|| sPath.equals("/re_selectAll.do")) {
-			// 나의 리뷰 리스트
+				|| sPath.equals("/re_selectAll.do")) { // 나의 리뷰 리스트
+			
+			if (user_id == null) {
+				response.sendRedirect("login.do");
+				return false;
+			}
+			
 		}
 
 		return true;

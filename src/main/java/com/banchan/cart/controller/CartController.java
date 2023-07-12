@@ -48,7 +48,7 @@ public class CartController {
 		
 		model.addAttribute("map",map);
 
-		return "cart/selectAll";
+		return ".cart/selectAll";
 	}
 	
 	
@@ -57,7 +57,7 @@ public class CartController {
 		log.info("/c_insert.do...");
 
 		
-		return "cart/insert";
+		return ".cart/insert";
 	}
 	
 	@RequestMapping(value = "/c_insertOK.do", method = RequestMethod.POST)
