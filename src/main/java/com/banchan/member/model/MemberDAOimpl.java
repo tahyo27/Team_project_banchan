@@ -103,4 +103,13 @@ public class MemberDAOimpl implements MemberDAO {
 		return sqlSession.insert("SNS_INSERT", vo);
 	}
 
+	@Override
+	public int admin_check(MemberVO vo) {
+		log.info("admin_check()...vo:{}", vo );
+		Map<String,Object> admin = new HashMap<String, Object>();
+		admin.put("admin_id", vo.getMember_id());
+		admin.put("admin_pw", vo.getMember_pw());
+		return sqlSession.selectOne("ADMIN_CHECK", admin);
+	}
+
 }

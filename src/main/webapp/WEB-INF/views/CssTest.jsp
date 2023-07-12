@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Find PW page</title>
+<title>Bootstrap demo</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -13,15 +13,6 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script type="text/javascript">
-	var msg = "${msg}";
-
-	if (msg != "") {
-		alert(msg);
-	}
-</script>
 <style>
 .banchan_text {
 	font-family: 'Roboto', sans-serif;
@@ -33,6 +24,7 @@ font-family: 'Roboto', sans-serif;
 font-weight: 400;
 }
 </style>
+
 </head>
 <body>
 	<div class="container">

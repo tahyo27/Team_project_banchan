@@ -51,6 +51,12 @@ public class HomeController {
 	}
 	
 	
+	//CSS테스트
+	@RequestMapping(value = "/jsptest", method = RequestMethod.GET)
+	public String main(Locale locale, Model model) {
 	
+		
+		return "findPw/findPwResult";
+	}
 
 }//end class

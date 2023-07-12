@@ -52,6 +52,10 @@ public class MemberService {
 	public MemberVO login(MemberVO vo) {
 		return dao.login(vo);
 	}
+	
+	public int admin_check(MemberVO vo) {
+		return dao.admin_check(vo);
+	}
 
 	public MemberVO idCheck(MemberVO vo) {
 		return dao.idCheck(vo);

@@ -210,7 +210,7 @@ public class MemberController {
 		} else { //아이디 이메일 일치하는 않는경우
 			service.findPw(vo.getMember_email(), vo.getMember_id());
 			model.addAttribute("member_email", vo.getMember_email());
-			return "findPw/findPw";
+			return "findPw/findPwResult";
 		}
 	}
 	
@@ -228,17 +228,28 @@ public class MemberController {
 	public String loginOK(MemberVO vo) {
 		log.info("/loginOK.do...{}",vo);
 		
-		MemberVO vo2 = service.login(vo);
-		log.info("vo2...{}",vo2);
+		int result = service.admin_check(vo);
+		log.info("admin_check result...{}",result);
 		
-		if(vo2 == null) {
-			return "redirect:login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
-		}else {
-			session.setAttribute("user_id", vo2.getMember_id());
+		if(result == 0) {
+			MemberVO vo2 = service.login(vo);
+			log.info("Member login vo3...{}",vo2);
+			
+			if(vo2 == null) {
+				return "redirect:login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
+			}else {
+				session.setAttribute("user_id", vo2.getMember_id());
+				return "redirect:home";
+			}
+		} else {
+			log.info("관리자 계정으로 로그인헀습니다.");
+			session.setAttribute("user_id", vo.getMember_id());
 			return "redirect:home";
 		}
+		
+		
 
-	}
+	}// end loginOK
 	
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout() {

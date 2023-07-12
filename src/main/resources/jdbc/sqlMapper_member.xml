@@ -20,6 +20,13 @@
 		and
 		member_pw = #{member_pw}
 	</select>
+	
+	<select id="ADMIN_CHECK"
+		resultType="int">
+		select count(*) from admin where admin_id = #{admin_id}
+		and
+		admin_pw = #{admin_pw}
+	</select>
 
 	<select id="M_SEARCH_LIST_NAME"
 		resultType="com.banchan.member.model.MemberVO">
