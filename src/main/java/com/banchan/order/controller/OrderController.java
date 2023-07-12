@@ -1,13 +1,22 @@
 package com.banchan.order.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.banchan.addressbook.model.AddressBookVO;
+import com.banchan.addressbook.service.AddressBookService;
+import com.banchan.cart.model.CartVO;
+import com.banchan.cart.service.CartService;
 import com.banchan.order.model.OrderVO;
 import com.banchan.order.service.OrderService;
 
@@ -19,26 +28,61 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderController {
 
 	@Autowired
+	HttpSession session;
+
+	@Autowired
 	private OrderService service;
 
+	@Autowired
+	private CartService cartService;
+
+	@Autowired
+	private AddressBookService addressBookService;
+
 	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model) {
 		log.info("/insert.do...");
+
+		// 테스트값. session 구현시 변경
+		session.setAttribute("member_num", 1);
+		session.setAttribute("member_id", "user001");
+
+		CartVO cartVO = new CartVO();
+		cartVO.setMember_id((String) session.getAttribute("member_id"));
+		List<CartVO> carts = cartService.selectAll(cartVO);
+		log.info("carts:{}", carts);
+
+		int order_price = cartService.sumMoney(cartVO);
+		int delivery_fee = order_price >= 50000 ? 0 : 2500;
+		log.info("delivery_fee:{}", delivery_fee);
+
+		AddressBookVO addressBookVO = new AddressBookVO();
+		addressBookVO.setMember_num((Integer) session.getAttribute("member_num"));
+		List<AddressBookVO> addressBooks = addressBookService.selectAll(addressBookVO);
+		log.info("addressBooks:{}", addressBooks);
+
+		model.addAttribute("carts", carts);
+		model.addAttribute("order_price", order_price);
+		model.addAttribute("delivery_fee", delivery_fee);
+		model.addAttribute("addressBooks", addressBooks);
+//		model.addAttribute("point", 2000); // 포인트 조회해서 수정
+//		model.addAttribute("coupon", coupon); // 쿠폰 조회해서 수정
 
 		return ".order/insert";
 	}
 
 	@RequestMapping(value = "/insertOk.do", method = RequestMethod.POST)
-	public String insertOk(OrderVO vo) {
+	@ResponseBody
+	public Map<String, Integer> insertOk(OrderVO vo) {
 		log.info("/insertOk.do...{}", vo);
 
-		int result = service.insert(vo);
+//		int result = service.insert(vo);
+		int result = 0;
 
-		if (result > 0) {
-			return "redirect:selectAll.do";
-		} else {
-			return "redirect:insert.do";
-		}
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("result", result);
+
+		return map;
 	}
 
 	@RequestMapping(value = "/update.do", method = RequestMethod.GET)
