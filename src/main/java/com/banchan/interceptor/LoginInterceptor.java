@@ -25,32 +25,26 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
 		String user_id = (String) session.getAttribute("user_id");
 		log.info("preHandle()....user_id : {}", user_id);
-		
-		
-		if(sPath.equals("/c_insertOK.do") // 장바구니 넣기
-				|| sPath.equals("/c_selectAll.do") // 장바구니 목록
-				|| sPath.equals("/re_selectAll.do")) { // 나의 리뷰 리스트
+
 		if (sPath.equals("/m_selectAll.do")) {
-			if(user_id==null) {
+			if (user_id == null) {
 				log.info("계정이 null입니다");
 				response.sendRedirect("login.do");
 				return false;
 			}
-			
+
 			if (!user_id.equals("admin")) {
 				log.info("admin계정이 아닙니다.");
 				response.sendRedirect("home");
 				return false;
 			}
-
+		}
+		if (sPath.equals("/c_insertOK.do") // 장바구니 넣기
+				|| sPath.equals("/c_selectAll.do") // 장바구니 목록
+				|| sPath.equals("/re_selectAll.do")) {
+			// 나의 리뷰 리스트
 		}
 
 		return true;
 	}
-
-//	@Override
-//	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-//			ModelAndView modelAndView) throws Exception {
-//		log.info("postHandle()....");
-//	}
 }// end class
