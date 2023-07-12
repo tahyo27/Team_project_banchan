@@ -9,8 +9,8 @@
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js"
 	charset="utf-8"></script>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -40,7 +40,7 @@ body {
 }
 
 .login-form {
-	max-width: 400px;
+	max-width: 550px;
 	margin: 70px auto;
 	padding: 30px;
 	background-color: #ffffff;
@@ -68,9 +68,10 @@ body {
 .login-form table input[type="text"], .login-form table input[type="password"]
 	{
 	width: 100%;
-	padding: 5px;
+	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
+	margin-left:85px;
 }
 
 .login-form table input[type="submit"] {
@@ -80,8 +81,8 @@ body {
 	border-radius: 3px;
 	color: #fff;
 	cursor: pointer;
-	width: 75%;
-	margin-left: 23px;
+	width: 95%;
+	margin-left: 102px;
 }
 
 .roboto_font {
