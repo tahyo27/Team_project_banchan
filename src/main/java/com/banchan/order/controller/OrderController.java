@@ -1,8 +1,6 @@
 package com.banchan.order.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.banchan.addressbook.model.AddressBookVO;
 import com.banchan.addressbook.service.AddressBookService;
@@ -24,7 +21,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "/order")
 public class OrderController {
 
 	@Autowired
@@ -39,7 +35,7 @@ public class OrderController {
 	@Autowired
 	private AddressBookService addressBookService;
 
-	@RequestMapping(value = "/insert.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/o_insert.do", method = RequestMethod.GET)
 	public String insert(Model model) {
 		log.info("/insert.do...");
 
@@ -71,29 +67,7 @@ public class OrderController {
 		return ".order/insert";
 	}
 
-	@RequestMapping(value = "/insertOk.do", method = RequestMethod.POST)
-	@ResponseBody
-	public Map<String, Integer> insertOk(OrderVO vo) {
-		log.info("/insertOk.do...{}", vo);
-
-		session.setAttribute("member_num", 1);
-		session.setAttribute("member_id", "user001");
-		vo.setMember_num((Integer) session.getAttribute("member_num"));
-
-		int result = service.insert(vo);
-		if (result > 0) {
-			CartVO cartVO = new CartVO();
-			cartVO.setMember_id((String) session.getAttribute("member_id"));
-			cartService.deleteAll(cartVO);
-		}
-
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("result", result);
-
-		return map;
-	}
-
-	@RequestMapping(value = "/update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/o_update.do", method = RequestMethod.GET)
 	public String update(OrderVO vo, Model model) {
 		log.info("/update.do...{}", vo);
 
@@ -105,33 +79,7 @@ public class OrderController {
 		return ".order/update";
 	}
 
-	@RequestMapping(value = "/updateOk.do", method = RequestMethod.POST)
-	public String updateOk(OrderVO vo) {
-		log.info("/updateOk.do...{}", vo);
-
-		int result = service.update(vo);
-
-		if (result > 0) {
-			return "redirect:selectOne.do?num=" + vo.getNum();
-		} else {
-			return "redirect:update.do";
-		}
-	}
-
-	@RequestMapping(value = "/deleteOk.do", method = RequestMethod.POST)
-	public String deleteOk(OrderVO vo) {
-		log.info("/deleteOk.do...{}", vo);
-
-		int result = service.delete(vo);
-
-		if (result > 0) {
-			return "redirect:selectAll.do";
-		} else {
-			return "redirect:selectOne.do?num=" + vo.getNum();
-		}
-	}
-
-	@RequestMapping(value = "/selectOne.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/o_selectOne.do", method = RequestMethod.GET)
 	public String selectOne(OrderVO vo, Model model) {
 		log.info("/selectOne.do...{}", vo);
 
@@ -143,7 +91,7 @@ public class OrderController {
 		return ".order/selectOne";
 	}
 
-	@RequestMapping(value = "/selectAll.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/o_selectAll.do", method = RequestMethod.GET)
 	public String selectAll(Model model) {
 		log.info("/selectAll.do...");
 

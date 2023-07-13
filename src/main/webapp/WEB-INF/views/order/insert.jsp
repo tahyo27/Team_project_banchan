@@ -27,7 +27,7 @@
 									<tr data-detail='{"product_num":${cart.product_num},"amount":${cart.amount},"price":${cart.product_price * cart.amount}}'>
 										<td>
 											<img class="rounded float-start" height="100px"
-												src="${pageContext.request.contextPath}/resources/uploadimg/product/${vo.product_img}">
+												src="${pageContext.request.contextPath}/resources/uploadimg/product/${cart.product_img}">
 										</td>
 										<td>${cart.product_name}</td>
 										<td>${cart.amount}</td>
@@ -200,7 +200,7 @@
 			console.log(pair[0] + ', ' + pair[1]);
 		}
 
-		let response = await fetch('insertOk.do', {
+		let response = await fetch('order/insertOk.do', {
 			method: 'POST',
 			body: formData
 		});

@@ -40,4 +40,10 @@
 			</foreach>
 		) A
 	</insert>
+
+	<select id="selectOrderDetail" resultType="com.banchan.order.model.OrderDetailVO">
+		select O.NUM, O.ORDER_NUM, O.PRODUCT_NUM, P.PRODUCT_NAME, P.PRODUCT_IMG, O.AMOUNT, O.PRICE
+		from ORDER_DETAIL O join PRODUCT P on O.PRODUCT_NUM = P.NUM
+		where O.ORDER_NUM = #{num}
+	</select>
 </mapper>
