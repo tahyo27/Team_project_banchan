@@ -37,6 +37,17 @@ public class MemberRestController {
 	}
 	
 	@ResponseBody
+	@RequestMapping(value = "/m_json_selectOne.do", method = RequestMethod.GET)
+	public MemberVO m_json_selectOne(MemberVO vo) {
+		log.info("/m_json_selectOne.do....vo:{}", vo);	
+		
+		MemberVO vo2 = service.selectOne(vo);
+		log.info("m_json_selectOne.... vo2:{}", vo2);
+		return vo2;
+	
+	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/mailCheck.do", method = RequestMethod.GET)
 	public String mailCheck(String email) {
 		log.info("이메일 인증 요청이 들어왔음");

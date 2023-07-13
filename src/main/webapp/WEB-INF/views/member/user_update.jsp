@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>login page</title>
+<title>회원정보</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script
@@ -116,19 +116,94 @@
 			<div class="col-md-3">
 				<ul class="nav flex-column nav-pills">
 					<li class="nav-item"><a class="nav-link active"
-						data-toggle="pill" href="#user-info">회원정보</a></li>
+						data-toggle="pill" href="m_user_udpate.do">회원정보</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"
 						href="#order-delivery">주문배송</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="#address-book">배송주소록</a></li>
+						href="ab_selectAll.do?member_num=2">배송주소록</a></li>
 				</ul>
 			</div>
 
 			<div class="col-md-9">
 				<div class="tab-content">
 					<div id="user-info" class="tab-pane fade show active">
-						<h3>배송주소록</h3>
-						
+						<h3>회원정보</h3>
+						<form action="m_updateOK.do" method="post"
+							enctype="multipart/form-data">
+							<input type="hidden" id="input_num" name="num">
+							<input type="hidden" id="input_email" name="member_email">
+							<input type="hidden" id="input_id" name="member_id">
+							<div class="form-group row">
+								<label for="id" class="col-sm-3 col-form-label">아이디</label>
+								<div class="col-sm-9">
+									<span id="span_id"></span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="pw" class="col-sm-3 col-form-label">비밀번호</label>
+								<div class="col-sm-9">
+									<input type="password" id="pw" name="member_pw"
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 7px;">
+								<label for="name" class="col-sm-3 col-form-label">이름</label>
+								<div class="col-sm-9">
+									<input type="text" id="name" name="member_name"
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 7px;">
+								<label for="email" class="col-sm-3 col-form-label">이메일</label>
+								<div class="col-sm-9">
+									<span id="span_email"></span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="member_zipcode" class="col-sm-3 col-form-label">우편번호</label>
+								<div class="col-sm-6">
+									<input id="member_zipcode" name="member_zipcode" readonly
+										class="form-control">
+								</div>
+								<div class="col-sm-3">
+									<button type="button" onclick="daum_address_find()"
+										class="btn btn-secondary">우편번호 찾기</button>
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 7px;">
+								<label for="member_address1" class="col-sm-3 col-form-label">주소</label>
+								<div class="col-sm-9">
+									<input id="member_address1" name="member_address1" readonly
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 7px;">
+								<label for="member_address2" class="col-sm-3 col-form-label">상세주소</label>
+								<div class="col-sm-9">
+									<input id="member_address2" name="member_address2" readonly
+										class="form-control">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 7px;">
+								<label for="tel" class="col-sm-3 col-form-label">전화번호</label>
+								<div class="col-sm-9">
+									<input type="text" id="tel" name="member_tel" class="form-control">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 10px;">
+								<label for="file" class="col-sm-3 col-form-label">프로필 사진</label>
+								<div class="col-sm-9">
+									<input type="file" id="file" name="file"
+										class="form-control-file">
+								</div>
+							</div>
+							<div class="form-group row" style="margin-top: 20px;">
+								<div class="offset-sm-3 col-sm-9">
+									<input type="submit" value="수정"
+										class="btn btn-primary custom-btn">
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
