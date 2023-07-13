@@ -44,7 +44,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				|| sPath.equals("/re_selectAll.do")) { // 나의 리뷰 리스트
 			
 			if (user_id == null) {
-				response.sendRedirect("login.do");
+				response.sendRedirect("SNS_Login.do");
 				return false;
 			}
 			

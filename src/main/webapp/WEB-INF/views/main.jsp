@@ -97,19 +97,16 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0301.png" class="rounded-circle img-fluid border"></a>
-            <h5 class="text-center mt-3 mb-3">Watches</h5>
-            <p class="text-center"><a class="btn btn-success">category1</a></p>
+            <a href="pr_selectOne.do?num=11"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0301.png" class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">김치찌개</h5>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0203.png" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
-            <p class="text-center"><a class="btn btn-success">category2</a></p>
+            <a href="pr_selectOne.do?num=7"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0203.png" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">치즈돈까스</h2>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="#"><img src="${pageContext.request.contextPath}//resources/uploadimg/product/img0306.png" class="rounded-circle img-fluid border"></a>
-            <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
-            <p class="text-center"><a class="btn btn-success">category3</a></p>
+            <a href="pr_selectOne.do?num=22"><img src="${pageContext.request.contextPath}//resources/uploadimg/product/img0405.png" class="rounded-circle img-fluid border"></a>
+            <h2 class="h5 text-center mt-3 mb-3">애호박볶음</h2>
         </div>
     </div>
 </section>

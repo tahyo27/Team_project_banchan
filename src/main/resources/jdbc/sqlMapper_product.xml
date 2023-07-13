@@ -40,7 +40,7 @@
 		parameterType="com.banchan.product.model.ProductVO">
 		update product set
 		product_img=#{product_img},product_name=#{product_name},product_price=#{product_price},
-		product_stock=#{product_stock}, product_content=#{product_content}
+		product_content=#{product_content}
 		where num = #{num}
 	</insert>
 

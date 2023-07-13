@@ -23,13 +23,11 @@
 <a href="jsptest">CSS JSP테스트 페이지</a>
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
-<a href="pr_insert.do">product insert</a>
+<a href="pr_insert.do">product insert 관리자</a>
+<a href="productDetail.do">product update& delete 관리자</a>
 <hr>
 <a href="c_selectAll.do?member_id=${user_id}">cart selectAll</a>
 <hr>
-<a href="re_selectAll.do?member_id=${user_id}">review selectAll</a>
-<hr>
-<a href="pr_selectCategory.do?category_num=1">category select 볶음·구이</a>
 <a href="pr_selectCategory.do?category_num=2">category select 고기반찬</a>
 <a href="pr_selectCategory.do?category_num=3">category select 국·탕·찌개</a>
 <a href="pr_selectCategory.do?category_num=4">category select 조림·나물·무침</a>

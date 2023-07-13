@@ -16,6 +16,12 @@
 		from review r join product p on (r.product_num = p.num) 
 		where r.product_num = #{num} order by num desc
 	</select>
+	
+	<select id="RE_SELECT_ALL_ADMIN" resultType="com.banchan.review.model.ReviewVO">
+		select r.num, p.product_name, r.wdate, r.review_content, r.member_id
+		from review r join product p on (r.product_num = p.num) order by num desc
+	</select>
+	
 
 <!-- 	<insert id="RE_INSERT" -->
 <!-- 		parameterType="com.banchan.review.model.ReviewVO"> -->
