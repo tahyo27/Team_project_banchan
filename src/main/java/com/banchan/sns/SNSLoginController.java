@@ -45,7 +45,11 @@ public class SNSLoginController {
 
 	// 로그인 첫 화면 요청 메소드
 	@RequestMapping(value = "/SNS_Login.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String SNS_login(Model model, HttpSession session) {
+	public String SNS_login(String message, Model model, HttpSession session) {
+		
+		//아이디/비밀번호 로그인시 실패하면 뜨는 메세지
+		if(message!=null) message = "아이디/비밀번호를 확인하세요";
+		model.addAttribute("msg", message);
 
 		// naver 코드 발급받는 url
 		SNSLogin snsLogin = new SNSLogin(naverSns);

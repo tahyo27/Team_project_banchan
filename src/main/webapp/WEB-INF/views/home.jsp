@@ -16,10 +16,9 @@
 <a href="m_selectAll.do">member selectAll</a>
 <a href="m_insert.do">member insert</a>
 <a href="ab_selectAll.do?member_num=2">addressbook selectAll</a>
-<a href="findPwView.do">findPw</a>
-<a href="login.do">login</a>
+<a href="SNS_Login.do">로그인</a>
 <a href="logout.do">logout</a>
-<a href="SNS_Login.do">SNS 로그인</a>
+<a href="findPwView.do">findPw</a>
 <a href="jsptest">CSS JSP테스트 페이지</a>
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
