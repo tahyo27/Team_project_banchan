@@ -18,7 +18,8 @@ public class OrderDAOimpl implements OrderDAO {
 	@Override
 	public int insert(OrderVO vo) {
 		log.info("insert()...{}", vo);
-		return sqlSession.insert(NAMESPACE + "insert", vo);
+		return sqlSession.insert(NAMESPACE + "insertOrder", vo)
+				+ sqlSession.insert(NAMESPACE + "insertOrderDetail", vo);
 	}
 
 	@Override
