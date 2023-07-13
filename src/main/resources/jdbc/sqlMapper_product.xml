@@ -32,8 +32,8 @@
 	<insert id="PR_INSERT"
 		parameterType="com.banchan.product.model.ProductVO">
 		insert into
-		product(num,category_num,product_name,product_price,product_img,product_stock,product_content)
-		values(seq_product.nextval,#{category_num},#{product_name},#{product_price},#{product_img},#{product_stock},#{product_content})
+		product(num,category_num,product_name,product_price,product_img,product_content)
+		values(seq_product.nextval,#{category_num},#{product_name},#{product_price},#{product_img},#{product_content})
 	</insert>
 
 	<insert id="PR_UPDATE"

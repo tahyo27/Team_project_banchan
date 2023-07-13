@@ -38,7 +38,7 @@ function updateQuantity(form) {
                 <th scope="row">
                   <div class="d-flex align-items-center">
                       <a href="pr_selectOne.do?num=${vo.product_num}">
-						        <img width="200px" src="resources/uploadimg/product/${vo.product_img}"></a>
+						        <img width="200px" src="${pageContext.request.contextPath}/resources/uploadimg/product/${vo.product_img}"></a>
                     <div class="flex-column ms-4">
                       <p class="mb-2">${vo.product_name}</p>
                     </div>
@@ -75,7 +75,7 @@ function updateQuantity(form) {
         
           			<c:if test="${empty map.vos}">
           				<br>
-			 		 	<div id="normal_empty_cart" class="fs-1 text-center"><h3>장바구니에 담긴 상품이 아직 없습니다</h3></div>
+			 		 	<div id="normal_empty_cart" class="fs-1 text-center"><h3>장바구니에 담긴 상품이 없습니다</h3></div>
 					</c:if>
 					
         
@@ -96,7 +96,9 @@ function updateQuantity(form) {
         <div class="text-end" >
                   <div class="card border-0">
           <div class="card-body">
-            <button type="button" class="btn btn-outline-success">결제하기</button>
+            <button type="button" class="btn btn-outline-success">주문하기</button>
+            
+            
           </div>
         </div>
         </div>
