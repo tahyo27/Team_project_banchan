@@ -81,6 +81,11 @@ public class OrderController {
 		vo.setMember_num((Integer) session.getAttribute("member_num"));
 
 		int result = service.insert(vo);
+		if (result > 0) {
+			CartVO cartVO = new CartVO();
+			cartVO.setMember_id((String) session.getAttribute("member_id"));
+			cartService.deleteAll(cartVO);
+		}
 
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("result", result);
