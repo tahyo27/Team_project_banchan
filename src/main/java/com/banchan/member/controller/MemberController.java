@@ -11,6 +11,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.banchan.member.model.MemberVO;
 import com.banchan.member.service.MemberService;
+import com.banchan.sns.SNSLogin;
+import com.banchan.sns.SnsValue;
 
 import lombok.extern.slf4j.Slf4j;
-
 
 @Slf4j
 @Controller
@@ -28,38 +33,52 @@ public class MemberController {
 
 	@Autowired
 	HttpSession session;
-	
+
 	@Autowired
 	MemberService service;
-	
+
 	@Autowired
 	ServletContext sContext;
-	
+
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+
+	@Autowired
+	private SnsValue naverSns;
+
+	@Autowired
+	private SnsValue googleSns;
+
+	@Autowired
+	private SnsValue kakaoSns;
+
 	@RequestMapping(value = "/m_selectAll.do", method = RequestMethod.GET)
 	public String m_selectAll(Model model) {
 		log.info("/m_selectAll.do.....");
 
 		List<MemberVO> vos = service.selectAll();
-		
+
 		log.info("vos:{}", vos);
-		
+
 		model.addAttribute("vos", vos);
 
 		return "member/selectAll";
 	}
-	
+
 	@RequestMapping(value = "/m_searchList.do", method = RequestMethod.GET)
-	public String m_searchList(String searchKey,String searchWord,Model model) {
-		log.info("/m_searchList.do...searchKey:{}",searchKey);
-		log.info("/m_searchList.do...searchWord:{}",searchWord);
+	public String m_searchList(String searchKey, String searchWord, Model model) {
+		log.info("/m_searchList.do...searchKey:{}", searchKey);
+		log.info("/m_searchList.do...searchWord:{}", searchWord);
 
-		List<MemberVO> vos = service.searchList(searchKey,searchWord);
+		List<MemberVO> vos = service.searchList(searchKey, searchWord);
 
 		model.addAttribute("vos", vos);
-		
+
 		return "member/selectAll";
 	}
-	
+
 	@RequestMapping(value = "/m_selectOne.do", method = RequestMethod.GET)
 	public String m_selectOne(MemberVO vo, Model model) {
 		log.info("/m_selectOne.do...{}", vo);
@@ -70,7 +89,7 @@ public class MemberController {
 
 		return "member/selectOne";
 	}
-	
+
 	@RequestMapping(value = "/m_update.do", method = RequestMethod.GET)
 	public String m_update(MemberVO vo, Model model) {
 		log.info("/m_update.do...{}", vo);
@@ -81,7 +100,7 @@ public class MemberController {
 
 		return "member/update";
 	}
-	
+
 	@RequestMapping(value = "/m_updateOK.do", method = RequestMethod.POST)
 	public String m_updateOK(MemberVO vo) throws IllegalStateException, IOException {
 		log.info("/m_updateOK.do...{}", vo);
@@ -116,7 +135,7 @@ public class MemberController {
 		log.info("Member_updateOK..vo:{}{}", vo);
 
 		int result = service.update(vo);
-		
+
 		log.info("Member_updateOK result", result);
 		if (result == 1) {
 			return "redirect:m_selectOne.do?num=" + vo.getNum();
@@ -125,14 +144,32 @@ public class MemberController {
 		}
 	}
 
-	
-	@RequestMapping(value = "/m_insert.do", method = RequestMethod.GET)
-	public String m_insert() {
+	@RequestMapping(value = "/m_insert.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String m_insert(Model model, HttpSession session) {
 		log.info("/m_insert.do.....");
+
+		// naver 코드 발급받는 url
+		SNSLogin snsLogin = new SNSLogin(naverSns);
+		log.info("네이버: {}", snsLogin.getSNSAuthURL());
+
+		model.addAttribute("naver_url", snsLogin.getSNSAuthURL());
+
+		/* 구글code 발행 */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+
+		log.info("구글:" + url);
+
+		model.addAttribute("google_url", url); // google_url에 로그인 url 넣음
+
+		// 카카오 code url
+		SNSLogin kakao = new SNSLogin(kakaoSns);
+		log.info("kakao: {}", kakao.getSNSAuthURL());
+		model.addAttribute("kakao_url", kakao.getSNSAuthURL());
 
 		return "member/insert";
 	}
-	
+
 	@RequestMapping(value = "/m_insertOK.do", method = RequestMethod.POST)
 	public String m_insertOK(MemberVO vo) throws IllegalStateException, IOException {
 		log.info("/m_insertOK.do...{}", vo);
@@ -176,7 +213,7 @@ public class MemberController {
 			return "redirect:m_insert.do";
 		}
 	}
-	
+
 	@RequestMapping(value = "/m_deleteOK.do", method = RequestMethod.GET)
 	public String m_deleteOK(MemberVO vo) {
 		log.info("/m_deleteOK.do");
@@ -190,30 +227,30 @@ public class MemberController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/findPwView.do", method = RequestMethod.GET)
 	public String findPwView() {
 		log.info("findPwView.do....");
-		
+
 		return "findPw/findPwView";
 	}
-	
+
 	@RequestMapping(value = "/findPw.do", method = RequestMethod.POST)
 	public String findPw(MemberVO vo, Model model) {
 		log.info("findPw.do....vo:{}", vo);
-		
-		if(service.findPwCheck(vo)==0) { // 아이디 이메일 일치하지 않는경우
+
+		if (service.findPwCheck(vo) == 0) { // 아이디 이메일 일치하지 않는경우
 			log.info("Member FindPWCheck");
 			model.addAttribute("msg", "아이디와 이메일를 확인해주세요");
-			
+
 			return "findPw/findPwView";
-		} else { //아이디 이메일 일치하는 않는경우
+		} else { // 아이디 이메일 일치하는 않는경우
 			service.findPw(vo.getMember_email(), vo.getMember_id());
 			model.addAttribute("member_email", vo.getMember_email());
 			return "findPw/findPwResult";
 		}
 	}
-	
+
 //	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 //	public String login(String message,Model model) {
 //		log.info("/login.do....{}",message);
@@ -223,18 +260,18 @@ public class MemberController {
 //	
 	@RequestMapping(value = "/loginOK.do", method = RequestMethod.POST)
 	public String loginOK(MemberVO vo) {
-		log.info("/loginOK.do...{}",vo);
-		
+		log.info("/loginOK.do...{}", vo);
+
 		int result = service.admin_check(vo);
-		log.info("admin_check result...{}",result);
-		
-		if(result == 0) {
+		log.info("admin_check result...{}", result);
+
+		if (result == 0) {
 			MemberVO vo2 = service.login(vo);
-			log.info("Member login vo3...{}",vo2);
-			
-			if(vo2 == null) {
-				return "redirect:SNS_Login.do?message=fail"; //아이디 비번 다르면 메세지에 실패 넣음
-			}else {
+			log.info("Member login vo3...{}", vo2);
+
+			if (vo2 == null) {
+				return "redirect:SNS_Login.do?message=fail"; // 아이디 비번 다르면 메세지에 실패 넣음
+			} else {
 				session.setAttribute("user_id", vo2.getMember_id());
 				return "redirect:home";
 			}
@@ -243,19 +280,16 @@ public class MemberController {
 			session.setAttribute("user_id", vo.getMember_id());
 			return "redirect:home";
 		}
-		
-		
 
 	}// end loginOK
-	
+
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
 	public String logout() {
 		log.info("/logout.do");
-		
-		session.invalidate(); //로그인 세션 제거
+
+		session.invalidate(); // 로그인 세션 제거
 
 		return "redirect:home";
 	}
-	
-	
-}//end class
+
+}// end class

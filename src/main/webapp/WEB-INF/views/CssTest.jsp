@@ -16,10 +16,6 @@
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <script>
-	function showForm() {
-		var form = document.getElementById("myForm");
-		form.style.display = "block"; // 폼 보이기
-	}
 </script>
 <style>
 /* 추가적인 CSS 스타일링을 위한 스타일 시트 */
@@ -64,6 +60,18 @@ form {
 .hidden-form {
 	display: none; /* 폼 숨김 */
 }
+
+.top-font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	color: rgb(89, 171, 110);
+	font-size:30px;
+	text-decoration: none;
+}
+.roboto_font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
 </style>
 </head>
 <body>
@@ -71,124 +79,15 @@ form {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<a href="home">BANCHAN</a>
+					<a href="home" class="top-font">BANCHAN</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-
-	<div class="login-form">
-		<ul class="nav nav-tabs justify-content-center">
-			<li class="nav-item"><a class="nav-link active" href="jsptest">회원가입</a></li>
-			<li class="nav-item"><a class="nav-link" href="SNS_Login.do">로그인</a></li>
-		</ul>
-		<br>
-		<!-- 	폼보여주는 버튼 -->
-		<div class="row mb-3">
-			<div class="col-sm-12 text-center">
-				<button type="button" onclick="showForm()" class="btn btn-primary">폼
-					보기</button>
-			</div>
-		</div>
-		<div class="row mb-3 hidden-form" id="myForm">
-			<form action="m_insertOK.do" method="post"
-				enctype="multipart/form-data" class="input_form">
-
-				<div class="row mb-3">
-					<label for="id" class="col-sm-2 col-form-label">아이디</label>
-					<div class="col-sm-10">
-						<div class="input-group">
-							<input type="text" class="form-control" id="id" name="member_id"
-								required>
-							<button type="button" onclick="idCheck()"
-								class="btn btn-primary idCheckButton">중복체크</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="pw" class="col-sm-2 col-form-label">비밀번호</label>
-					<div class="col-sm-10">
-						<input type="password" class="form-control" id="pw"
-							name="member_pw">
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="name" class="col-sm-2 col-form-label">이름</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="name"
-							name="member_name">
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="email" class="col-sm-2 col-form-label">이메일</label>
-					<div class="col-sm-10">
-						<div class="input-group">
-							<input type="email" class="form-control" id="userEmail"
-								name="member_email" placeholder="이메일을 입력하세요" required>
-							<button type="button" class="btn btn-primary" id="mail-Check-Btn"
-								onclick="mailCheck()">이메일 인증</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="member_zipcode" class="col-sm-2 col-form-label">우편번호</label>
-					<div class="col-sm-10">
-						<div class="input-group">
-							<input id="member_zipcode" name="member_zipcode"
-								class="form-control" readonly>
-							<button type="button" onclick="daum_address_find()"
-								class="btn btn-primary">우편번호찾기</button>
-						</div>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="member_address1" class="col-sm-2 col-form-label">주소</label>
-					<div class="col-sm-10">
-						<input id="member_address1" name="member_address1"
-							class="form-control" readonly>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="member_address2" class="col-sm-2 col-form-label">상세주소</label>
-					<div class="col-sm-10">
-						<input id="member_address2" name="member_address2"
-							class="form-control" readonly>
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="tel" class="col-sm-2 col-form-label">전화번호</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="tel" name="member_tel"
-							value="">
-					</div>
-				</div>
-
-				<div class="row mb-3">
-					<label for="file" class="col-sm-2 col-form-label">프로필</label>
-					<div class="col-sm-10">
-						<input type="file" class="form-control" id="file" name="file"
-							value="">
-					</div>
-				</div>
-
-				<div class="text-center">
-					<button type="submit" class="btn btn-primary" style="width: 60%;">제출</button>
-				</div>
-
-			</form>
-		</div>
-	</div>
-
-
+<h1>테스트</h1>
+		
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

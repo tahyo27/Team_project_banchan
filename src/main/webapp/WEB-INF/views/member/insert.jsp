@@ -4,13 +4,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert page</title>
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 <script type="text/javascript">
 	$(function() {
 		console.log("onload....");
@@ -36,7 +43,7 @@
 				} else {
 					msg = '사용중인 아이디입니다.';
 				}
-				$('#demo').text(msg);
+				alert(msg);
 			},
 			error : function(xhr, status, error) {
 				console.log('xhr.status:', xhr.status);
@@ -81,7 +88,7 @@
 			$resultMsg.css('color', 'red');
 		}
 	};
-	
+
 	function daum_address_find() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -131,71 +138,214 @@
 			}
 		}).open();
 	};
+	
+	function showForm() {
+		var form = document.getElementById("myForm");
+		form.style.display = "block"; // 폼 보이기
+	};
 </script>
+<style>
+/* 추가적인 CSS 스타일링을 위한 스타일 시트 */
+body {
+	background-color: #f8f9fa; /* 배경 회색 */
+}
+
+.logo-block {
+	background-color: #ffffff; /* 로고 블록 흰색 배경 */
+	width: 100%;
+	padding: 20px;
+}
+
+.login-block {
+	background-color: #ffffff; /* 로그인 블록 흰색 배경 */
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 20px;
+	margin-top: 50px;
+	box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+}
+
+.login-form {
+	max-width: 550px;
+	margin: 70px auto;
+	padding: 30px;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+form {
+	font-size: 14px;
+}
+
+.btn-primary {
+	background-color: #337ab7; /* 어두운 회색 배경색상 */
+	border-color: #337ab7; /* 어두운 회색 테두리 색상 */
+	color: #ffffff; /* 흰색 텍스트 색상 */
+}
+
+.hidden-form {
+	display: none; /* 폼 숨김 */
+}
+
+.top-font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	color: rgb(89, 171, 110);
+	font-size:30px;
+	text-decoration: none;
+}
+.roboto_font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+</style>
 </head>
 <body>
-	<h1>회원가입</h1>
+	<div class="logo-block">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<a href="home" class="top-font">BANCHAN</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<form action="m_insertOK.do" method="post"
-		enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td><label for="id">id:</label></td>
-				<td><input type="text" id="id" name="member_id" required>
-					<button type="button" onclick="idCheck()" class="idCheckButton">ID중복체크</button>
-					<span id="demo"></span></td>
-			</tr>
-			<tr>
-				<td><label for="pw">pw:</label></td>
-				<td><input type="password" id="pw" name="member_pw"></td>
-			</tr>
-			<tr>
-				<td><label for="name">name:</label></td>
-				<td><input type="text" id="name" name="member_name"></td>
-			</tr>
-			<tr>
-				<td><label for="email">email:</label></td>
-				<td><input type="email" id="userEmail" name="member_email"
-					placeholder="이메일을 입력하세요" required>
-					<button type="button" class="btn btn-primary" id="mail-Check-Btn"
-						onclick="mailCheck()">이메일 인증</button></td>
-			<tr>
-				<td><label for=></label></td>
-				<td><input class="mail-check-input" placeholder="인증번호 6자리 입력"
-					disabled="disabled" maxlength="6">
-					<button type="button" onclick="numberCheck()">인증번호 확인</button></td>
 
-				<td><span id="mail-check-warn"></span></td>
-			</tr>
-			<tr>
-				<td><label for="member_zipcode">우편번호:</label></td>
-				<td><input id="member_zipcode" name="member_zipcode"
-					readonly="readonly"></td>
-				<td><button type="button" onclick="daum_address_find()">우편번호찾기</button></td>
-			</tr>
-			<tr>
-				<td><label for="member_address1">주소:</label></td>
-				<td><input id="member_address1" name="member_address1"
-					readonly="readonly"></td>
-			</tr>
-			<tr>
-				<td><label for="member_address2">상세주소:</label></td>
-				<td><input id="member_address2" name="member_address2"
-					readonly="readonly"></td>
-			</tr>
 
-			<tr>
-				<td><label for="tel">tel:</label></td>
-				<td><input type="text" id="tel" name="member_tel" value=""></td>
-			</tr>
-			<tr>
-				<td><label for="file">profile:</label></td>
-				<td><input type="file" id="file" name="file" value=""></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" class="myButton"></td>
-			</tr>
-		</table>
-	</form>
+	<div class="login-form">
+		<ul class="nav nav-tabs justify-content-center">
+			<li class="nav-item"><a class="nav-link active" href="jsptest">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link" href="SNS_Login.do">로그인</a></li>
+		</ul>
+		<br>
+		
+		<br>
+		<div>
+			<div id="naver_id_login" style="text-align: center">
+				<a href="${naver_url}"><img width="220" height="55" 
+					src="${pageContext.request.contextPath}/resources/SNSimg/btnG_완성형.png" /></a>
+			</div>
+			<div id="kakao_id_login" style="text-align: center">
+				<a href="${kakao_url}"><img width="220" height="55" style="margin-top:15px;"
+					src="${pageContext.request.contextPath}/resources/SNSimg/kakao_login_large_narrow.png" /></a>
+			</div>
+			<div id="google_id_login" style="text-align: center">
+				<a href="${google_url}"><img width="220" height="55" style="margin-top:15px;"
+					src="${pageContext.request.contextPath}/resources/SNSimg/btn_google_signin_dark_normal.png" /></a>
+			</div>
+		</div>
+		<br>
+		<hr>
+		
+		<!-- 	폼보여주는 버튼 -->
+		<div class="row mb-3">
+			<div class="col-sm-12 text-center">
+				<button type="button" onclick="showForm()" class="btn btn-primary roboto_font" style="width:220px; height:50px; font-weight: bold;">이메일 회원가입</button>
+			</div>
+		</div>
+		<div class="row mb-3 hidden-form" id="myForm">
+			<form action="m_insertOK.do" method="post"
+				enctype="multipart/form-data" class="input_form">
+
+				<div class="row mb-3">
+					<label for="id" class="col-sm-2 col-form-label">아이디</label>
+					<div class="col-sm-10">
+						<div class="input-group">
+							<input type="text" class="form-control" id="id" name="member_id"
+								required>
+							<button type="button" onclick="idCheck()"
+								class="btn btn-primary idCheckButton">중복체크</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="pw" class="col-sm-2 col-form-label">비밀번호</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" id="pw"
+							name="member_pw">
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="name" class="col-sm-2 col-form-label">이름</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="name"
+							name="member_name">
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="email" class="col-sm-2 col-form-label">이메일</label>
+					<div class="col-sm-10">
+						<div class="input-group">
+							<input type="email" class="form-control" id="userEmail"
+								name="member_email" placeholder="이메일을 입력하세요" required>
+							<button type="button" class="btn btn-primary" id="mail-Check-Btn"
+								onclick="mailCheck()">이메일 인증</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="member_zipcode" class="col-sm-2 col-form-label">우편번호</label>
+					<div class="col-sm-10">
+						<div class="input-group">
+							<input id="member_zipcode" name="member_zipcode"
+								class="form-control" readonly>
+							<button type="button" onclick="daum_address_find()"
+								class="btn btn-primary">우편번호찾기</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="member_address1" class="col-sm-2 col-form-label">주소</label>
+					<div class="col-sm-10">
+						<input id="member_address1" name="member_address1"
+							class="form-control" readonly>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="member_address2" class="col-sm-2 col-form-label">상세주소</label>
+					<div class="col-sm-10">
+						<input id="member_address2" name="member_address2"
+							class="form-control" readonly>
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="tel" class="col-sm-2 col-form-label">전화번호</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" id="tel" name="member_tel"
+							value="">
+					</div>
+				</div>
+
+				<div class="row mb-3">
+					<label for="file" class="col-sm-2 col-form-label">프로필</label>
+					<div class="col-sm-10">
+						<input type="file" class="form-control" id="file" name="file"
+							value="">
+					</div>
+				</div>
+
+				<div class="text-center">
+					<button type="submit" class="btn btn-primary" style="width: 60%;">제출</button>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	
+	
+	
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
 </body>
 </html>

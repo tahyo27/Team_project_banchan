@@ -95,6 +95,13 @@ body {
 	font-size:10;
 	margin-top:10px;
 }
+.top-font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 600;
+	color: rgb(89, 171, 110);
+	font-size:30px;
+	text-decoration: none;
+}
 </style>
 
 <script type="text/javascript">
@@ -109,13 +116,13 @@ body {
 	}
 </script>
 </head>
-<!-- 로고만 나중에 만들어서 넣기 -->
+
 <body>
 	<div class="logo-block">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center">
-					<a href="home">BANCHAN</a>
+					<a href="home" class="top-font">BANCHAN</a>
 				</div>
 			</div>
 		</div>
