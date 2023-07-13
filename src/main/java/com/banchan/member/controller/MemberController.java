@@ -273,6 +273,8 @@ public class MemberController {
 				return "redirect:SNS_Login.do?message=fail"; // 아이디 비번 다르면 메세지에 실패 넣음
 			} else {
 				session.setAttribute("user_id", vo2.getMember_id());
+				session.setAttribute("sns_check", 0);
+				session.setAttribute("user_num", vo2.getNum());
 				return "redirect:home";
 			}
 		} else {
@@ -290,6 +292,13 @@ public class MemberController {
 		session.invalidate(); // 로그인 세션 제거
 
 		return "redirect:home";
+	}
+	
+	@RequestMapping(value = "/m_user_udpate.do", method = RequestMethod.GET)
+	public String m_user_udpate() {
+		log.info("/m_user_udpate.do");
+
+		return "member/user_update";
 	}
 
 }// end class

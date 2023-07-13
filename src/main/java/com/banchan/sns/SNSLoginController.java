@@ -91,12 +91,14 @@ public class SNSLoginController {
 			log.info("naverSNS 회원가입 result:{}", result);
 			if (result == 1) {
 				session.setAttribute("user_id", vo.getMember_name());
+				session.setAttribute("sns_check", 1);
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("naver로그인 회원가입 되어있음");
 			session.setAttribute("user_id", vo.getMember_name());
+			session.setAttribute("sns_check", 1); //sns계정 체크용
 		}
 		return "SNS/NaverSuccess";
 	}
@@ -122,12 +124,14 @@ public class SNSLoginController {
 			log.info("googleSNS 회원가입 result:{}", result);
 			if (result == 1) {
 				session.setAttribute("user_id", vo.getMember_name());
+				session.setAttribute("sns_check", 1);
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("google로그인 회원가입 되어있음");
 			session.setAttribute("user_id", vo.getMember_name());
+			session.setAttribute("sns_check", 1);
 		}
 
 //		model.addAttribute("result", vo);
@@ -154,12 +158,14 @@ public class SNSLoginController {
 			log.info("kakaoSNS 회원가입 result:{}", result);
 			if (result == 1) {
 				session.setAttribute("user_id", vo.getMember_name());
+				session.setAttribute("sns_check", 1);
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("kakao로그인 회원가입 되어있음");
 			session.setAttribute("user_id", vo.getMember_name());
+			session.setAttribute("sns_check", 1);
 		}
 		
 		return "SNS/KakaoSuccess";
