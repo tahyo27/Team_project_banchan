@@ -37,7 +37,12 @@ public class OrderDAOimpl implements OrderDAO {
 	@Override
 	public OrderVO selectOne(OrderVO vo) {
 		log.info("selectOne()...{}", vo);
-		return sqlSession.selectOne(NAMESPACE + "selectOne", vo);
+
+		OrderVO result = sqlSession.selectOne(NAMESPACE + "selectOne", vo);
+		List<OrderDetailVO> details = sqlSession.selectList(NAMESPACE + "selectOrderDetail", vo);
+		result.setDetails(details);
+
+		return result;
 	}
 
 	@Override
