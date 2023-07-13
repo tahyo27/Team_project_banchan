@@ -118,8 +118,6 @@
 					<li class="nav-item"><a class="nav-link active"
 						data-toggle="pill" href="m_user_udpate.do">회원정보</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="#order-delivery">주문배송</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="pill"
 						href="ab_selectAll.do?member_num=2">배송주소록</a></li>
 				</ul>
 			</div>
