@@ -200,7 +200,7 @@
 			console.log(pair[0] + ', ' + pair[1]);
 		}
 
-		let response = await fetch('insertOk.do', {
+		let response = await fetch('order/insertOk.do', {
 			method: 'POST',
 			body: formData
 		});
