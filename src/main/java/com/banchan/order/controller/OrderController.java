@@ -76,8 +76,16 @@ public class OrderController {
 	public Map<String, Integer> insertOk(OrderVO vo) {
 		log.info("/insertOk.do...{}", vo);
 
-//		int result = service.insert(vo);
-		int result = 0;
+		session.setAttribute("member_num", 1);
+		session.setAttribute("member_id", "user001");
+		vo.setMember_num((Integer) session.getAttribute("member_num"));
+
+		int result = service.insert(vo);
+		if (result > 0) {
+			CartVO cartVO = new CartVO();
+			cartVO.setMember_id((String) session.getAttribute("member_id"));
+			cartService.deleteAll(cartVO);
+		}
 
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("result", result);

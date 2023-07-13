@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.banchan.order.model.OrderDAO;
 import com.banchan.order.model.OrderVO;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -16,6 +18,7 @@ public class OrderService {
 	@Autowired
 	OrderDAO dao;
 
+	@Transactional
 	public int insert(OrderVO vo) {
 		return dao.insert(vo);
 	}

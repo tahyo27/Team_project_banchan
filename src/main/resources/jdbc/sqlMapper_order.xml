@@ -12,11 +12,6 @@
 		select * from "ORDER" where NUM = #{num}
 	</select>
 
-	<insert id="insert" parameterType="com.banchan.order.model.OrderVO">
-		insert into "ORDER"(NUM, MEMBER_NUM, ORDER_STATUS, ORDER_AMOUNT, ORDER_DEL, ORDER_TOTAL)
-		values (SEQ_ORDER.nextval, #{memberNum}, #{orderStatus}, #{orderAmount}, #{orderDel}, #{orderTotal})
-	</insert>
-
 	<update id="update" parameterType="com.banchan.order.model.OrderVO">
 		update "ORDER"
 		set ORDER_STATUS = #{orderStatus}, ORDER_AMOUNT = #{orderAmount}, ORDER_DEL = #{orderDel}, ORDER_TOTAL = #{orderTotal}
@@ -26,4 +21,23 @@
 	<delete id="delete" parameterType="com.banchan.order.model.OrderVO">
 		delete from "ORDER" where NUM = #{num}
 	</delete>
+
+	<insert id="insertOrder" parameterType="com.banchan.order.model.OrderVO">
+		<selectKey keyProperty="num" resultType="int" order="BEFORE">
+			select SEQ_ORDER.NEXTVAL from DUAL
+		</selectKey>
+		insert into "ORDER" (NUM, MEMBER_NUM, RECEIVER_NAME, TEL, ZIPCODE, ADDRESS1, ADDRESS2, MEMO, ORDER_PRICE, DELIVERY_FEE, DISCOUNT_COUPON, USE_POINT, TOTAL_PRICE)
+		values (#{num}, #{member_num}, #{receiver_name}, #{tel}, #{zipcode}, #{address1}, #{address2}, #{memo}, #{order_price}, #{delivery_fee}, #{discount_coupon}, #{use_point}, #{total_price})
+	</insert>
+
+	<insert id="insertOrderDetail" parameterType="com.banchan.order.model.OrderVO">
+		insert into ORDER_DETAIL (NUM, PRODUCT_NUM, ORDER_NUM, AMOUNT, PRICE)
+		select SEQ_ORDER_DETAIL.NEXTVAL, A.*
+		from (
+			<foreach item="detail" collection="details" separator="union all ">
+				select #{detail.product_num} as PRODUCT_NUM, #{num} as ORDER_NUM, #{detail.amount} as AMOUNT, #{detail.price} as PRICE
+				from DUAL
+			</foreach>
+		) A
+	</insert>
 </mapper>
