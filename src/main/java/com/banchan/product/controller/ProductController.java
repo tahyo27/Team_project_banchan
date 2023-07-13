@@ -156,7 +156,7 @@ public class ProductController {
 		log.info("result:{}",result);
 		
 		if(result==1) {
-			return "redirect:pr_selectAll.do";
+			return "redirect:productDetail.do";
 		}else {
 			return "redirect:pr_insert.do";
 		}
@@ -225,19 +225,41 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/pr_deleteOK.do", method = RequestMethod.GET)
-	public String pr_deleteOK(ProductVO vo) {
+	public String pr_deleteOK(ProductVO vo,Model model) {
 		log.info("/pr_deleteOK.do...vo:{}",vo);
 		
 		
 		int result = service.delete(vo);
 		log.info("result:{}",result);
 		
+		model.addAttribute("result",result);
+		
 		
 		if(result==1) {
-			return "redirect:pr_selectAll.do";
+			return "redirect:productDetail.do";
 		}else {
 			return "redirect:pr_selectOne.do?num="+vo.getNum();
 		}
+	}
+	
+	@RequestMapping(value = "/adminpage.do", method = RequestMethod.GET)
+	public String adminpage(Model model) {
+		log.info("/adminpage.do.....");
+
+
+		return ".product/adminpage";
+	}
+	
+	@RequestMapping(value = "/productDetail.do", method = RequestMethod.GET)
+	public String productDetail(Model model) {
+		
+		log.info("/productDetail.do.....");
+		List<ProductVO> vos = service.selectAll();
+		log.info("vos:{}", vos);
+		
+		model.addAttribute("vos", vos);
+
+		return ".product/productDetail";
 	}
 	
 	

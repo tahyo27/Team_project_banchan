@@ -12,8 +12,8 @@
 				<a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-1111-2222</a>
 			</div>
 			<div>
-				<a class="text-light" href="m_insert.do">회원가입
-				</a>
+				<a class="text-light" href="m_insert.do">회원가입</a>
+				<a class="text-light" href="adminpage.do">관리자페이지</a>
 <!-- 				<a class="text-light" href="https://www.instagram.com/" target="_blank"><i -->
 <!-- 						class="fab fa-instagram fa-sm fa-fw me-2"></i></a> -->
 <!-- 				<a class="text-light" href="https://twitter.com/" target="_blank"><i -->

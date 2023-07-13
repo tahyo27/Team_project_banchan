@@ -30,9 +30,6 @@ public class ReviewController {
 	public String re_selectAll(ReviewVO vo,Model model) {
 		log.info("/re_selectAll.do.....");
 		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
-		
 
 		List<ReviewVO> vos = service.selectAll(vo);
 		log.info("vos:{}", vos);
@@ -40,6 +37,19 @@ public class ReviewController {
 		model.addAttribute("vos", vos);
 
 		return "review/selectAll";
+	}
+	
+	@RequestMapping(value = "/re_selectAlladmin.do", method = RequestMethod.GET)
+	public String re_selectAlladmin(Model model) {
+		log.info("/re_selectAlladmin.do.....");
+		
+
+		List<ReviewVO> vos = service.selectAlladmin();
+		log.info("vos:{}", vos);
+		
+		model.addAttribute("vos", vos);
+
+		return ".review/selectAlladmin";
 	}
 	
 	
@@ -53,8 +63,7 @@ public class ReviewController {
 		int result = service.delete(vo);
 		log.info("result:{}",result);
 		
-		
-		return "redirect:re_selectAll.do?member_id="+vo.getMember_id();
+		return "redirect:re_selectAlladmin.do";
 	}
 	
 	

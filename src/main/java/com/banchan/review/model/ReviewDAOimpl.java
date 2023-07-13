@@ -47,7 +47,13 @@ public class ReviewDAOimpl implements ReviewDAO {
 		log.info("selectAll()...{}",rvo);
 		
 		return sqlSession.selectList("RE_SELECT_ALL_TOTAL", rvo);
+	}
+
+	@Override
+	public List<ReviewVO> selectAlladmin() {
+		log.info("selectAlladmin()...");
 		
+		return sqlSession.selectList("RE_SELECT_ALL_ADMIN");
 		
 	}
 	

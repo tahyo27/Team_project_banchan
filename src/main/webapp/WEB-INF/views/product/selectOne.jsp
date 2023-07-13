@@ -21,8 +21,8 @@
 					<div class="product-images">
 						<main id="gallery">
 							<div class="main-img">
-								<img width="350px"
-				src="resources/uploadimg/product/${vo2.product_img}">
+								<img
+				src="${pageContext.request.contextPath}/resources/uploadimg/product/${vo2.product_img}" class="img-fluid">
 							</div>
 							
 						</main>

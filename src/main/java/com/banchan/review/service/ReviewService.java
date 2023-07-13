@@ -38,6 +38,10 @@ public class ReviewService {
 	public List<ReviewVO> selectAllTotal(ReviewVO rvo) {
 		return dao.selectAllTotal(rvo);
 	}
+
+	public List<ReviewVO> selectAlladmin() {
+		return dao.selectAlladmin();
+	}
 	
 
 

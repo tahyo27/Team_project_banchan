@@ -1,14 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style="color: black;" href="adminpage.do">돌아가기 / </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" style="color: black;" href="pr_insert.do">상품등록</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
 <div style="display: flex; justify-content: center;">
   <section class="bg-white">
 	<div class="container py-5">
 		<div class="row text-center py-3">
 			<div class="row">
 				<div class="col md-4 col-md-offset-6">
-				
 
-					<b>상품등록</b>
+
 				<form action="pr_insertOK.do" method="post" enctype="multipart/form-data"> 
 					<table class="table table-bordered" style="width: 600px;">
 							<tr>

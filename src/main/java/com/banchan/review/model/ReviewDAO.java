@@ -12,5 +12,7 @@ public interface ReviewDAO {
 
 	List<ReviewVO> selectAllTotal(ReviewVO rvo); // 상품정보 밑에 뿌려줄 전체 리뷰 리스트
 
+	List<ReviewVO> selectAlladmin();
+
 
 }
