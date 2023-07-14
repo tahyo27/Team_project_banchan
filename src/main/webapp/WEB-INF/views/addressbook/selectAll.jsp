@@ -18,7 +18,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#showFormButton').click(function() {
@@ -98,6 +99,25 @@
 			}
 		});
 	};
+	
+	function baseDelete(num) {
+
+		$.ajax({
+			url : 'ab_deleteOK.do',
+			data : {
+				num : num
+			},
+			method : 'POST',
+			success : function(response) {
+				console.log('Delete successful');
+				alert("배송지를 삭제하였습니다.")
+				location.reload(); // 페이지 새로고침		
+			},
+			error : function(xhr, status, error) {
+				console.error('Delete failed:', error);
+			}
+		});
+	};
 </script>
 <style>
 /* 추가적인 CSS 스타일링을 위한 스타일 시트 */
@@ -130,11 +150,96 @@
 	font-weight: 400;
 	font-size: 12px;
 }
+.roboto_font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+
+.search-input {
+	width: 400px; /* 상품검색창 가로길이 조정 */
+}
+
+.navbar a {
+	color: black; /* 링크의 텍스트 색상을 원하는 색상으로 지정 */
+}
 </style>
 
 </head>
 <body>
+	<!-- Start Top Nav -->
+	<nav
+		class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+		id="templatemo_nav_top">
+		<div class="container text-light">
+			<div class="w-100 d-flex justify-content-between">
+				<div>
+					<i class="fa fa-envelope mx-2"></i> <a
+						class="navbar-sm-brand text-light text-decoration-none"
+						href="mailto:info@company.com">BANCHAN@company.com</a> <i
+						class="fa fa-phone mx-2"></i> <a
+						class="navbar-sm-brand text-light text-decoration-none"
+						href="tel:010-020-0340">010-1111-2222</a>
+				</div>
+				<div>
+					<a class="text-light" href="m_insert.do">회원가입</a> <a
+						class="text-light" href="adminpage.do">관리자페이지</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- Close Top Nav -->
 
+	<!-- Header -->
+	<nav class="navbar navbar-expand-lg navbar-light shadow">
+		<div
+			class="container d-flex justify-content-between align-items-center">
+
+			<a
+				class="navbar-brand text-success logo h1 align-self-center roboto_font"
+				style="font-size: 40px;" href=".home"> BANCHAN </a>
+
+			<button class="navbar-toggler border-0" type="button"
+				data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div
+				class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+				id="templatemo_main_nav">
+				<div class="flex-fill">
+
+					<form class="d-flex justify-content-center align-items-center"
+						action="pr_searchList.do">
+						<select name="searchKey" id="searchKey_header"
+							style="margin-right: 10px;">
+							<option value="name">상품명</option>
+						</select> <input class="form-control me-2 search-input" type="search"
+							placeholder="상품 검색" name="searchWord" id="searchWord">
+						<button class="btn btn-outline-success" type="submit">
+							<i class="fas fa-search">검색</i>
+						</button>
+					</form>
+				</div>
+
+				<div class="navbar align-self-center d-flex">
+					<a class="nav-icon position-relative text-decoration-none"
+						href="c_selectAll.do?member_id=${user_id}"> <i
+						class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i> <span
+						class="ml-1 ">장바구니</span>
+					</a> <a class="nav-icon position-relative text-decoration-none"
+						style="margin-left: 10px;" href="SNS_Login.do"> <i
+						class="fa fa-fw fa-user text-dark"></i><span class="ml-1 ">마이페이지</span>
+					</a> </a> <a class="nav-icon position-relative text-decoration-none"
+						style="margin-left: 10px;" href="logout.do"><i class="fas fa-sign-out-alt"></i><span class="ml-1 ">로그아웃</span> </a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<!-- Close Header -->
+	
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col-md-3">
@@ -228,7 +333,7 @@
 											</button>
 											<button type="button"
 												class="btn btn-sm btn-primary custom-btn"
-												onclick="baseUpdate(${vo.num})" style="margin:2px auto;">
+												onclick="baseDelete(${vo.num})" style="margin:2px auto;">
 												<span class="small">삭제</span>
 											</button></td>
 									</tr>
