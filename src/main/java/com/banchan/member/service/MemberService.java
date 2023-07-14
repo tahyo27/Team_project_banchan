@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.banchan.MailSend.MailSendService;
 import com.banchan.member.model.MemberDAO;
 import com.banchan.member.model.MemberVO;
+import com.banchan.member.model.Paging;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,12 +26,8 @@ public class MemberService {
 		log.info("MemberService()...");
 	}
 
-	public List<MemberVO> selectAll() {
-		return dao.selectAll();
-	}
-
-	public List<MemberVO> searchList(String searchKey, String searchWord) {
-		return dao.searchList(searchKey, searchWord);
+	public List<MemberVO> selectAll(Paging paging) {
+		return dao.selectAll(paging);
 	}
 
 	public MemberVO selectOne(MemberVO vo) {
@@ -77,5 +74,13 @@ public class MemberService {
 	
 	public int sns_insert(MemberVO vo) {
 		return dao.sns_insert(vo);
+	}
+	
+	public int getMemberListCnt() throws Exception {
+		return dao.getMemberListCnt();
+	}
+
+	public List<MemberVO> searchList(String searchKey, String searchWord) {
+		return dao.selectList(searchKey, searchWord);
 	}
 }

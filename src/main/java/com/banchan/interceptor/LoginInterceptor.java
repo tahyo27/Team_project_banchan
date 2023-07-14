@@ -29,7 +29,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if (sPath.equals("/m_selectAll.do")) {
 			if (user_id == null) {
 				log.info("계정이 null입니다");
-				response.sendRedirect("login.do");
+				response.sendRedirect("SNS_Login.do");
 				return false;
 			}
 

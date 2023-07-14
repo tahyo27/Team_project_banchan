@@ -19,8 +19,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.banchan.member.model.MemberVO;
+import com.banchan.member.model.Paging;
 import com.banchan.member.service.MemberService;
 import com.banchan.sns.SNSLogin;
 import com.banchan.sns.SnsValue;
@@ -55,25 +57,33 @@ public class MemberController {
 	private SnsValue kakaoSns;
 
 	@RequestMapping(value = "/m_selectAll.do", method = RequestMethod.GET)
-	public String m_selectAll(Model model) {
+	public String m_selectAll(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) throws Exception {
 		log.info("/m_selectAll.do.....");
 
-		List<MemberVO> vos = service.selectAll();
+		// 전체 게시글 개수
+		int listCnt = service.getMemberListCnt();
+		// Pagination 객체생성
+
+		Paging pagination = new Paging();
+		pagination.pageInfo(page, range, listCnt);
+
+		List<MemberVO> vos = service.selectAll(pagination);
 
 		log.info("vos:{}", vos);
-
+		model.addAttribute("pagination", pagination);
 		model.addAttribute("vos", vos);
 
 		return "member/selectAll";
 	}
 
 	@RequestMapping(value = "/m_searchList.do", method = RequestMethod.GET)
-	public String m_searchList(String searchKey, String searchWord, Model model) {
+	public String m_searchList(String searchKey, String searchWord, Model model) throws Exception {
 		log.info("/m_searchList.do...searchKey:{}", searchKey);
 		log.info("/m_searchList.do...searchWord:{}", searchWord);
-
+		
 		List<MemberVO> vos = service.searchList(searchKey, searchWord);
-
+		
 		model.addAttribute("vos", vos);
 
 		return "member/selectAll";
@@ -293,7 +303,7 @@ public class MemberController {
 
 		return "redirect:home";
 	}
-	
+
 	@RequestMapping(value = "/m_user_udpate.do", method = RequestMethod.GET)
 	public String m_user_udpate() {
 		log.info("/m_user_udpate.do");

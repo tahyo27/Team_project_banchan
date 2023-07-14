@@ -22,25 +22,10 @@ public class MemberDAOimpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> selectAll() {
+	public List<MemberVO> selectAll(Paging paging) {
 		log.info("Member_selectAll().....");
 
-		return sqlSession.selectList("M_SELECT_ALL");
-	}
-
-	@Override
-	public List<MemberVO> searchList(String searchKey, String searchWord) {
-		log.info("Member_searchList()...searchKey:{}", searchKey);
-		log.info("Member_searchList()...searchWord:{}", searchWord);
-
-		String key = "";
-		if (searchKey.equals("name")) {
-			key = "M_SEARCH_LIST_NAME";
-//		}else {
-//			key = "M_SEARCH_LIST_TEL";
-		}
-
-		return sqlSession.selectList(key, "%" + searchWord + "%");
+		return sqlSession.selectList("M_SELECT_ALL", paging);
 	}
 
 	@Override
@@ -86,11 +71,12 @@ public class MemberDAOimpl implements MemberDAO {
 		log.info("findPwCheck()...{}", vo);
 		return sqlSession.selectOne("FIND_PW_CHECK", vo);
 	}
+
 //
 	@Override
 	public int findPw(String member_pw, String member_email, String member_id) {
-		log.info("findPw()..." + "pw:"+member_pw +"email:" + member_email+"id:"+member_id);
-		Map<String,Object> map = new HashMap<String, Object>();
+		log.info("findPw()..." + "pw:" + member_pw + "email:" + member_email + "id:" + member_id);
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("member_email", member_email);
 		map.put("member_id", member_id);
 		map.put("member_pw", member_pw);
@@ -105,11 +91,32 @@ public class MemberDAOimpl implements MemberDAO {
 
 	@Override
 	public int admin_check(MemberVO vo) {
-		log.info("admin_check()...vo:{}", vo );
-		Map<String,Object> admin = new HashMap<String, Object>();
+		log.info("admin_check()...vo:{}", vo);
+		Map<String, Object> admin = new HashMap<String, Object>();
 		admin.put("admin_id", vo.getMember_id());
 		admin.put("admin_pw", vo.getMember_pw());
 		return sqlSession.selectOne("ADMIN_CHECK", admin);
+	}
+
+	@Override
+	public int getMemberListCnt() throws Exception {
+		log.info("getMemberListCnt()...");
+		return sqlSession.selectOne("getMemberListCnt");
+	}
+
+	@Override
+	public List<MemberVO> selectList(String searchKey, String searchWord) {
+		log.info("Member_searchList()...searchKey:{}", searchKey);
+		log.info("Member_searchList()...searchWord:{}", searchWord);
+
+		String key = "";
+		if (searchKey.equals("name")) {
+			key = "M_SEARCH_LIST_NAME";
+//		}else {
+//			key = "M_SEARCH_LIST_TEL";
+		}
+
+		return sqlSession.selectList(key, "%" + searchWord + "%");
 	}
 
 }
