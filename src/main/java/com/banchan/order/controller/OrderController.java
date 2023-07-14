@@ -98,4 +98,16 @@ public class OrderController {
 
 		return ".order/selectAll";
 	}
+
+	@RequestMapping(value = "/o_mypageOrders.do", method = RequestMethod.GET)
+	public String selectOrdersMypage(Model model) {
+		log.info("/o_mypageOrders.do...");
+
+		List<OrderVO> result = service.selectAll();
+		log.info("{}", result);
+
+		model.addAttribute("vos", result);
+
+		return ".my/order/selectAll";
+	}
 }

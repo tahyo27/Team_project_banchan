@@ -13,4 +13,9 @@
 	<definition name=".*/*" extends=".home">
 		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
+
+	<definition name=".my/*/*" extends=".home">
+		<put-attribute name="content" value="/WEB-INF/views/layouts/mypage.jsp" />
+		<put-attribute name="section" value="/WEB-INF/views/{1}/{2}.jsp" cascade="true" />
+	</definition>
 </tiles-definitions>
