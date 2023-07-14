@@ -14,12 +14,50 @@ Custom Css
 #searchKey_header {
   display: none;
 }
-  
-  #searchKey_header,
-  #searchWord {
-    width: 150px; 
-  }
-  
-  .btn-outline-success {
-     margin-right: 16px;
-  }
+
+#searchKey_header,
+#searchWord {
+  width: 150px;
+}
+
+.btn-outline-success {
+  margin-right: 16px;
+}
+
+.tab-content {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.custom-btn {
+  font-size: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+.custom-table {
+  margin-top: 20px;
+}
+
+.custom-table th {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.custom-table td {
+  vertical-align: middle;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.side-menu a {
+  color: #000;
+}
+
+.side-menu a:hover {
+  color: #333d4a;
+}
