@@ -18,6 +18,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
 	$(function() {
 		console.log("onload....");
@@ -199,6 +201,7 @@ form {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 }
+
 </style>
 </head>
 <body>
@@ -216,7 +219,7 @@ form {
 
 	<div class="login-form">
 		<ul class="nav nav-tabs justify-content-center">
-			<li class="nav-item"><a class="nav-link active" href="jsptest">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link active" href="m_insert.do">회원가입</a></li>
 			<li class="nav-item"><a class="nav-link" href="SNS_Login.do">로그인</a></li>
 		</ul>
 		<br>

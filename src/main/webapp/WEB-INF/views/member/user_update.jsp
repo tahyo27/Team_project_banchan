@@ -17,6 +17,9 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
 <script type="text/javascript">
 	$(function(){
 		$.ajax({
@@ -103,14 +106,101 @@
 	border: 1px solid #ddd;
 	border-radius: 4px;
 }
- .custom-btn {
-    width: 70%;
-  }
+
+.custom-btn {
+	width: 70%;
+}
+
+.roboto_font {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+}
+
+.search-input {
+	width: 400px; /* 상품검색창 가로길이 조정 */
+}
+
+.navbar a {
+	color: black; /* 링크의 텍스트 색상을 원하는 색상으로 지정 */
+}
 </style>
 
 </head>
 <body>
+	<!-- Start Top Nav -->
+	<nav
+		class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+		id="templatemo_nav_top">
+		<div class="container text-light">
+			<div class="w-100 d-flex justify-content-between">
+				<div>
+					<i class="fa fa-envelope mx-2"></i> <a
+						class="navbar-sm-brand text-light text-decoration-none"
+						href="mailto:info@company.com">BANCHAN@company.com</a> <i
+						class="fa fa-phone mx-2"></i> <a
+						class="navbar-sm-brand text-light text-decoration-none"
+						href="tel:010-020-0340">010-1111-2222</a>
+				</div>
+				<div>
+					<a class="text-light" href="m_insert.do">회원가입</a> <a
+						class="text-light" href="adminpage.do">관리자페이지</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- Close Top Nav -->
 
+	<!-- Header -->
+	<nav class="navbar navbar-expand-lg navbar-light shadow">
+		<div
+			class="container d-flex justify-content-between align-items-center">
+
+			<a
+				class="navbar-brand text-success logo h1 align-self-center roboto_font"
+				style="font-size: 40px;" href=".home"> BANCHAN </a>
+
+			<button class="navbar-toggler border-0" type="button"
+				data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div
+				class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between"
+				id="templatemo_main_nav">
+				<div class="flex-fill">
+
+					<form class="d-flex justify-content-center align-items-center"
+						action="pr_searchList.do">
+						<select name="searchKey" id="searchKey_header"
+							style="margin-right: 10px;">
+							<option value="name">상품명</option>
+						</select> <input class="form-control me-2 search-input" type="search"
+							placeholder="상품 검색" name="searchWord" id="searchWord">
+						<button class="btn btn-outline-success" type="submit">
+							<i class="fas fa-search">검색</i>
+						</button>
+					</form>
+				</div>
+
+				<div class="navbar align-self-center d-flex">
+					<a class="nav-icon position-relative text-decoration-none"
+						href="c_selectAll.do?member_id=${user_id}"> <i
+						class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i> <span
+						class="ml-1 ">장바구니</span>
+					</a> <a class="nav-icon position-relative text-decoration-none"
+						style="margin-left: 10px;" href="SNS_Login.do"> <i
+						class="fa fa-fw fa-user text-dark"></i><span class="ml-1 ">마이페이지</span>
+					</a> </a> <a class="nav-icon position-relative text-decoration-none"
+						style="margin-left: 10px;" href="logout.do"><i class="fas fa-sign-out-alt"></i><span class="ml-1 ">로그아웃</span> </a>
+				</div>
+			</div>
+
+		</div>
+	</nav>
+	<!-- Close Header -->
+	
 	<div class="container">
 		<div class="row mt-5">
 			<div class="col-md-3">
@@ -128,9 +218,9 @@
 						<h3>회원정보</h3>
 						<form action="m_updateOK.do" method="post"
 							enctype="multipart/form-data">
-							<input type="hidden" id="input_num" name="num">
-							<input type="hidden" id="input_email" name="member_email">
-							<input type="hidden" id="input_id" name="member_id">
+							<input type="hidden" id="input_num" name="num"> <input
+								type="hidden" id="input_email" name="member_email"> <input
+								type="hidden" id="input_id" name="member_id">
 							<div class="form-group row">
 								<label for="id" class="col-sm-3 col-form-label">아이디</label>
 								<div class="col-sm-9">
@@ -185,7 +275,8 @@
 							<div class="form-group row" style="margin-top: 7px;">
 								<label for="tel" class="col-sm-3 col-form-label">전화번호</label>
 								<div class="col-sm-9">
-									<input type="text" id="tel" name="member_tel" class="form-control">
+									<input type="text" id="tel" name="member_tel"
+										class="form-control">
 								</div>
 							</div>
 							<div class="form-group row" style="margin-top: 10px;">

@@ -130,7 +130,7 @@ body {
 
 	<div class="login-form">
 		<ul class="nav nav-tabs justify-content-center">
-			<li class="nav-item"><a class="nav-link" href="jsptest">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link" href="m_insert.do">회원가입</a></li>
 			<li class="nav-item"><a class="nav-link active" href="SNS_Login.do">로그인</a></li>
 		</ul>
 		<br> <br>
