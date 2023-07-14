@@ -91,19 +91,10 @@ function updateQuantity(form) {
 			</div>
          </div>
          
-        
-        
-        <div class="text-end" >
-                  <div class="card border-0">
-          <div class="card-body">
-            <button type="button" class="btn btn-outline-success">주문하기</button>
-            
-            
-          </div>
-        </div>
-        </div>
-        
-        
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+     		   <a href="o_insert.do" class="btn btn-outline-success">주문하기</a>
+        	</div>
+        	
         
        </div>
       </div>

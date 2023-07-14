@@ -67,8 +67,6 @@ public class ProductController {
 	}
 	
 	
-	
-	
 	@RequestMapping(value = "/pr_selectOne.do", method = RequestMethod.GET)
 	public String pr_selectOne(ProductVO vo,Model model) {
 		log.info("/pr_selectOne.do.....");

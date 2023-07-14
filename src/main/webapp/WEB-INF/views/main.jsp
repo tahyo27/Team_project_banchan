@@ -7,21 +7,18 @@
     <ol class="carousel-indicators">
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
         <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-        <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_01.jpg" alt="">
+                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/uploadimg/product/img05022.png" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left align-self-center">
                             <h1 class="h1 text-success"><b>BANCHAN</b>Company</h1>
-                            <h3 class="h2">추천 반찬 img 업데이트</h3>
-                            <p>
-                               반찬 설명 
+                            <h3 class="h2">여름엔 역시 시원한 백김치</h3>
 <!--                                <a rel="sponsored" class="text-success" -->
 <!--                                     href="https://templatemo.com" target="_blank">TemplateMo</a> website. -->
 <!--                                 Image credits go to <a rel="sponsored" class="text-success" -->
@@ -40,38 +37,35 @@
             <div class="container">
                 <div class="row p-5">
                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_02.jpg" alt="">
+                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/uploadimg/product/img03088.png" alt="">
                     </div>
                     <div class="col-lg-6 mb-0 d-flex align-items-center">
                         <div class="text-align-left">
-                            <h1 class="h1">BANCHAN2</h1>
-                            <h3 class="h2">추천 반찬 img 업데이트</h3>
-                            <p>
-                               설명칸
-                            </p>
+                            <h1 class="h1">영양 가득 담백한 맛</h1>
+                            <h3 class="h2">전복미역국</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row p-5">
-                    <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_03.jpg" alt="">
-                    </div>
-                    <div class="col-lg-6 mb-0 d-flex align-items-center">
-                        <div class="text-align-left">
-                            <h1 class="h1">7월 쿠폰받기</h1>
-                            <h3 class="h2">설명 </h3>
-                            <p>
-                          		설명
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--         <div class="carousel-item"> -->
+<!--             <div class="container"> -->
+<!--                 <div class="row p-5"> -->
+<!--                     <div class="mx-auto col-md-8 col-lg-6 order-lg-last"> -->
+<%--                         <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_03.jpg" alt=""> --%>
+<!--                     </div> -->
+<!--                     <div class="col-lg-6 mb-0 d-flex align-items-center"> -->
+<!--                         <div class="text-align-left"> -->
+<!--                             <h1 class="h1">7월 쿠폰받기</h1> -->
+<!--                             <h3 class="h2">설명 </h3> -->
+<!--                             <p> -->
+<!--                           		설명 -->
+<!--                             </p> -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
     </div>
     <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel"
         role="button" data-bs-slide="prev">
@@ -89,7 +83,7 @@
 <section class="container py-5">
     <div class="row text-center pt-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">이 메뉴는 어떠세요?</h1>
+            <h1 class="h1">BEST</h1>
             <p>
               추천 반찬 리스트
             </p>
@@ -97,15 +91,15 @@
     </div>
     <div class="row">
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="pr_selectOne.do?num=11"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0301.png" class="rounded-circle img-fluid border"></a>
+            <img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0301.png" class="rounded-circle img-fluid border">
             <h5 class="text-center mt-3 mb-3">김치찌개</h5>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="pr_selectOne.do?num=7"><img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0203.png" class="rounded-circle img-fluid border"></a>
+           <img src="${pageContext.request.contextPath}/resources/uploadimg/product/img0203.png" class="rounded-circle img-fluid border">
             <h2 class="h5 text-center mt-3 mb-3">치즈돈까스</h2>
         </div>
         <div class="col-12 col-md-4 p-5 mt-3">
-            <a href="pr_selectOne.do?num=22"><img src="${pageContext.request.contextPath}//resources/uploadimg/product/img0405.png" class="rounded-circle img-fluid border"></a>
+           <img src="${pageContext.request.contextPath}//resources/uploadimg/product/img0405.png" class="rounded-circle img-fluid border">
             <h2 class="h5 text-center mt-3 mb-3">애호박볶음</h2>
         </div>
     </div>
