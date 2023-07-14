@@ -99,6 +99,25 @@
 			}
 		});
 	};
+	
+	function baseDelete(num) {
+
+		$.ajax({
+			url : 'ab_deleteOK.do',
+			data : {
+				num : num
+			},
+			method : 'POST',
+			success : function(response) {
+				console.log('Delete successful');
+				alert("배송지를 삭제하였습니다.")
+				location.reload(); // 페이지 새로고침		
+			},
+			error : function(xhr, status, error) {
+				console.error('Delete failed:', error);
+			}
+		});
+	};
 </script>
 <style>
 /* 추가적인 CSS 스타일링을 위한 스타일 시트 */
@@ -314,7 +333,7 @@
 											</button>
 											<button type="button"
 												class="btn btn-sm btn-primary custom-btn"
-												onclick="baseUpdate(${vo.num})" style="margin:2px auto;">
+												onclick="baseDelete(${vo.num})" style="margin:2px auto;">
 												<span class="small">삭제</span>
 											</button></td>
 									</tr>

@@ -22,16 +22,34 @@ public class AddressBookRestController {
 	@RequestMapping(value = "/ab_updateOK.do", method = RequestMethod.POST)
 	public String ab_updateOK(AddressBookVO vo) {
 		log.info("AddressBook_ab_updateOK.do...{}", vo);
-		
+		String msg = "";
 		int result = service.update(vo);
 		
 		log.info("AddressBook_ab_updateOK result:" + result);
 		
 		if (result == 1) {
-			return "redirect:ab_selectAll.do?member_num=" + vo.getMember_num();
+			msg="성공";
 		} else {
-			return "redirect:home";
+			msg="실패";
 		}
+		return msg;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/ab_deleteOK.do", method = RequestMethod.POST)
+	public String ab_deleteOK(AddressBookVO vo) {
+		log.info("AddressBook_ab_deleteOK.do...{}", vo);
+		String msg = "";
+		int result = service.delete(vo);
+		
+		log.info("AddressBook_ab_deleteOK result:" + result);
+		
+		if (result == 1) {
+			msg="성공";
+		} else {
+			msg="실패";
+		}
+		return msg;
 	}
 	
 }//end class
