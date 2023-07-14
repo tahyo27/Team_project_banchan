@@ -48,16 +48,16 @@
 						<a class="nav-link" href="pr_selectAll.do">전체</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pr_selectCategory.do?category_num=4">조림·나물·무침</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=2">고기반찬</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pr_selectCategory.do?category_num=2">고기반찬</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=1">조림·나물·무침</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="pr_selectCategory.do?category_num=3">국·탕·찌개</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="pr_selectCategory.do?category_num=5">김치</a>
+						<a class="nav-link" href="pr_selectCategory.do?category_num=4">김치</a>
 					</li>
 				</ul>
 			</div>

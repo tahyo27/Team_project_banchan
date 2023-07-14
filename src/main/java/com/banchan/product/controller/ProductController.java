@@ -215,7 +215,7 @@ public class ProductController {
 		log.info("result:{}",result);
 		
 		if(result==1) {
-			return "redirect:pr_selectOne.do?num="+vo.getNum();
+			return "redirect:productDetail.do";
 		}else {
 			return "redirect:pr_update.do?num="+vo.getNum();
 		}
