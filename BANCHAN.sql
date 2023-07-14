@@ -68,21 +68,33 @@ FROM TABS;
 
 
 ----- CREATE TABLE -----
-CREATE TABLE "QUESTION"
+CREATE TABLE QUESTION 
 (
-    "NUM"     NUMBER               NOT NULL,
-    "TITLE"   VARCHAR2(40)         NOT NULL,
-    "WDATE"   DATE DEFAULT SYSDATE NOT NULL,
-    "CONTENT" VARCHAR2(40)         NOT NULL,
-    "ID"      VARCHAR2(40)         NOT NULL
+  QNUM NUMBER NOT NULL 
+, TITLE VARCHAR2(100 BYTE) NOT NULL 
+, CONTENT VARCHAR2(1000 BYTE) NOT NULL 
+, WDATE DATE DEFAULT sysdate 
+, WRITER VARCHAR2(20 BYTE) NOT NULL 
+, VCOUNT NUMBER DEFAULT 0 
+, CONSTRAINT QUESTION_PK PRIMARY KEY 
+  (
+    QNUM 
+  )
+  ENABLE 
 );
 
-CREATE TABLE "ANSWER"
+CREATE TABLE ANSWER 
 (
-    "NUM"          NUMBER               NOT NULL,
-    "CONTENT"      VARCHAR2(40)         NOT NULL,
-    "WDATE"        DATE DEFAULT SYSDATE NOT NULL,
-    "QUESTION_NUM" NUMBER               NOT NULL
+  ANUM NUMBER NOT NULL 
+, QNUM NUMBER NOT NULL 
+, CONTENT VARCHAR2(1000 BYTE) NOT NULL 
+, WDATE DATE DEFAULT sysdate 
+, WRITER VARCHAR2(20 BYTE) NOT NULL 
+, CONSTRAINT ANSWER_PK PRIMARY KEY 
+  (
+    ANUM 
+  )
+  ENABLE 
 );
 
 CREATE TABLE "FAQ"
@@ -249,11 +261,27 @@ CREATE TABLE "ORDER_DETAIL"
 
 ----- 제약조건 -----
 -- PRIMARY KEY --
-ALTER TABLE "QUESTION"
-    ADD CONSTRAINT "PK_QUESTION" PRIMARY KEY ("NUM");
+ALTER TABLE QUESTION
+ADD CONSTRAINT QUESTION_FK1 FOREIGN KEY
+(
+  WRITER 
+)
+REFERENCES MEMBER
+(
+  MEMBER_ID 
+)
+ENABLE;
 
-ALTER TABLE "ANSWER"
-    ADD CONSTRAINT "PK_ANSWER" PRIMARY KEY ("NUM");
+ALTER TABLE ANSWER
+ADD CONSTRAINT ANSWER_FK1 FOREIGN KEY
+(
+  QNUM 
+)
+REFERENCES QUESTION
+(
+  QNUM 
+)
+ENABLE;
 
 ALTER TABLE "FAQ"
     ADD CONSTRAINT "PK_FAQ" PRIMARY KEY ("NUM");
@@ -527,6 +555,22 @@ VALUES (SEQ_REVIEW.NEXTVAL, 7, 'user004', '아이가 먹고싶어해서 구매�
 
 INSERT INTO REVIEW(NUM, PRODUCT_NUM, MEMBER_ID, REVIEW_CONTENT)
 VALUES (SEQ_REVIEW.NEXTVAL, 7, 'user001', '치즈가 쭈욱 늘어나용');
+
+
+-------------------------------
+insert into question(qnum,title,content,writer) values(SEQ_QUESTION.nextval,'질문있습니다','구매는 어떻게하나요','user001');
+insert into question(qnum,title,content,writer) values(SEQ_QUESTION.nextval,'배송질문','배송은 언제 오나요','user001');
+insert into question(qnum,title,content,writer) values(SEQ_QUESTION.nextval,'주문질문','배송중인가요?','user001');
+insert into question(qnum,title,content,writer) values(SEQ_QUESTION.nextval,'질문있어요','맛있나요?','user001');
+insert into question(qnum,title,content,writer) values(SEQ_QUESTION.nextval,'전화번호가?','대표번호가뭐죠?','user001');
+
+insert into answer(anum,qnum,content,writer) values(seq_answer.nextval,1,'홈페이지에서 주문해주세요~','admin');
+insert into answer(anum,qnum,content,writer) values(seq_answer.nextval,2,'주문시 2~3일 걸립니다','admin');
+insert into answer(anum,qnum,content,writer) values(seq_answer.nextval,3,'현재 배송준비중으로 확인됩니다','admin');
+insert into answer(anum,qnum,content,writer) values(seq_answer.nextval,4,'맛있습니다!!','admin');
+insert into answer(anum,qnum,content,writer) values(seq_answer.nextval,5,'010-1111-2222입니다!','admin');
+
+
 
 
 
