@@ -5,7 +5,7 @@
 
 		<div class="col-lg-3">
 			<h1 class="h2 pb-4">마이페이지</h1>
-			<ul class="list-unstyled">
+			<ul class="list-unstyled side-menu">
 				<li class="pb-3">
 					<a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="m_user_udpate.do">
 						회원정보
