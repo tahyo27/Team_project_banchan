@@ -5,9 +5,7 @@ import java.util.List;
 
 public interface MemberDAO {
 	
-	List<MemberVO> selectAll();
-
-	List<MemberVO> searchList(String searchKey, String searchWord);
+	List<MemberVO> selectAll(Paging paging);
 	
 	MemberVO selectOne(MemberVO vo);
 
@@ -28,4 +26,9 @@ public interface MemberDAO {
 	int findPwCheck(MemberVO vo);
 	
 	int findPw(String member_pw, String member_email, String member_id);
+	
+	//총 게시글 개수 확인
+	public int getMemberListCnt() throws Exception;
+
+	List<MemberVO> selectList(String searchKey, String searchWord);
 }

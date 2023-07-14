@@ -340,9 +340,6 @@
 								</c:forEach>
 							</tbody>
 							<tfoot>
-								<tr>
-									<td colspan="8">1 2 3 4 5</td>
-								</tr>
 							</tfoot>
 						</table>
 

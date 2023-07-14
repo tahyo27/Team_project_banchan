@@ -6,14 +6,27 @@
 <mapper namespace="com.banchan.member">
 	<select id="M_SELECT_ALL"
 		resultType="com.banchan.member.model.MemberVO">
-		select * from member order by num desc
+		<![CDATA[
+		  SELECT * FROM (
+		    SELECT rownum AS rnum, m.* FROM (
+		      SELECT * FROM member
+		      ORDER BY num DESC
+		    ) m WHERE rownum <= #{startList} + #{listSize}
+		  ) WHERE rnum >= #{startList}
+		]]>
+	</select>
+
+	<select id="getMemberListCnt" resultType="int">
+	<![CDATA[
+		 SELECT COUNT(*) AS listCnt FROM member
+	]]>
 	</select>
 
 	<select id="M_SELECT_ONE"
 		resultType="com.banchan.member.model.MemberVO">
 		select * from member where num = #{num}
 	</select>
-	
+
 	<select id="LOGIN"
 		resultType="com.banchan.member.model.MemberVO">
 		select * from member where member_id = #{member_id}
@@ -21,13 +34,13 @@
 		member_pw = #{member_pw}
 	</select>
 	
-	<select id="ADMIN_CHECK"
-		resultType="int">
-		select count(*) from admin where admin_id = #{admin_id}
+	<select id="ADMIN_CHECK" resultType="int">
+		select count(*) from admin
+		where admin_id = #{admin_id}
 		and
 		admin_pw = #{admin_pw}
 	</select>
-
+	
 	<select id="M_SEARCH_LIST_NAME"
 		resultType="com.banchan.member.model.MemberVO">
 		select * from member where member_name like
@@ -40,13 +53,16 @@
 	</select>
 
 	<select id="FIND_PW_CHECK" resultType="int">
-		select count(*) from member
+		select count(*) from
+		member
 		where member_email = #{member_email} and
 		member_id = #{member_id}
 	</select>
 
-	<update id="FIND_PW" parameterType="com.banchan.member.model.MemberVO">
-		update member set member_pw = #{member_pw} where member_email =
+	<update id="FIND_PW"
+		parameterType="com.banchan.member.model.MemberVO">
+		update member set member_pw = #{member_pw} where
+		member_email =
 		#{member_email} and member_id = #{member_id}
 	</update>
 
@@ -68,7 +84,7 @@
 	<delete id="M_DELETE">
 		delete from member where num = #{num}
 	</delete>
-	
+
 	<insert id="SNS_INSERT"
 		parameterType="com.banchan.member.model.MemberVO">
 		insert into
