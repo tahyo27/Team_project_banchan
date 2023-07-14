@@ -1,4 +1,4 @@
-        <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,6 +6,12 @@
 function updateQuantity(form) {
     form.submit();
 }
+
+function checkCart() {
+  alert("장바구니에 상품이 없습니다.");
+}
+
+
 </script>
 
 <section class="h-100 h-custom">
@@ -90,19 +96,18 @@ function updateQuantity(form) {
 				
 			</div>
          </div>
-         
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-     		   <a href="o_insert.do" class="btn btn-outline-success">주문하기</a>
-        	</div>
-        	
-        
+			<br>         
+				 <c:if test="${not empty map.vos}">
+				  	<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				    	<a href="o_insert.do" class="btn btn-outline-success">주문하기</a>
+				  	</div>
+				</c:if>
+				<c:if test="${empty map.vos}">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				 	   <button class="btn btn-outline-success" onclick="checkCart();">주문하기</button>
+				  	</div>
+				</c:if>
        </div>
       </div>
      </div>
     </section>
-    
-    
-    
-    
-    
-    
