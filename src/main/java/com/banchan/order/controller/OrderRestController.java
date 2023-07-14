@@ -38,14 +38,12 @@ public class OrderRestController {
 	public Map<String, Integer> insertOk(OrderVO vo) {
 		log.info("/insertOk.do...{}", vo);
 
-		session.setAttribute("member_num", 1);
-		session.setAttribute("member_id", "user001");
-		vo.setMember_num((Integer) session.getAttribute("member_num"));
+		vo.setMember_num((Integer) session.getAttribute("user_num"));
 
 		int result = service.insert(vo);
 		if (result > 0) {
 			CartVO cartVO = new CartVO();
-			cartVO.setMember_id((String) session.getAttribute("member_id"));
+			cartVO.setMember_id((String) session.getAttribute("user_id"));
 			cartService.deleteAll(cartVO);
 		}
 

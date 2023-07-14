@@ -298,7 +298,7 @@ public class MemberController {
 	public String m_user_udpate() {
 		log.info("/m_user_udpate.do");
 
-		return "member/user_update";
+		return ".my/member/user_update";
 	}
 
 }// end class

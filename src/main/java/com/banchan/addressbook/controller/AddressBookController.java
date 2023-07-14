@@ -31,7 +31,7 @@ public class AddressBookController {
 		
 		model.addAttribute("vos", vos);
 
-		return "addressbook/selectAll";
+		return ".my/addressbook/selectAll";
 	}
 	
 	@RequestMapping(value = "/ab_insertOK.do", method = RequestMethod.POST)

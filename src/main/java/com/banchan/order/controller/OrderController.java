@@ -39,12 +39,8 @@ public class OrderController {
 	public String insert(Model model) {
 		log.info("/insert.do...");
 
-		// 테스트값. session 구현시 변경
-		session.setAttribute("member_num", 1);
-		session.setAttribute("member_id", "user001");
-
 		CartVO cartVO = new CartVO();
-		cartVO.setMember_id((String) session.getAttribute("member_id"));
+		cartVO.setMember_id((String) session.getAttribute("user_id"));
 		List<CartVO> carts = cartService.selectAll(cartVO);
 		log.info("carts:{}", carts);
 
@@ -53,7 +49,7 @@ public class OrderController {
 		log.info("delivery_fee:{}", delivery_fee);
 
 		AddressBookVO addressBookVO = new AddressBookVO();
-		addressBookVO.setMember_num((Integer) session.getAttribute("member_num"));
+		addressBookVO.setMember_num((Integer) session.getAttribute("user_num"));
 		List<AddressBookVO> addressBooks = addressBookService.selectAll(addressBookVO);
 		log.info("addressBooks:{}", addressBooks);
 
@@ -101,5 +97,17 @@ public class OrderController {
 		model.addAttribute("vos", result);
 
 		return ".order/selectAll";
+	}
+
+	@RequestMapping(value = "/o_mypageOrders.do", method = RequestMethod.GET)
+	public String selectOrdersMypage(Model model) {
+		log.info("/o_mypageOrders.do...");
+
+		List<OrderVO> result = service.selectAll();
+		log.info("{}", result);
+
+		model.addAttribute("vos", result);
+
+		return ".my/order/selectAll";
 	}
 }
