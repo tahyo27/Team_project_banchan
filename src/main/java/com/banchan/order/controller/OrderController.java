@@ -44,6 +44,10 @@ public class OrderController {
 		List<CartVO> carts = cartService.selectAll(cartVO);
 		log.info("carts:{}", carts);
 
+		if (carts.size() == 0) {
+			return "redirect:c_selectAll.do";
+		}
+
 		int order_price = cartService.sumMoney(cartVO);
 		int delivery_fee = order_price >= 50000 ? 0 : 2500;
 		log.info("delivery_fee:{}", delivery_fee);
