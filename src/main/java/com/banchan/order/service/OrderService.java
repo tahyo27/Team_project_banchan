@@ -43,4 +43,8 @@ public class OrderService {
 	public List<OrderVO> selectOrderList(SearchOrderVO vo) {
 		return dao.selectOrderList(vo);
 	}
+
+	public int updateStatus(OrderVO vo) {
+		return dao.updateStatus(vo);
+	}
 }

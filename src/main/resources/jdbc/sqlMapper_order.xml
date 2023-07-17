@@ -64,4 +64,10 @@
 			and o.ORDER_DATE BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD') + 0.99999
 		</if>
 	</select>
+
+	<update id="updateStatus" parameterType="com.banchan.order.model.OrderVO">
+		update "ORDER"
+		set STATUS = #{status}
+		where NUM = #{num}
+	</update>
 </mapper>

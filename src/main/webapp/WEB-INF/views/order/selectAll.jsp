@@ -29,7 +29,7 @@
 		</thead>
 		<tbody id="vos">
 			<c:forEach var="vo" items="${vos}">
-				<tr onclick="location.href='selectOne.do?num=${vo.num}'">
+				<tr onclick="location.href='o_mypageOrder.do?num=${vo.num}'">
 					<td>${vo.num}</td>
 					<td>${vo.order_date}</td>
 					<td>${vo.product_name} 포함 총 ${vo.count}건</td>

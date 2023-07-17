@@ -100,4 +100,26 @@ public class OrderRestController {
 
 		return result;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/cancleOk.do", method = RequestMethod.POST)
+	public Map<String, Integer> cancleOk(OrderVO vo) {
+		log.info("/cancleOk.do...{}", vo);
+
+		Map<String, Integer> map = new HashMap<String, Integer>();
+
+		OrderVO order = service.selectOne(vo);
+		if (!"배송준비중".equals(order.getStatus())) {
+			map.put("result", 0);
+			return map;
+		}
+
+		vo.setStatus("취소");
+
+		int result = service.updateStatus(vo);
+
+		map.put("result", result);
+
+		return map;
+	}
 }
