@@ -16,4 +16,6 @@ public interface OrderDAO {
 	public List<OrderVO> selectAll();
 
 	public List<OrderVO> selectOrderList(SearchOrderVO vo);
+
+	public int updateStatus(OrderVO vo);
 }

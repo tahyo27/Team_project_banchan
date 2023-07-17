@@ -95,4 +95,32 @@
 			</tr>
 		</tfoot>
 	</table>
+	<div class="row">
+		<div class="col text-end mt-2">
+			<button type="button" class="btn btn-danger btn-lg px-3" onclick="cancleOrder(${vo.num})">취소</button>
+		</div>
+	</div>
 </section>
+<script type="text/javascript">
+	async function cancleOrder(num) {
+		console.log('order.num:', num);
+
+		const formData = new FormData();
+		formData.append('num', num);
+
+		let response = await fetch('order/cancleOk.do', {
+			method: 'POST',
+			body: formData
+		});
+
+		let result = await response.json();
+		console.log(result);
+
+		if (result.result > 0) {
+			alert('주문 취소가 완료되었습니다.');
+			location.href = 'o_mypageOrder.do?num=' + num;
+		} else {
+			alert('주문 취소가 실패되었습니다.');
+		}
+	}
+</script>

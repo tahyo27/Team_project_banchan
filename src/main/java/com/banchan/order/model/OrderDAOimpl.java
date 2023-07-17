@@ -57,4 +57,10 @@ public class OrderDAOimpl implements OrderDAO {
 		return sqlSession.selectList(NAMESPACE + "selectOrderList", vo);
 	}
 
+	@Override
+	public int updateStatus(OrderVO vo) {
+		log.info("updateStatus()...{}", vo);
+		return sqlSession.update(NAMESPACE + "updateStatus", vo);
+	}
+
 }
