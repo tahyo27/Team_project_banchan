@@ -55,39 +55,45 @@ public class MemberController {
 
 	@Autowired
 	private SnsValue kakaoSns;
-
-	@RequestMapping(value = "/m_selectAll.do", method = RequestMethod.GET)
+	
+	@RequestMapping(value = { "/m_selectAll.do", "/m_searchList.do" }, method = RequestMethod.GET)
 	public String m_selectAll(Model model, @RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range) throws Exception {
-		log.info("/m_selectAll.do.....");
+	        @RequestParam(required = false, defaultValue = "1") int range,
+	        @RequestParam(required = false, defaultValue = "name") String searchKey,
+	        @RequestParam(required = false) String searchWord) throws Exception {
+	    log.info("/m_selectAll.do.....");
+	    log.info("/m_searchList.do...searchKey:{}", searchKey);
+	    log.info("/m_searchList.do...searchWord:{}", searchWord);
+	    log.info("page:{}  range:{}", page, range);
 
-		// 전체 게시글 개수
-		int listCnt = service.getMemberListCnt();
-		// Pagination 객체생성
+	    Paging pagination = new Paging();
+	    pagination.setSearchKey(searchKey);
+	    if (searchWord != null && !searchWord.isEmpty()) {
+	        String wordCheck = searchWord.replaceAll("%", ""); // % 기호 제거
+	        pagination.setSearchWord("%" + wordCheck + "%");
+	        log.info("/m_searchList.do  wordCheck:{}", wordCheck);
+	        int listCnt = service.getListCnt(searchKey, pagination.getSearchWord());
+	        log.info("searchlist listCnt: {}", listCnt);
+	        pagination.pageInfo(page, range, listCnt);
 
-		Paging pagination = new Paging();
-		pagination.pageInfo(page, range, listCnt);
+	        List<MemberVO> vos = service.searchList(pagination);
+	        log.info("vos:{}", vos);
+	        model.addAttribute("pagination", pagination);
+	        model.addAttribute("vos", vos);
+	    } else {
+	        int listCnt = service.getMemberListCnt();
+	        log.info("selectAll listCnt:{}", listCnt);
+	        pagination.pageInfo(page, range, listCnt);
+	        log.info("paging pageCnt {}", pagination.getPageCnt());
+	        List<MemberVO> vos = service.selectAll(pagination);
+	        log.info("vos:{}", vos);
+	        model.addAttribute("pagination", pagination);
+	        model.addAttribute("vos", vos);
+	    }
 
-		List<MemberVO> vos = service.selectAll(pagination);
-
-		log.info("vos:{}", vos);
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("vos", vos);
-
-		return "member/selectAll";
+	    return "member/selectAll";
 	}
 
-	@RequestMapping(value = "/m_searchList.do", method = RequestMethod.GET)
-	public String m_searchList(String searchKey, String searchWord, Model model) throws Exception {
-		log.info("/m_searchList.do...searchKey:{}", searchKey);
-		log.info("/m_searchList.do...searchWord:{}", searchWord);
-		
-		List<MemberVO> vos = service.searchList(searchKey, searchWord);
-		
-		model.addAttribute("vos", vos);
-
-		return "member/selectAll";
-	}
 
 	@RequestMapping(value = "/m_selectOne.do", method = RequestMethod.GET)
 	public String m_selectOne(MemberVO vo, Model model) {

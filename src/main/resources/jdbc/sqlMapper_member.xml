@@ -6,21 +6,39 @@
 <mapper namespace="com.banchan.member">
 	<select id="M_SELECT_ALL"
 		resultType="com.banchan.member.model.MemberVO">
-		<![CDATA[
-		  SELECT * FROM (
-		    SELECT rownum AS rnum, m.* FROM (
-		      SELECT * FROM member
-		      ORDER BY num DESC
-		    ) m WHERE rownum <= #{startList} + #{listSize}
-		  ) WHERE rnum >= #{startList}
-		]]>
+		SELECT * FROM (
+		SELECT rownum AS rnum, m.* FROM (
+		SELECT * FROM member
+		ORDER BY num DESC
+		) m WHERE rownum <![CDATA[<=]]>
+		#{startList} + #{listSize}
+		) WHERE rnum <![CDATA[>=]]>
+		#{startList}
 	</select>
 
 	<select id="getMemberListCnt" resultType="int">
-	<![CDATA[
-		 SELECT COUNT(*) AS listCnt FROM member
-	]]>
+		SELECT COUNT(*) AS
+		listCnt FROM member
 	</select>
+	
+	<select id="getListCntName" resultType="int">
+		SELECT COUNT(*) AS
+		listCnt FROM member where member_name like
+		#{searchWord}
+	</select>
+	
+	<select id="getListCntEmail" resultType="int">
+		SELECT COUNT(*) AS
+		listCnt FROM member where member_email like
+		#{searchWord}
+	</select>
+	
+	<select id="getListCntAddress1" resultType="int">
+		SELECT COUNT(*) AS
+		listCnt FROM member where member_address1 like
+		#{searchWord}
+	</select>
+
 
 	<select id="M_SELECT_ONE"
 		resultType="com.banchan.member.model.MemberVO">
@@ -33,18 +51,55 @@
 		and
 		member_pw = #{member_pw}
 	</select>
-	
+
 	<select id="ADMIN_CHECK" resultType="int">
 		select count(*) from admin
 		where admin_id = #{admin_id}
 		and
 		admin_pw = #{admin_pw}
 	</select>
-	
+
 	<select id="M_SEARCH_LIST_NAME"
 		resultType="com.banchan.member.model.MemberVO">
-		select * from member where member_name like
+		SELECT * FROM (
+		SELECT rownum AS rnum, m.* FROM (
+		select * from member
+		where member_name like
 		#{searchWord}
+		ORDER BY num DESC
+		) m WHERE rownum <![CDATA[<=]]>
+		#{startList} + #{listSize}
+		) WHERE rnum <![CDATA[>=]]>
+		#{startList}
+
+	</select>
+	
+	<select id="M_SEARCH_LIST_EMAIL"
+		resultType="com.banchan.member.model.MemberVO">
+		SELECT * FROM (
+		SELECT rownum AS rnum, m.* FROM (
+		select * from member
+		where member_email like
+		#{searchWord}
+		ORDER BY num DESC
+		) m WHERE rownum <![CDATA[<=]]>
+		#{startList} + #{listSize}
+		) WHERE rnum <![CDATA[>=]]>
+		#{startList}
+	</select>
+	
+	<select id="M_SEARCH_LIST_ADDRESS1"
+		resultType="com.banchan.member.model.MemberVO">
+		SELECT * FROM (
+		SELECT rownum AS rnum, m.* FROM (
+		select * from member
+		where member_address1 like
+		#{searchWord}
+		ORDER BY num DESC
+		) m WHERE rownum <![CDATA[<=]]>
+		#{startList} + #{listSize}
+		) WHERE rnum <![CDATA[>=]]>
+		#{startList}
 	</select>
 
 	<select id="M_ID_CHECK"
