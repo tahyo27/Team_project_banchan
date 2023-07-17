@@ -114,7 +114,7 @@ public class MemberController {
 
 		model.addAttribute("vo2", vo2);
 
-		return "member/update";
+		return ".member/update";
 	}
 
 	@RequestMapping(value = "/m_updateOK.do", method = RequestMethod.POST)
