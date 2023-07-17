@@ -25,5 +25,8 @@ public class OrderVO {
 	private int use_point;
 	private int total_price;
 
+	private String product_name;
+	private int count;
+
 	private List<OrderDetailVO> details;
 }

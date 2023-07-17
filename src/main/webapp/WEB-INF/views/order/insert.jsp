@@ -206,8 +206,12 @@
 		});
 
 		let result = await response.json();
-
 		console.log(result);
+
+		if (result.result>0) {
+			alert('결제가 완료되었습니다.');
+			location.href='o_mypageOrders.do';
+		}
 	};
 
 	function setAddress(addressElem) {

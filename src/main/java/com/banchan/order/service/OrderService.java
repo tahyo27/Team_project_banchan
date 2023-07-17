@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.banchan.order.model.OrderDAO;
 import com.banchan.order.model.OrderVO;
+import com.banchan.order.model.SearchOrderVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,5 +38,9 @@ public class OrderService {
 
 	public List<OrderVO> selectAll() {
 		return dao.selectAll();
+	}
+
+	public List<OrderVO> selectOrderList(SearchOrderVO vo) {
+		return dao.selectOrderList(vo);
 	}
 }

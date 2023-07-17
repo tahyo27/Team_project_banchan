@@ -46,4 +46,22 @@
 		from ORDER_DETAIL O join PRODUCT P on O.PRODUCT_NUM = P.NUM
 		where O.ORDER_NUM = #{num}
 	</select>
+	
+	<select id="selectOrderList" parameterType="com.banchan.order.model.SearchOrderVO" resultType="com.banchan.order.model.OrderVO">
+		select *
+		from "ORDER" o
+				join (select ORDER_NUM,
+							PRODUCT_NUM,
+							count(NUM) over (partition by ORDER_NUM)                count,
+							row_number() over (partition by ORDER_NUM order by NUM) rn
+					from ORDER_DETAIL) OD on o.NUM = OD.ORDER_NUM and od.rn = 1
+				join PRODUCT p on od.PRODUCT_NUM = p.NUM
+		where 1 = 1
+		<if test="member_num != null">
+			and MEMBER_NUM = #{member_num}
+		</if>
+		<if test="start_date != null and end_date != null">
+			and o.ORDER_DATE BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD') + 0.99999
+		</if>
+	</select>
 </mapper>
