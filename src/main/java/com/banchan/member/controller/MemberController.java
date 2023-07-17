@@ -103,7 +103,7 @@ public class MemberController {
 
 		model.addAttribute("vo2", vo2);
 
-		return "member/selectOne";
+		return ".member/selectOne";
 	}
 
 	@RequestMapping(value = "/m_update.do", method = RequestMethod.GET)
@@ -296,7 +296,7 @@ public class MemberController {
 		} else {
 			log.info("관리자 계정으로 로그인헀습니다.");
 			session.setAttribute("user_id", vo.getMember_id());
-			return "redirect:home";
+			return "redirect:adminpage.do";
 		}
 
 	}// end loginOK
