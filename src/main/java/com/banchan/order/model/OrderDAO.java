@@ -14,4 +14,6 @@ public interface OrderDAO {
 	public OrderVO selectOne(OrderVO vo);
 
 	public List<OrderVO> selectAll();
+
+	public List<OrderVO> selectOrderList(SearchOrderVO vo);
 }

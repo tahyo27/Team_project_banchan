@@ -1,5 +1,6 @@
 package com.banchan.order.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import com.banchan.addressbook.service.AddressBookService;
 import com.banchan.cart.model.CartVO;
 import com.banchan.cart.service.CartService;
 import com.banchan.order.model.OrderVO;
+import com.banchan.order.model.SearchOrderVO;
 import com.banchan.order.service.OrderService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -104,13 +106,22 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/o_mypageOrders.do", method = RequestMethod.GET)
-	public String selectOrdersMypage(Model model) {
-		log.info("/o_mypageOrders.do...");
+	public String selectOrdersMypage(SearchOrderVO vo, Model model) {
+		log.info("/o_mypageOrders.do...{}", vo);
 
-		List<OrderVO> result = service.selectAll();
+		vo.setMember_num((Integer) session.getAttribute("user_num"));
+		if (vo.getStart_date() == null || "".equals(vo.getStart_date())) {
+			vo.setStart_date(LocalDate.now().toString());
+		}
+		if (vo.getEnd_date() == null || "".equals(vo.getEnd_date())) {
+			vo.setEnd_date(LocalDate.now().toString());
+		}
+
+		List<OrderVO> result = service.selectOrderList(vo);
 		log.info("{}", result);
 
 		model.addAttribute("vos", result);
+		model.addAttribute("search", vo);
 
 		return ".my/order/selectAll";
 	}

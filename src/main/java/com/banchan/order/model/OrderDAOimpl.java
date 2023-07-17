@@ -51,4 +51,10 @@ public class OrderDAOimpl implements OrderDAO {
 		return sqlSession.selectList(NAMESPACE + "selectAll");
 	}
 
+	@Override
+	public List<OrderVO> selectOrderList(SearchOrderVO vo) {
+		log.info("selectOrderList()...{}", vo);
+		return sqlSession.selectList(NAMESPACE + "selectOrderList", vo);
+	}
+
 }
