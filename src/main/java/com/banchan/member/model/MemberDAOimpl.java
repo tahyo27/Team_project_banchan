@@ -105,18 +105,36 @@ public class MemberDAOimpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> selectList(String searchKey, String searchWord) {
-		log.info("Member_searchList()...searchKey:{}", searchKey);
-		log.info("Member_searchList()...searchWord:{}", searchWord);
+	public List<MemberVO> selectList(Paging paging) {
+		log.info("Member_searchList()...");
 
 		String key = "";
-		if (searchKey.equals("name")) {
+		if (paging.getSearchKey().equals("name")) {
 			key = "M_SEARCH_LIST_NAME";
-//		}else {
-//			key = "M_SEARCH_LIST_TEL";
+		} else if (paging.getSearchKey().equals("email")) {
+			key = "M_SEARCH_LIST_EMAIL";
+		} else if (paging.getSearchKey().equals("address1")) {
+			key = "M_SEARCH_LIST_ADDRESS1";
 		}
 
-		return sqlSession.selectList(key, "%" + searchWord + "%");
+		return sqlSession.selectList(key, paging);
+	}
+
+	@Override
+	public int getListCnt(String searchKey, String searchWord) throws Exception {
+		log.info("getListCnt...key:"+ searchKey  +"word:" + searchWord);
+		String key="";
+		if (searchKey.equals("name")) {
+			key = "getListCntName";
+		} else if (searchKey.equals("email")) {
+			key = "getListCntEmail";
+			log.info("getListCnt key:" + key);
+		} else if (searchKey.equals("address1")) {
+			key = "getListCntAddress1";
+		}
+		
+		
+		return sqlSession.selectOne(key, "%" + searchWord + "%");
 	}
 
 }

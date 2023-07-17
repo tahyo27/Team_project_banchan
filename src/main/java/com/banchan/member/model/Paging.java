@@ -1,8 +1,9 @@
 package com.banchan.member.model;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
-
+@Slf4j
 @Data
 public class Paging {
 
@@ -18,15 +19,20 @@ public class Paging {
 	private boolean prev;
 	private boolean next;
 	
+	private String searchKey;
+	private String searchWord; // 키워드
+	
+	
 	public void pageInfo(int page, int range, int listCnt) {
 
 		this.page = page;
 		this.range = range;
 		this.listCnt = listCnt;
-
+		
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(listCnt/listSize);
-
+		log.info("pageCnt....listCnt:{}...listSize:{}",listCnt,listSize);
+		this.pageCnt =  (int) Math.ceil((double)listCnt/listSize); //double로 형변환후 연산 후 올림
+		log.info("pageCnt....pageCnt:{}",pageCnt);
 		//시작 페이지
 		this.startPage = (range - 1) * rangeSize + 1 ;
 

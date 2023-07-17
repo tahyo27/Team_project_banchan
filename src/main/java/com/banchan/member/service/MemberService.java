@@ -79,8 +79,12 @@ public class MemberService {
 	public int getMemberListCnt() throws Exception {
 		return dao.getMemberListCnt();
 	}
+	
+	public int getListCnt(String searchKey, String searchWord) throws Exception {
+		return dao.getListCnt(searchKey, searchWord);
+	}
 
-	public List<MemberVO> searchList(String searchKey, String searchWord) {
-		return dao.selectList(searchKey, searchWord);
+	public List<MemberVO> searchList(Paging paging) {
+		return dao.selectList(paging);
 	}
 }

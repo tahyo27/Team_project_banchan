@@ -15,52 +15,81 @@
 	crossorigin="anonymous">
 
 <script>
+	$(document).on('click', '#btnSearch', function(e) {
+		e.preventDefault();
+		var url = "${pageContext.request.contextPath}/m_selectAll.do";
+		url = url + "?searchKey=" + $('#searchKey').val();
+		url = url + "&searchWord=" + $('#searchWord').val();
+		location.href = encodeURI(url);
+		console.log(url);
+
+	});
+
 	//이전 버튼 이벤트
-	function fn_prev(page, range, rangeSize) {
+	function fn_prev(page, range, rangeSize, searchKey, searchWord) {
 		var page = ((range - 2) * rangeSize) + 1;
 		var range = range - 1;
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
-		location.href = url;
+		url = url + "&searchKey=" + $('#searchKey').val();
+		url = url + "&searchWord=" + searchWord;
+		location.href = encodeURI(url);
 	}
 
 	//페이지 번호 클릭
 
-	function fn_pagination(page, range, rangeSize, searchType, keyword) {
+	function fn_pagination(page, range, rangeSize, searchKey, searchWord) {
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
-		location.href = url;
+		url = url + "&searchKey=" + searchKey;
+		url = url + "&searchWord=" + searchWord;
+		location.href = encodeURI(url);
 
 	}
 
-	//다음 버튼 이벤트
+	// 	//다음 버튼 이벤트
 
-	function fn_next(page, range, rangeSize) {
+	function fn_next(page, range, rangeSize, searchKey, searchWord) {
 		var page = parseInt((range * rangeSize)) + 1;
 		var range = parseInt(range) + 1;
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
-		location.href = url;
+		url = url + "&searchKey=" + $('#searchKey').val();
+		url = url + "&searchWord=" + searchWord;
+		location.href = encodeURI(url);
 	}
 </script>
 </head>
 <body>
 	<h1>회원목록</h1>
-	
-	<div style="padding: 5px">
-		<form action="m_searchList.do">
-			<select name="searchKey" id="searchKey">
+
+	<!-- search{s} -->
+
+	<div class="form-group row justify-content-center">
+		<div class="col-sm-3" style="padding-right: 10px">
+			<select class="form-control form-control-sm" name="searchKey"
+				id="searchKey">
 				<option value="name">name</option>
 				<option value="email">email</option>
 				<option value="address1">address1</option>
-			</select> <input type="text" name="searchWord" id="searchWord" value="">
-			<input type="submit" value="검색">
-		</form>
+			</select>
+		</div>
+		<div class="col-sm-6" style="padding-right: 10px">
+			<input type="text" class="form-control form-control-sm"
+				name="searchWord" id="searchWord">
+		</div>
+		<div class="col-sm-3">
+			<button class="btn btn-sm btn-primary" name="btnSearch"
+				id="btnSearch">검색</button>
+		</div>
 	</div>
-	
+
+	<!-- search{e} -->
+
+
 	<table>
 		<thead>
 			<tr>
@@ -104,19 +133,19 @@
 		<ul class="pagination">
 			<c:if test="${pagination.prev}">
 				<li class="page-item"><a class="page-link" href="#"
-					onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
+					onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchKey}', '${pagination.searchWord}' )">Previous</a></li>
 			</c:if>
 			<c:forEach begin="${pagination.startPage}"
 				end="${pagination.endPage}" var="idx">
 				<li
 					class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
 					class="page-link" href="#"
-					onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+					onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchKey }', '${pagination.searchWord}')">
 						${idx} </a></li>
 			</c:forEach>
 			<c:if test="${pagination.next}">
 				<li class="page-item"><a class="page-link" href="#"
-					onClick="fn_next('${pagination.range}', '${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+					onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchKey }', '${pagination.searchWord}')">Next</a></li>
 			</c:if>
 		</ul>
 

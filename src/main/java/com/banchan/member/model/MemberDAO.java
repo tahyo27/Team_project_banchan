@@ -30,5 +30,7 @@ public interface MemberDAO {
 	//총 게시글 개수 확인
 	public int getMemberListCnt() throws Exception;
 
-	List<MemberVO> selectList(String searchKey, String searchWord);
+	public int getListCnt(String searchKey, String searchWord) throws Exception;
+	
+	List<MemberVO> selectList(Paging paging);
 }
