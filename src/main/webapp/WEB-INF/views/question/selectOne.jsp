@@ -61,7 +61,7 @@ a {
 	<!-- 로그인한 사람이 관리자(admin)인 경우만 답변쓰기 가능 -->
 	<div class="row text-center pt-5 pb-3">
 		<div class="col-lg-6 m-auto">
-			<h1 class="h1">답변</h1>
+			<h1 class="h1">답변(관리자)</h1>
 		</div>
 	</div>
 	<div class="container py-5">
@@ -124,7 +124,7 @@ a {
 							<td>${an.writer}</td>
 							<td>${an.wdate}</td>
 				</c:if>
-				<c:if test="${vo2.writer ne user_id}">
+				<c:if test="${vo2.writer ne user_id && user_id ne 'admin'}">
 				<!-- 질문쓴사람과 로그인한사람이 다르면 -->
 							<td>비밀글입니다
 				</c:if>

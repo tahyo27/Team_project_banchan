@@ -66,6 +66,8 @@
 						href="productDetail.do">상품수정/삭제</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"
 						href="re_selectAlladmin.do">리뷰관리</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="pill"
+						href="boardList.do">Q&A관리</a></li>
 				</ul>
 			</div>
 
