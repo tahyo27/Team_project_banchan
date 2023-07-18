@@ -20,7 +20,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
-
 	$(function () {
 		$.ajax({
 			url: "m_json_selectOne.do",
@@ -41,6 +40,13 @@
 				$('#name').val(vo2.member_name);
 				$('#tel').val(vo2.member_tel);
 				$('#member_profile').val(vo2.member_profile);
+				
+				// 이미지 URL 처리
+			    var imageUrl = "resources/uploadimg/" + vo2.member_profile;
+			    console.log('ajax...imageUrl:'+ imageUrl);//{}
+			    // 이미지 요소에 URL 설정
+			    $('#profile_img').attr('src', imageUrl);
+				
 			},
 			error: function (xhr, status, error) {
 				console.log('xhr.status:', xhr.status);
@@ -166,10 +172,17 @@
 					</div>
 				</div>
 				<div class="form-group row" style="margin-top: 10px;">
-					<label for="file" class="col-sm-3 col-form-label">프로필 사진</label>
+					<label for="profile_img" class="col-sm-3 col-form-label">현재 프로필</label>
+					<div class="col-sm-9">
+						<img width="60px" src="" id="profile_img">
+					</div>
+				</div>
+				<div class="form-group row" style="margin-top: 10px;">
+					<label for="file" class="col-sm-3 col-form-label">사진 변경</label>
 					<div class="col-sm-9">
 						<input type="file" id="file" name="file" class="form-control-file">
-						<input type="hidden" id="member_profile" name="member_profile" value="">
+						<input type="hidden" id="member_profile" name="member_profile"
+							value="">
 					</div>
 				</div>
 				<div class="form-group row" style="margin-top: 20px;">
