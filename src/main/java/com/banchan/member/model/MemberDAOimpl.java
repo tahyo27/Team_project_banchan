@@ -42,9 +42,17 @@ public class MemberDAOimpl implements MemberDAO {
 	}
 
 	@Override
-	public int update(MemberVO vo) {
+	public int update(MemberVO vo, String check) {
 		log.info("Member_update()...{}", vo);
-		return sqlSession.update("M_UPDATE", vo);
+		log.info("Member_update()...check:"+ check);
+		if(check.equals("admin_update")) {
+			return sqlSession.update("M_UPDATE", vo);
+		}else if(check.equals("user_update")) {
+			return sqlSession.update("M_USER_UPDATE", vo);
+		} else {
+			return 0;
+		}
+		
 	}
 
 	@Override

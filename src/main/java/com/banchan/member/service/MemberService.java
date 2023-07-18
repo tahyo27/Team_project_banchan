@@ -38,8 +38,8 @@ public class MemberService {
 		return dao.insert(vo);
 	}
 
-	public int update(MemberVO vo) {
-		return dao.update(vo);
+	public int update(MemberVO vo, String check) {
+		return dao.update(vo, check);
 	}
 
 	public int delete(MemberVO vo) {

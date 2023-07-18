@@ -20,19 +20,19 @@
 		SELECT COUNT(*) AS
 		listCnt FROM member
 	</select>
-	
+
 	<select id="getListCntName" resultType="int">
 		SELECT COUNT(*) AS
 		listCnt FROM member where member_name like
 		#{searchWord}
 	</select>
-	
+
 	<select id="getListCntEmail" resultType="int">
 		SELECT COUNT(*) AS
 		listCnt FROM member where member_email like
 		#{searchWord}
 	</select>
-	
+
 	<select id="getListCntAddress1" resultType="int">
 		SELECT COUNT(*) AS
 		listCnt FROM member where member_address1 like
@@ -73,7 +73,7 @@
 		#{startList}
 
 	</select>
-	
+
 	<select id="M_SEARCH_LIST_EMAIL"
 		resultType="com.banchan.member.model.MemberVO">
 		SELECT * FROM (
@@ -87,7 +87,7 @@
 		) WHERE rnum <![CDATA[>=]]>
 		#{startList}
 	</select>
-	
+
 	<select id="M_SEARCH_LIST_ADDRESS1"
 		resultType="com.banchan.member.model.MemberVO">
 		SELECT * FROM (
@@ -96,7 +96,8 @@
 		where member_address1 like
 		#{searchWord}
 		ORDER BY num DESC
-		) m WHERE rownum <![CDATA[<=]]>
+		) m WHERE
+		rownum <![CDATA[<=]]>
 		#{startList} + #{listSize}
 		) WHERE rnum <![CDATA[>=]]>
 		#{startList}
@@ -134,6 +135,19 @@
 		member_name=#{member_name} , member_tel=#{member_tel} ,
 		member_profile=#{member_profile}
 		where num = #{num}
+	</update>
+
+	<update id="M_USER_UPDATE"
+		parameterType="com.banchan.member.model.MemberVO">
+		UPDATE member
+		SET member_pw = #{member_pw},
+		member_name = #{member_name},
+		member_tel = #{member_tel},
+		member_zipcode = #{member_zipcode},
+		member_address1 = #{member_address1},
+		member_address2 = #{member_address2},
+		member_profile = #{member_profile}
+		WHERE num = #{num}
 	</update>
 
 	<delete id="M_DELETE">

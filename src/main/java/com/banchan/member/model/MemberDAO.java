@@ -13,7 +13,7 @@ public interface MemberDAO {
 	
 	int sns_insert(MemberVO vo);
 
-	int update(MemberVO vo);
+	int update(MemberVO vo, String check);
 
 	int delete(MemberVO vo);
 

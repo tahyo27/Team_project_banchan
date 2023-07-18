@@ -20,6 +20,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
+
 	$(function () {
 		$.ajax({
 			url: "m_json_selectOne.do",
@@ -167,6 +168,7 @@
 					<input type="submit" value="수정" class="btn btn-primary custom-btn w-75">
 				</div>
 			</div>
+			 <input type="hidden" name="check" value="user_update">
 		</form>
 	</div>
 </div>

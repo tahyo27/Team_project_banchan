@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Member Update</title>
+<title>Admin Member Update</title>
 </head>
 <body>
 	<div class="container">
@@ -66,6 +66,7 @@
 								<tr>
 									<td colspan="2"><input type="submit" value="회원수정완료"></td>
 								</tr>
+								<input type="hidden" name="check" value="admin_update">
 							</table>
 						</form>
 

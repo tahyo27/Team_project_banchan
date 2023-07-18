@@ -118,8 +118,9 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/m_updateOK.do", method = RequestMethod.POST)
-	public String m_updateOK(MemberVO vo) throws IllegalStateException, IOException {
+	public String m_updateOK(MemberVO vo, String check) throws IllegalStateException, IOException {
 		log.info("/m_updateOK.do...{}", vo);
+		log.info("/m_updateOK.do...check" + check);
 
 		String getOriginalFilename = vo.getFile().getOriginalFilename();
 		int fileNameLength = vo.getFile().getOriginalFilename().length();
@@ -150,13 +151,15 @@ public class MemberController {
 		} // end else
 		log.info("Member_updateOK..vo:{}{}", vo);
 
-		int result = service.update(vo);
-
+		int result = service.update(vo, check);
+		
 		log.info("Member_updateOK result", result);
-		if (result == 1) {
-			return "redirect:m_selectOne.do?num=" + vo.getNum();
-		} else {
+		if (result == 1 && check.equals("user_update")) {
+			return "redirect:m_user_udpate.do";
+		} else if(result == 1 && check.equals("admin_upate")) {
 			return "redirect:m_update.do?num=" + vo.getNum();
+		} else {
+			return "redirect:.home";
 		}
 	}
 
