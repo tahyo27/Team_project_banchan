@@ -58,6 +58,8 @@
 				<ul class="nav flex-column nav-pills">
 					<li class="nav-item"><a class="nav-link"
 						data-toggle="pill" href="adminpage.do">관리자모드</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="pill"
+						href="m_selectAll.do">회원정보</a></li>
 					<li class="nav-item"><a class="nav-link active"
 						data-toggle="pill" href="pr_insert.do">상품등록</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"

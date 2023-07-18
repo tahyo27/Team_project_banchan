@@ -77,11 +77,10 @@
 									<td style="width: 150px;">카테고리</td>
 								<td class="text-center">
 									<select style="width: 200px;" name="category_num" class="form-control" required="required">
-										<option value="1" selected="selected" >볶음·구이</option>
+										<option value="1" selected="selected" >조림·나물·무침</option>
 										<option value="2">고기반찬</option>
 										<option value="3">찜·탕·찌개</option>
-										<option value="4">조림·나물·무침</option>
-										<option value="5">김치</option>
+										<option value="4">김치</option>
 									</select>
 								</td>
 							</tr>
