@@ -148,6 +148,9 @@ public class OrderController {
 		if (vo.getEnd_date() == null || "".equals(vo.getEnd_date())) {
 			vo.setEnd_date(LocalDate.now().toString());
 		}
+		if ("전체".equals(vo.getStatus())) {
+			vo.setStatus(null);
+		}
 
 		List<OrderVO> result = service.selectOrderList(vo);
 		log.info("{}", result);

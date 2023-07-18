@@ -2,8 +2,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <section class="container tab-content">
 	<h3>주문목록</h3>
-	<div class="row">
-		<form action="${isAdmin ? 'o_adminOrders.do' : 'o_mypageOrders.do'}" method="get">
+	<form action="${isAdmin ? 'o_adminOrders.do' : 'o_mypageOrders.do'}" method="get">
+		<div class="row">
+			<c:if test="${isAdmin}">
+				<div class="col-lg-3 form-group mb-2">
+					<label for="inputname">주문상태</label>
+					<select class="form-select" name="status">
+						<option value="전체" ${search.status eq '전체' ? 'selected' :''}>전체</option>
+						<option value="배송준비중" ${search.status eq '배송준비중' ? 'selected' :''}>배송준비중</option>
+						<option value="발송처리" ${search.status eq '발송처리' ? 'selected' :''}>발송처리</option>
+						<option value="배송완료" ${search.status eq '배송완료' ? 'selected' :''}>배송완료</option>
+						<option value="취소" ${search.status eq '취소' ? 'selected' :''}>취소</option>
+						<option value="판매취소" ${search.status eq '판매취소' ? 'selected' :''}>판매취소</option>
+						<option value="반품요청" ${search.status eq '반품요청' ? 'selected' :''}>반품요청</option>
+						<option value="반품처리" ${search.status eq '반품처리' ? 'selected' :''}>반품처리</option>
+						<option value="반품요청" ${search.status eq '반품요청' ? 'selected' :''}>반품요청</option>
+						<option value="교환처리" ${search.status eq '교환처리' ? 'selected' :''}>교환처리</option>
+					</select>
+				</div>
+			</c:if>
 			<div class="col-lg-6 form-group mb-2">
 				<label for="inputname">조회기간</label>
 				<div class="input-group">
@@ -14,8 +31,8 @@
 					</button>
 				</div>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
 
 	<table class="table">
 		<thead>
