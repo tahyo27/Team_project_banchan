@@ -16,6 +16,13 @@
 
 	<definition name=".my/*/*" extends=".home">
 		<put-attribute name="content" value="/WEB-INF/views/layouts/mypage.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/layouts/menu-mypage.jsp" cascade="true" />
+		<put-attribute name="section" value="/WEB-INF/views/{1}/{2}.jsp" cascade="true" />
+	</definition>
+
+	<definition name=".admin/*/*" extends=".home">
+		<put-attribute name="content" value="/WEB-INF/views/layouts/mypage.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/views/layouts/menu-admin.jsp" cascade="true" />
 		<put-attribute name="section" value="/WEB-INF/views/{1}/{2}.jsp" cascade="true" />
 	</definition>
 </tiles-definitions>
