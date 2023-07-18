@@ -299,6 +299,7 @@ public class MemberController {
 		} else {
 			log.info("관리자 계정으로 로그인헀습니다.");
 			session.setAttribute("user_id", vo.getMember_id());
+			session.setAttribute("isAdmin", true);
 			return "redirect:adminpage.do";
 		}
 

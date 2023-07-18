@@ -137,4 +137,36 @@ public class OrderController {
 
 		return ".my/order/selectOne";
 	}
+
+	@RequestMapping(value = "/o_adminOrders.do", method = RequestMethod.GET)
+	public String selectOrdersAdmin(SearchOrderVO vo, Model model) {
+		log.info("/o_adminOrders.do...{}", vo);
+
+		if (vo.getStart_date() == null || "".equals(vo.getStart_date())) {
+			vo.setStart_date(LocalDate.now().toString());
+		}
+		if (vo.getEnd_date() == null || "".equals(vo.getEnd_date())) {
+			vo.setEnd_date(LocalDate.now().toString());
+		}
+
+		List<OrderVO> result = service.selectOrderList(vo);
+		log.info("{}", result);
+
+		model.addAttribute("vos", result);
+		model.addAttribute("search", vo);
+
+		return ".admin/order/selectAll";
+	}
+
+	@RequestMapping(value = "/o_adminOrder.do", method = RequestMethod.GET)
+	public String selectOrderAdmin(OrderVO vo, Model model) {
+		log.info("/o_adminOrders.do...{}", vo);
+
+		OrderVO result = service.selectOne(vo);
+		log.info("{}", result);
+
+		model.addAttribute("vo", result);
+
+		return ".admin/order/selectOne";
+	}
 }
