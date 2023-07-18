@@ -3,7 +3,7 @@
 <section class="container tab-content">
 	<h3>주문목록</h3>
 	<div class="row">
-		<form action="o_mypageOrders.do" method="get">
+		<form action="${isAdmin ? 'o_adminOrders.do' : 'o_mypageOrders.do'}" method="get">
 			<div class="col-lg-6 form-group mb-2">
 				<label for="inputname">조회기간</label>
 				<div class="input-group">
