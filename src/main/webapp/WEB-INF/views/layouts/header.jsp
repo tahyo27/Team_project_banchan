@@ -12,8 +12,27 @@
 				<a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-1111-2222</a>
 			</div>
 			<div>
-				<a class="text-light" href="m_insert.do">회원가입</a>
-				<a class="text-light" href="adminpage.do">관리자페이지</a>
+			
+				
+				<c:set var="userId" value="${sessionScope.user_id}" />
+				<c:set var="isLoggedIn" value="${not empty userId}" />
+				
+			<c:choose>
+			    <c:when test="${isLoggedIn}">
+			        <c:choose>
+			            <c:when test="${userId eq 'admin'}">
+			                <a class="text-light" href="adminpage.do">관리자페이지</a>
+			            </c:when>
+			            <c:otherwise>
+			                <!-- 회원으로 로그인한 경우 -->
+			            </c:otherwise>
+			        </c:choose>
+			    </c:when>
+					    <c:otherwise>
+					        <a class="text-light" href="m_insert.do">회원가입</a>
+					    </c:otherwise>
+			</c:choose>
+				
 <!-- 				<a class="text-light" href="https://www.instagram.com/" target="_blank"><i -->
 <!-- 						class="fab fa-instagram fa-sm fa-fw me-2"></i></a> -->
 <!-- 				<a class="text-light" href="https://twitter.com/" target="_blank"><i -->
@@ -71,18 +90,32 @@
 		        	<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
 		     </form>
 				
-				
-				<a class="nav-icon position-relative text-decoration-none" href="c_selectAll.do?member_id=${user_id}">
-					<i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+		
+				<c:choose>
+  					<c:when test="${isLoggedIn}">	
+	  					<c:choose>
+					      <c:when test="${userId ne 'admin'}">
+					        <a class="nav-icon position-relative text-decoration-none" href="c_selectAll.do?member_id=${userId}">
+					          <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+					          <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">!</span>
+					        </a>
+					      </c:when>
+					    </c:choose>
+					    
+				<a class="nav-icon position-relative text-decoration-none" href="logout.do">
+					<i class="fa fa-fw fa-user text-dark mr-3"></i>
 					<span
-						class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">!</span>
+						class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Logout</span>
 				</a>
-				
+					 </c:when>
+  					<c:otherwise>
 				<a class="nav-icon position-relative text-decoration-none" href="SNS_Login.do">
 					<i class="fa fa-fw fa-user text-dark mr-3"></i>
 					<span
 						class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Login</span>
 				</a>
+				  </c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 
