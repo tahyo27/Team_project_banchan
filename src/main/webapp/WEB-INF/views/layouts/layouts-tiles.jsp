@@ -21,9 +21,14 @@
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
 
-	<!-- jquery -->
+	<!-- Start Script -->
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/templatemo.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!-- End Script -->
 </head>
 
 <body>
@@ -32,13 +37,6 @@
 	<tiles:insertAttribute name="content" />
 
 	<tiles:insertAttribute name="footer" />
-
-	<!-- Start Script -->
-	<script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.bundle.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/templatemo.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<!-- End Script -->
 </body>
 
 </html>

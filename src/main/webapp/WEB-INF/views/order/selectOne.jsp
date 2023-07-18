@@ -97,7 +97,9 @@
 	</table>
 	<div class="row">
 		<div class="col text-end mt-2">
-			<button type="button" class="btn btn-danger btn-lg px-3" onclick="cancleOrder(${vo.num})">취소</button>
+			<c:if test="${vo.status eq '배송준비중'}">
+				<button type="button" class="btn btn-danger btn-lg px-3" onclick="cancleOrder(${vo.num})">취소</button>
+			</c:if>
 		</div>
 	</div>
 </section>
