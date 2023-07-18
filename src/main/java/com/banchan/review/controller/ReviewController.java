@@ -36,7 +36,7 @@ public class ReviewController {
 		
 		model.addAttribute("vos", vos);
 
-		return "review/selectAll";
+		return ".my/review/selectAll";
 	}
 	
 	@RequestMapping(value = "/re_selectAlladmin.do", method = RequestMethod.GET)
@@ -63,6 +63,20 @@ public class ReviewController {
 		
 		return "redirect:re_selectAlladmin.do";
 	}
+	
+	@RequestMapping(value = "/re_deleteOKuser.do", method = RequestMethod.GET)
+	public String re_deleteOKuser(ReviewVO vo) {
+		log.info("/re_deleteOKuser.do...{}",vo);
+		
+		String user_id = (String) session.getAttribute("user_id");
+		vo.setMember_id(user_id);
+		
+		int result = service.delete(vo);
+		log.info("result:{}",result);
+		
+		return "redirect:re_selectAll.do?member_id="+user_id;
+	}
+	
 	
 	
 	
