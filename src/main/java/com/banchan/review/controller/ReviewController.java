@@ -57,8 +57,6 @@ public class ReviewController {
 	public String re_deleteOK(ReviewVO vo) {
 		log.info("/re_deleteOK.do...{}",vo);
 		
-		session.setAttribute("member_id", "user001"); // 테스트값. session 구현시 변경
-		vo.setMember_id((String)session.getAttribute("member_id"));
 		
 		int result = service.delete(vo);
 		log.info("result:{}",result);
