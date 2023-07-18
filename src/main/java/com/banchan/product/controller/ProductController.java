@@ -111,7 +111,7 @@ public class ProductController {
 		
 		log.info("/pr_insert.do.....");
 
-		return ".product/insert";
+		return ".admin/product/insert";
 	}
 	
 	
@@ -173,7 +173,7 @@ public class ProductController {
 		
 		model.addAttribute("vo2",vo2);
 		
-		return ".product/update";
+		return ".admin/product/update";
 	}
 	
 	@RequestMapping(value = "/pr_updateOK.do", method = RequestMethod.POST)
@@ -246,7 +246,7 @@ public class ProductController {
 		log.info("/adminpage.do.....");
 
 
-		return ".product/adminpage";
+		return ".admin/product/adminpage";
 	}
 	
 	@RequestMapping(value = "/productDetail.do", method = RequestMethod.GET)
@@ -258,7 +258,7 @@ public class ProductController {
 		
 		model.addAttribute("vos", vos);
 
-		return ".product/productDetail";
+		return ".admin/product/productDetail";
 	}
 	
 	
