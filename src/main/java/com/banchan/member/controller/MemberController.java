@@ -291,7 +291,7 @@ public class MemberController {
 				session.setAttribute("user_id", vo2.getMember_id());
 				session.setAttribute("sns_check", 0);
 				session.setAttribute("user_num", vo2.getNum());
-				return "redirect:home";
+				return "redirect:.home";
 			}
 		} else {
 			log.info("관리자 계정으로 로그인헀습니다.");
@@ -307,7 +307,7 @@ public class MemberController {
 
 		session.invalidate(); // 로그인 세션 제거
 
-		return "redirect:home";
+		return "redirect:.home";
 	}
 
 	@RequestMapping(value = "/m_user_udpate.do", method = RequestMethod.GET)
