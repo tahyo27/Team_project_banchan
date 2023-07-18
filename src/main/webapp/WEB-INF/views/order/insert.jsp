@@ -47,7 +47,7 @@
 										<div class="form-check">
 											<input class="form-check-input" type="radio" name="addressBooks"
 												id="gridRadios${address.num}" value="${address.num}"
-												onclick="setAddress(this)"
+												onclick="selectAddress(this)"
 												data-name='${address.ab_name}'
 												data-zipcode='${address.ab_zipcode}'
 												data-address1='${address.ab_address1}'
@@ -60,7 +60,7 @@
 									</c:forEach>
 									<div class="form-check">
 										<input class="form-check-input" type="radio" name="addressBooks"
-											id="gridRadios" value="new" onclick="setAddress(this)" checked>
+											id="gridRadios" value="new" onclick="selectAddress(this)" checked>
 										<label class="form-check-label" for="gridRadios">
 											신규배송지
 										</label>
@@ -86,7 +86,7 @@
 									<label for="inputname">배송지 주소</label>
 									<div class="input-group">
 										<input type="text" class="form-control mt-1" name="zipcode" placeholder="">
-										<button class="btn btn-success mt-1" type="button" id="button-addon2">우편번호</button>
+										<button class="btn btn-success mt-1" type="button" id="button-addon2" onclick="daum_address_find(setAddress)">우편번호</button>
 									</div>
 								</div>
 							</div>
@@ -214,7 +214,7 @@
 		}
 	};
 
-	function setAddress(addressElem) {
+	function selectAddress(addressElem) {
 		console.log(addressElem.value);
 
 		if (addressElem.value!='new') {
@@ -236,5 +236,10 @@
 			document.querySelector('input[name=tel2]').value = '';
 			document.querySelector('input[name=tel3]').value = '';
 		}
+	}
+
+	function setAddress(address) {
+		document.querySelector('input[name=zipcode]').value = address.zipcode;
+		document.querySelector('input[name=address1]').value = address.addr;
 	}
 </script>
