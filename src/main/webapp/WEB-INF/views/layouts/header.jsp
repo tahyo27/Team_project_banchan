@@ -24,7 +24,7 @@
 			                <a class="text-light" href="adminpage.do">관리자페이지</a>
 			            </c:when>
 			            <c:otherwise>
-			                <!-- 회원으로 로그인한 경우 -->
+			                <a class="text-light" href="m_user_udpate.do">마이페이지</a>
 			            </c:otherwise>
 			        </c:choose>
 			    </c:when>
