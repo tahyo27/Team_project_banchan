@@ -2,36 +2,63 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회원정보</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<script type="text/javascript">
+	
+</script>
+<style>
+</style>
 
-<!-- Start Item Details -->
+</head>
+<body>
 
-
-<nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" style="color: black;" href="adminpage.do">돌아가기 / </a>
-        </li>
-          <li class="nav-item">
-          	<a class="nav-link" style="color: black;" href="re_selectAlladmin.do">리뷰관리</a>
-          </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<section class="item-details section p-3">
-	<div class="container col-7">
+	<div class="container">
+		<div class="row mt-5">
+			<div class="col-md-3">
+				<ul class="nav flex-column nav-pills">
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="pill" href="adminpage.do">관리자모드</a></li>
+						<li class="nav-item"><a class="nav-link" data-toggle="pill"
+						href="m_selectAll.do">회원정보</a></li>
+					<li class="nav-item"><a class="nav-link"
+						data-toggle="pill" href="pr_insert.do">상품등록</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="pill"
+						href="productDetail.do">상품수정/삭제</a></li>
+					<li class="nav-item"><a class="nav-link  active" data-toggle="pill"
+						href="re_selectAlladmin.do">리뷰관리</a></li>
+				</ul>
 			</div>
-</section>
+			
+			<div class="col-md-9">
+				<div class="tab-content">
+					<div id="user-info" class="tab-pane fade show active">
 
-
- <!-- Begin Page Content -->
-    <div class="container">
+<section class="h-100 h-custom">
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="table-responsive">	
+        
+		<div class="container">
         <!-- DataTales Example -->
         <div class="card mb-4">
             <div class="card-header py-3">
@@ -39,7 +66,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" width="100%" cellspacing="0">
+                    <table class="table table-bordered" style="font-size:15px;">
                         <thead>
                             <tr>
                                 <th>리뷰번호</th>
@@ -64,13 +91,24 @@
 									</tr>
 							</c:forEach>           
                         </tbody>
-                        
                     </table>
-                    
                 </div>
-                
             </div>
-    </div>
+   		 </div>
+	</div>
 </div>
+</div>
+</div>
+</div>
+
+</section>
+</div>
+</div>
+</div>
+
             
-<script type="text/javascript" src="js/productdetails.js"></script>
+			
+	</div>
+	</div>
+</body>
+</html>
