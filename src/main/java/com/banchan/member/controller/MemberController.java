@@ -149,15 +149,15 @@ public class MemberController {
 			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
 
 		} // end else
-		log.info("Member_updateOK..vo:{}{}", vo);
+		log.info("Member_updateOK..vo:{}", vo);
 
 		int result = service.update(vo, check);
 		
-		log.info("Member_updateOK result", result);
+		log.info("Member_updateOK result:{}", result);
 		if (result == 1 && check.equals("user_update")) {
 			return "redirect:m_user_udpate.do";
-		} else if(result == 1 && check.equals("admin_upate")) {
-			return "redirect:m_update.do?num=" + vo.getNum();
+		} else if(result == 1 && check.equals("admin_update")) {
+			return "redirect:m_selectOne.do?num=" + vo.getNum();
 		} else {
 			return "redirect:.home";
 		}

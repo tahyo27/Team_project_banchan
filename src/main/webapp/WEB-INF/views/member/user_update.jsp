@@ -40,6 +40,7 @@
 				$('#pw').val(vo2.member_pw);
 				$('#name').val(vo2.member_name);
 				$('#tel').val(vo2.member_tel);
+				$('#member_profile').val(vo2.member_profile);
 			},
 			error: function (xhr, status, error) {
 				console.log('xhr.status:', xhr.status);
@@ -99,81 +100,90 @@
 </script>
 </head>
 <body>
-<div class="tab-content">
-	<div id="user-info" class="tab-pane fade show active">
-		<h3>회원정보</h3>
-		<form action="m_updateOK.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" id="input_num" name="num">
-			<input type="hidden" id="input_email" name="member_email">
-			<input type="hidden" id="input_id" name="member_id">
-			<div class="form-group row">
-				<label for="id" class="col-sm-3 col-form-label">아이디</label>
-				<div class="col-sm-9">
-					<span id="span_id"></span>
+	<div class="tab-content">
+		<div id="user-info" class="tab-pane fade show active">
+			<h3>회원정보</h3>
+			<form action="m_updateOK.do" method="post"
+				enctype="multipart/form-data">
+				<input type="hidden" id="input_num" name="num"> <input
+					type="hidden" id="input_email" name="member_email"> <input
+					type="hidden" id="input_id" name="member_id">
+				<div class="form-group row">
+					<label for="id" class="col-sm-3 col-form-label">아이디</label>
+					<div class="col-sm-9">
+						<span id="span_id"></span>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="pw" class="col-sm-3 col-form-label">비밀번호</label>
-				<div class="col-sm-9">
-					<input type="password" id="pw" name="member_pw" class="form-control">
+				<div class="form-group row">
+					<label for="pw" class="col-sm-3 col-form-label">비밀번호</label>
+					<div class="col-sm-9">
+						<input type="password" id="pw" name="member_pw"
+							class="form-control">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 7px;">
-				<label for="name" class="col-sm-3 col-form-label">이름</label>
-				<div class="col-sm-9">
-					<input type="text" id="name" name="member_name" class="form-control">
+				<div class="form-group row" style="margin-top: 7px;">
+					<label for="name" class="col-sm-3 col-form-label">이름</label>
+					<div class="col-sm-9">
+						<input type="text" id="name" name="member_name"
+							class="form-control">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 7px;">
-				<label for="email" class="col-sm-3 col-form-label">이메일</label>
-				<div class="col-sm-9">
-					<span id="span_email"></span>
+				<div class="form-group row" style="margin-top: 7px;">
+					<label for="email" class="col-sm-3 col-form-label">이메일</label>
+					<div class="col-sm-9">
+						<span id="span_email"></span>
+					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label for="member_zipcode" class="col-sm-3 col-form-label">우편번호</label>
-				<div class="col-sm-6">
-					<input id="member_zipcode" name="member_zipcode" readonly class="form-control">
+				<div class="form-group row">
+					<label for="member_zipcode" class="col-sm-3 col-form-label">우편번호</label>
+					<div class="col-sm-6">
+						<input id="member_zipcode" name="member_zipcode" readonly
+							class="form-control">
+					</div>
+					<div class="col-sm-3">
+						<button type="button" onclick="daum_address_find()"
+							class="btn btn-secondary">우편번호 찾기</button>
+					</div>
 				</div>
-				<div class="col-sm-3">
-					<button type="button" onclick="daum_address_find()" class="btn btn-secondary">우편번호 찾기</button>
+				<div class="form-group row" style="margin-top: 7px;">
+					<label for="member_address1" class="col-sm-3 col-form-label">주소</label>
+					<div class="col-sm-9">
+						<input id="member_address1" name="member_address1" readonly
+							class="form-control">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 7px;">
-				<label for="member_address1" class="col-sm-3 col-form-label">주소</label>
-				<div class="col-sm-9">
-					<input id="member_address1" name="member_address1" readonly class="form-control">
+				<div class="form-group row" style="margin-top: 7px;">
+					<label for="member_address2" class="col-sm-3 col-form-label">상세주소</label>
+					<div class="col-sm-9">
+						<input id="member_address2" name="member_address2" readonly
+							class="form-control">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 7px;">
-				<label for="member_address2" class="col-sm-3 col-form-label">상세주소</label>
-				<div class="col-sm-9">
-					<input id="member_address2" name="member_address2" readonly class="form-control">
+				<div class="form-group row" style="margin-top: 7px;">
+					<label for="tel" class="col-sm-3 col-form-label">전화번호</label>
+					<div class="col-sm-9">
+						<input type="text" id="tel" name="member_tel" class="form-control">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 7px;">
-				<label for="tel" class="col-sm-3 col-form-label">전화번호</label>
-				<div class="col-sm-9">
-					<input type="text" id="tel" name="member_tel" class="form-control">
+				<div class="form-group row" style="margin-top: 10px;">
+					<label for="file" class="col-sm-3 col-form-label">프로필 사진</label>
+					<div class="col-sm-9">
+						<input type="file" id="file" name="file" class="form-control-file">
+						<input type="hidden" id="member_profile" name="member_profile" value="">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 10px;">
-				<label for="file" class="col-sm-3 col-form-label">프로필 사진</label>
-				<div class="col-sm-9">
-					<input type="file" id="file" name="file" class="form-control-file">
+				<div class="form-group row" style="margin-top: 20px;">
+					<div class="offset-sm-3 col-sm-9">
+						<input type="submit" value="수정"
+							class="btn btn-primary custom-btn w-75">
+					</div>
 				</div>
-			</div>
-			<div class="form-group row" style="margin-top: 20px;">
-				<div class="offset-sm-3 col-sm-9">
-					<input type="submit" value="수정" class="btn btn-primary custom-btn w-75">
-				</div>
-			</div>
-			 <input type="hidden" name="check" value="user_update">
-		</form>
+				<input type="hidden" name="check" value="user_update">
+			</form>
+		</div>
 	</div>
-</div>
 
-<script
+	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 		crossorigin="anonymous"></script>
