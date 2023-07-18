@@ -58,7 +58,7 @@ public class QuestionController {
 		model.addAttribute("paging",vo);
 		model.addAttribute("viewAll",service.selectBoard(vo));
 		
-		return ".question/boardPaging";
+		return ".admin/question/boardPaging";
 	
 	}
 	
