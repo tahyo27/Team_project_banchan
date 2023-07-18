@@ -102,6 +102,9 @@ public class SNSLoginController {
 			session.setAttribute("sns_check", 1); //sns계정 체크용
 			session.setAttribute("user_num", vo.getNum());
 		}
+	
+		model.addAttribute("name", vo.getMember_name());
+		model.addAttribute("email", vo.getMember_email());
 		return "SNS/NaverSuccess";
 	}
 
@@ -138,7 +141,8 @@ public class SNSLoginController {
 			session.setAttribute("user_num", vo.getNum());
 		}
 
-//		model.addAttribute("result", vo);
+		model.addAttribute("name", vo.getMember_name());
+		model.addAttribute("email", vo.getMember_email());
 
 		return "SNS/GoogleSuccess";
 
@@ -173,6 +177,8 @@ public class SNSLoginController {
 			session.setAttribute("sns_check", 1);
 			session.setAttribute("user_num", vo.getNum());
 		}
+		model.addAttribute("name", vo.getMember_name());
+		model.addAttribute("email", vo.getMember_email());
 		
 		return "SNS/KakaoSuccess";
 	}
