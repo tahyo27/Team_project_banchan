@@ -78,6 +78,7 @@ public class ProductController {
 		
 		ReviewVO rvo = new ReviewVO();
 		rvo.setNum(vo.getNum());
+		rvo.setProduct_name(service.selectOne(vo).getProduct_name());
 		List<ReviewVO> rvos = reviewService.selectAllTotal(rvo);
 		log.info("rvos:{}",rvos);
 		model.addAttribute("rvos",rvos);
