@@ -49,7 +49,7 @@ public class ReviewController {
 		
 		model.addAttribute("vos", vos);
 
-		return ".review/selectAlladmin";
+		return ".admin/review/selectAlladmin";
 	}
 	
 	
