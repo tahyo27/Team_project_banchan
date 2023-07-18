@@ -90,6 +90,9 @@
 						href="pr_insert.do">상품등록</a></li>
 					<li class="nav-item"><a class="nav-link" data-toggle="pill"
 						href="productDetail.do">상품수정/삭제</a></li>
+					<li class="nav-item"><a class="nav-link" data-toggle="pill"
+						href="re_selectAlladmin.do">리뷰관리</a></li>
+						
 				</ul>
 			</div>
 			<div class="col-md-9">
