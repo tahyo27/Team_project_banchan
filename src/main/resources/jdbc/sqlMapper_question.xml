@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.banchan.question">
+	<select id="Q_SELECT_ALL" resultType="com.banchan.question.model.QuestionVO">
+	select * from question order by qnum desc
+	</select>
+
+	<select id="Q_SELECT_ALL_LIST"
+		resultType="com.banchan.question.model.QuestionVO">
+		select * from (
+		select rownum as r, t.* from (
+		select * from question order by qnum desc) t)
+		where r between #{start} and #{end}
+	</select>
+	
+	<select id="Q_SELECT_ALL_COUNT"
+		resultType="int">
+		select count(*) from question
+	</select>
+
+	<select id="Q_SELECT_ONE"
+		resultType="com.banchan.question.model.QuestionVO">
+		select * from question where qnum = #{qnum}
+	</select>
+
+	<select id="Q_SEARCH_LIST_TITLE"
+		resultType="com.banchan.question.model.QuestionVO">
+		select * from question where title like #{searchWord}
+	</select>
+
+	<select id="Q_SEARCH_LIST_CONTENT"
+		resultType="com.banchan.question.model.QuestionVO">
+		select * from question where content like #{searchWord}
+	</select>
+
+	<select id="Q_SEARCH_LIST_WRITER"
+		resultType="com.banchan.question.model.QuestionVO">
+		select * from question where writer like #{searchWord}
+	</select>
+
+	<insert id="Q_INSERT"
+		parameterType="com.banchan.question.model.QuestionVO">
+		insert into question(qnum,title,content,writer)
+		values(seq_question.nextval,#{title},#{content},#{writer})
+	</insert>
+
+	<update id="Q_UPDATE"
+		parameterType="com.banchan.question.model.QuestionVO">
+		update question set title=#{title} , content=#{content}
+		,
+		wdate=sysdate
+		where qnum = #{qnum}
+	</update>
+
+	<update id="Q_VCOUNT_UP"
+		parameterType="com.banchan.question.model.QuestionVO">
+		update question set vcount=vcount+1
+		where qnum = #{qnum}
+	</update>
+
+	<delete id="Q_DELETE">
+		delete from question where qnum = #{qnum}
+	</delete>
+
+</mapper>

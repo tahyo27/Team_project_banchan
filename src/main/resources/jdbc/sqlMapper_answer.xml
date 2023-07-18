@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.banchan.answer">
+	<select id="A_SELECT_ALL" resultType="com.banchan.answer.model.AnswerVO">
+		select * from answer where qnum=#{qnum} order by anum desc
+	</select>
+	
+	<select id="A_SELECT_ONE" resultType="com.banchan.answer.model.AnswerVO">
+		select * from answer where anum = #{anum}
+	</select>
+	
+	<insert id="A_INSERT" parameterType="com.banchan.answer.model.AnswerVO">
+		insert into answer(anum,qnum,content,writer) 
+		values(seq_answer.nextval,#{qnum},#{content},#{writer})
+	</insert>
+	
+	<update id="A_UPDATE" parameterType="com.banchan.answer.model.AnswerVO">
+		update answer set content=#{content} , wdate=sysdate
+		where anum = #{anum}
+	</update>
+
+	<delete id="A_DELETE">
+		delete from answer where anum = #{anum}
+	</delete>
+	
+</mapper>

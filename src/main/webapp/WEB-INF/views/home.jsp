@@ -32,6 +32,9 @@
 <a href="pr_selectCategory.do?category_num=3">category select 국·탕·찌개</a>
 <a href="pr_selectCategory.do?category_num=4">category select 조림·나물·무침</a>
 <a href="pr_selectCategory.do?category_num=5">category select 김치</a>
+<hr>
+<a href="q_selectAll.do">질문목록</a>
+<a href="boardList.do">페이징목록</a>
 
 
 
