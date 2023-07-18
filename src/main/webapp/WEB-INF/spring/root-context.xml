@@ -36,6 +36,8 @@
 				<value>classpath:jdbc/sqlMapper_product.xml</value>
 				<value>classpath:jdbc/sqlMapper_order.xml</value>
 				<value>classpath:jdbc/sqlMapper_addressbook.xml</value>
+				<value>classpath:jdbc/sqlMapper_question.xml</value>
+				<value>classpath:jdbc/sqlMapper_answer.xml</value>
 			</list>
 		</property>
 	</bean>
