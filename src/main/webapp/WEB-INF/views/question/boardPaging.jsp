@@ -21,6 +21,7 @@ a {
 	}
 </script>
 
+<section class="container tab-content">
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
 		<h1 class="h1">Q&A</h1>
@@ -79,12 +80,16 @@ a {
 		</c:forEach>
 		</tbody>
 	</table>
+	
+	<c:if test="${user_id ne 'admin'}">
 	<div class="row">
 		<div class="col text-end mt-2">
 			<input type="button" value="질문하기" class="btn btn-success btn-lg px-3"
 				onclick="location.href='q_insert.do'"><br>
 		</div>
 	</div>
+	</c:if>
+	
 	<div style="display: block; text-align: center;">
 		<c:if test="${paging.startPage != 1 }">
 			<a
@@ -108,3 +113,4 @@ a {
 		</c:if>
 	</div>
 </div>
+</section>

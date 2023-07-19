@@ -11,7 +11,7 @@ a {
 	text-decoration: none;
 }
 </style>
-
+<section class="container tab-content">
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
 		<h1 class="h1">질문정보</h1>
@@ -135,5 +135,5 @@ a {
 		</c:forEach>
 	</table>
 </div>
-
+</section>
 
