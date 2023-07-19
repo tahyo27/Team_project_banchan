@@ -11,7 +11,7 @@ a {
 	text-decoration: none;
 }
 </style>
-
+<section class="container tab-content">
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
 		<h1 class="h1">검색글</h1>
@@ -55,6 +55,9 @@ a {
 		</tbody>
 	</table>
 </div>
+</section>
+
+
 
 
 

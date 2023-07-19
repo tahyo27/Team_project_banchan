@@ -58,8 +58,30 @@ public class QuestionController {
 		model.addAttribute("paging",vo);
 		model.addAttribute("viewAll",service.selectBoard(vo));
 		
-		return ".admin/question/boardPaging";
+		return ".my/question/boardPaging";
+	}
 	
+	@RequestMapping(value = "/admin_boardList.do", method = RequestMethod.GET)
+	public String admin_boardList(PagingVO vo,Model model
+			,@RequestParam (value="nowPage", required = false)String nowPage //String값에 담긴 value, require : key값이 존재하지않을 경우 badrequest 안뜸
+			,@RequestParam (value="cntPerPage",required = false)String cntPerPage) {
+		log.info("/admin_boardList.do...{}",vo);
+		
+		int total = service.countBoard();
+		log.info("total...{}",total);
+		if(nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		}else if(nowPage == null) {
+			nowPage = "1";	
+		}else if(cntPerPage == null) {
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging",vo);
+		model.addAttribute("viewAll",service.selectBoard(vo));
+		
+		return ".admin/question/boardPaging";
 	}
 	
 	
@@ -73,7 +95,7 @@ public class QuestionController {
 		List<QuestionVO> vos = service.searchList(searchKey,searchWord);
 		model.addAttribute("vos", vos);
 		
-		return ".question/selectAll";
+		return ".my/question/selectAll";
 	}
 	
 	@RequestMapping(value = "/q_selectOne.do", method = RequestMethod.GET)
@@ -92,14 +114,14 @@ public class QuestionController {
 		
 		model.addAttribute("ans", ans);
 
-		return ".question/selectOne";
+		return ".my/question/selectOne";
 	}
 	
 	@RequestMapping(value = "/q_insert.do", method = RequestMethod.GET)
 	public String q_insert() {
 		log.info("/q_insert.do...");
 		
-		return ".question/insert";
+		return ".my/question/insert";
 	}
 	
 	
@@ -126,7 +148,7 @@ public class QuestionController {
 
 		model.addAttribute("vo2", vo2);
 
-		return ".question/update";
+		return ".my/question/update";
 	}
 	
 	@RequestMapping(value = "/q_updateOK.do", method = RequestMethod.POST)
