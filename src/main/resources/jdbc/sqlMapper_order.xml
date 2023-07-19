@@ -58,10 +58,13 @@
 				join PRODUCT p on od.PRODUCT_NUM = p.NUM
 		where 1 = 1
 		<if test="member_num != null">
-			and MEMBER_NUM = #{member_num}
+			and o.MEMBER_NUM = #{member_num}
 		</if>
 		<if test="start_date != null and end_date != null">
 			and o.ORDER_DATE BETWEEN TO_DATE(#{start_date}, 'YYYY-MM-DD') AND TO_DATE(#{end_date}, 'YYYY-MM-DD') + 0.99999
+		</if>
+		<if test="status != null">
+			and o.STATUS = #{status}
 		</if>
 	</select>
 

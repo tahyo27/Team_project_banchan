@@ -1,44 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!-- Start Top Nav -->
 <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
 	<div class="container text-light">
 		<div class="w-100 d-flex justify-content-between">
 			<div>
 				<i class="fa fa-envelope mx-2"></i>
-				<a class="navbar-sm-brand text-light text-decoration-none"
-					href="mailto:info@company.com">BANCHAN@company.com</a>
+				<a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">
+					BANCHAN@company.com
+				</a>
 				<i class="fa fa-phone mx-2"></i>
-				<a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-1111-2222</a>
+				<a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">
+					010-1111-2222
+				</a>
 			</div>
 			<div>
-			
-				
 				<c:set var="userId" value="${sessionScope.user_id}" />
 				<c:set var="isLoggedIn" value="${not empty userId}" />
-				
-			<c:choose>
-			    <c:when test="${isLoggedIn}">
-			        <c:choose>
-			            <c:when test="${userId eq 'admin'}">
-			                <a class="text-light" href="adminpage.do">관리자페이지</a>
-			            </c:when>
-			            <c:otherwise>
-			                <a class="text-light" href="m_user_udpate.do">마이페이지</a>
-			            </c:otherwise>
-			        </c:choose>
-			    </c:when>
-					    <c:otherwise>
-					        <a class="text-light" href="m_insert.do">회원가입</a>
-					    </c:otherwise>
-			</c:choose>
-				
-<!-- 				<a class="text-light" href="https://www.instagram.com/" target="_blank"><i -->
-<!-- 						class="fab fa-instagram fa-sm fa-fw me-2"></i></a> -->
-<!-- 				<a class="text-light" href="https://twitter.com/" target="_blank"><i -->
-<!-- 						class="fab fa-twitter fa-sm fa-fw me-2"></i></a> -->
-<!-- 				<a class="text-light" href="https://www.linkedin.com/" target="_blank"><i -->
-<!-- 						class="fab fa-linkedin fa-sm fa-fw"></i></a> -->
+
+				<c:choose>
+					<c:when test="${isLoggedIn}">
+						<c:choose>
+							<c:when test="${isAdmin}">
+								<a class="text-light" href="adminpage.do">관리자페이지</a>
+							</c:when>
+							<c:otherwise>
+								<a class="text-light" href="m_user_udpate.do">마이페이지</a>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<a class="text-light" href="m_insert.do">회원가입</a>
+					</c:otherwise>
+				</c:choose>
+				<!-- <a class="text-light" href="https://www.instagram.com/" target="_blank">
+					<i class="fab fa-instagram fa-sm fa-fw me-2"></i>
+				</a>
+				<a class="text-light" href="https://twitter.com/" target="_blank">
+					<i class="fab fa-twitter fa-sm fa-fw me-2"></i>
+				</a>
+				<a class="text-light" href="https://www.linkedin.com/" target="_blank">
+					<i class="fab fa-linkedin fa-sm fa-fw"></i>
+				</a> -->
 			</div>
 		</div>
 	</div>
@@ -80,45 +83,42 @@
 					</li>
 				</ul>
 			</div>
-		<div class="navbar align-self-center d-flex">
-			
-			<form class="d-flex" action="pr_searchList.do">
-				<select name="searchKey" id="searchKey_header">
+			<div class="navbar align-self-center d-flex">
+
+				<form class="d-flex" action="pr_searchList.do">
+					<select name="searchKey" id="searchKey_header">
 						<option value="name">상품명</option>
-				</select>
-		        	<input class="form-control me-2" type="search" placeholder="상품 검색" name="searchWord" id="searchWord">
-		        	<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
-		     </form>
-				
-		
+					</select>
+					<input class="form-control me-2" type="search" placeholder="상품 검색" name="searchWord" id="searchWord">
+					<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+				</form>
+
 				<c:choose>
-  					<c:when test="${isLoggedIn}">	
-	  					<c:choose>
-					      <c:when test="${userId ne 'admin'}">
-					        <a class="nav-icon position-relative text-decoration-none" href="c_selectAll.do?member_id=${userId}">
-					          <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-					          <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">!</span>
-					        </a>
-					      </c:when>
-					    </c:choose>
-					    
-				<a class="nav-icon position-relative text-decoration-none" href="logout.do">
-					<i class="fa fa-fw fa-user text-dark mr-3"></i>
-					<span
-						class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Logout</span>
-				</a>
-					 </c:when>
-  					<c:otherwise>
-				<a class="nav-icon position-relative text-decoration-none" href="SNS_Login.do">
-					<i class="fa fa-fw fa-user text-dark mr-3"></i>
-					<span
-						class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Login</span>
-				</a>
-				  </c:otherwise>
+					<c:when test="${isLoggedIn}">
+						<c:if test="${not isAdmin}">
+							<a class="nav-icon position-relative text-decoration-none" href="c_selectAll.do?member_id=${userId}">
+								<i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+								<span
+									class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">!</span>
+							</a>
+						</c:if>
+
+						<a class="nav-icon position-relative text-decoration-none" href="logout.do">
+							<i class="fa fa-fw fa-user text-dark mr-3"></i>
+							<span
+								class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Logout</span>
+						</a>
+					</c:when>
+					<c:otherwise>
+						<a class="nav-icon position-relative text-decoration-none" href="SNS_Login.do">
+							<i class="fa fa-fw fa-user text-dark mr-3"></i>
+							<span
+								class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">Login</span>
+						</a>
+					</c:otherwise>
 				</c:choose>
 			</div>
 		</div>
-
 	</div>
 </nav>
 <!-- Close Header -->
