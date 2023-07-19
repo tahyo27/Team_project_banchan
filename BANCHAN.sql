@@ -372,36 +372,25 @@ ALTER TABLE "MEMBER"
 
 
 ----- INSERT -----
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
-VALUES (seq_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'user001@example.com');
+DECLARE
+  v_uuid VARCHAR2(36);
+BEGIN
+  FOR i IN 1..1000 LOOP
+    v_uuid := SYS_GUID(); -- UUID 생성
+    
+    INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email, member_zipcode, member_address1, member_address2)
+    VALUES (seq_member.NEXTVAL, v_uuid, 'pw' || LPAD(i, 3, '0'), 'User' || LPAD(i, 3, '0'), '010-1234-' || LPAD(i, 2, '0'), 'user' || LPAD(i, 3, '0') || '@example.com', '1000', '경기도' || i, '성남시' || i);
+  END LOOP;
+END;
 
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
-VALUES (seq_member.NEXTVAL, 'user002', 'pw002', 'User002', '010-1234-02', 'user002@example.com');
+INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email, member_zipcode, member_address1, member_address2)
+VALUES (seq_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'example002@example.com', '1000', '경기도1', '성남시1');
 
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
-VALUES (seq_member.NEXTVAL, 'user003', 'pw003', 'User003', '010-1234-03', 'user003@example.com');
-
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
-VALUES (seq_member.NEXTVAL, 'user004', 'pw004', 'User004', '010-1234-04', 'user004@example.com');
-
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email)
-VALUES (seq_member.NEXTVAL, 'user005', 'pw005', 'User005', '010-1234-05', 'user005@example.com');
-
-INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
-VALUES (seq_addressbook.NEXTVAL, 1, 'kim1', '13612', '경기도 성남시 분당구 내정로 27-1', '구두수선대', '010-111-2222');
-
-INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
-VALUES (seq_addressbook.NEXTVAL, 1, 'kim2', '13612', '경기도 성남시 분당구 내정로 29', '금곡프라자', '010-111-2222');
-
-INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
-VALUES (seq_addressbook.NEXTVAL, 2, 'lee1', '13602', '경기도 성남시 분당구 내정로 24', '정든마을한진6단지', '010-111-2222');
-
-INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
-VALUES (seq_addressbook.NEXTVAL, 2, 'lee2', '13602', '경기도 성남시 분당구 내정로 20', '탄천초등학교', '010-222-3333');
-
-INSERT INTO addressbook (num, member_num, AB_NAME, AB_ZIPCODE, AB_ADDRESS1, AB_ADDRESS2, AB_TEL)
-VALUES (seq_addressbook.NEXTVAL, 2, 'lee3', '13602', '경기도 성남시 분당구 내정로 10', '정든마을한진7단지', '010-333-4444');
-
+insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin', '1234');
+insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin1', '1234');
+insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin2', '1234');
+insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin3', '1234');
+insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin4', '1234');
 
 ------------
 INSERT INTO CATEGORY (NUM, CATEGORY_NAME)
