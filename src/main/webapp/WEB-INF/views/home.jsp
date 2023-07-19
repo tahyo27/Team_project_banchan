@@ -20,7 +20,6 @@
 <a href="logout.do">logout</a>
 <a href="findPwView.do">findPw</a>
 <a href="m_user_udpate.do">마이페이지 회원정보</a>
-<a href="jsptest">CSS JSP테스트 페이지</a>
 <hr>
 <a href="pr_selectAll.do">product selectAll</a>
 <a href="pr_insert.do">product insert 관리자</a>
