@@ -91,7 +91,7 @@ public class MemberController {
 	        model.addAttribute("vos", vos);
 	    }
 
-	    return ".member/selectAll";
+	    return ".admin/member/selectAll";
 	}
 
 

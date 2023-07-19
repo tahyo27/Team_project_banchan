@@ -78,32 +78,16 @@
 </style>
 </head>
 <body>
-	<div class="container">
-		<div class="row mt-5">
-			<div class="col-md-3">
-				<ul class="nav flex-column nav-pills">
-					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="adminpage.do">관리자모드</a></li>
-					<li class="nav-item"><a class="nav-link active"
-						data-toggle="pill" href="m_selectAll.do">회원정보</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="pr_insert.do">상품등록</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="productDetail.do">상품수정/삭제</a></li>
-					<li class="nav-item"><a class="nav-link" data-toggle="pill"
-						href="re_selectAlladmin.do">리뷰관리</a></li>
-						
-				</ul>
-			</div>
-			<div class="col-md-9">
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-12">
 				<div class="tab-content">
 					<div id="user-info" class="tab-pane fade show active">
-						<h3>회원정보</h3>
+						<h3 class="mb-4">회원정보</h3>
 						<!-- search{s} -->
-
 						<div
 							class="form-group row justify-content-center align-items-center">
-							<div class="col-sm-3" style="padding-right: 10px">
+							<div class="col-md-3 col-sm-12 mb-2 mb-md-0">
 								<select class="form-control form-control-sm" name="searchKey"
 									id="searchKey">
 									<option value="name">name</option>
@@ -111,62 +95,60 @@
 									<option value="address1">address1</option>
 								</select>
 							</div>
-							<div class="col-sm-8" style="padding-right: 10px; width:20%;">
-								<input type="text" class="form-control form-control-sm"
+							<div class="col-md-6 col-sm-12 d-flex mb-2 mb-md-0">
+								<!-- Added the d-flex class for flex behavior -->
+								<input type="text"
+									class="form-control form-control-sm flex-grow-1 mr-2"
 									name="searchWord" id="searchWord">
-							</div>
-							<div class="col-sm d-flex align-items-center">
-								<button class="btn btn-sm btn-primary" name="btnSearch"
+								<!-- Added the flex-grow-1 class to allow the input to take the available space and mr-2 class for right margin -->
+								<button class="btn btn-sm btn-primary" name="btnSearch" style="margin-left:10px;"
 									id="btnSearch">검색</button>
 							</div>
 						</div>
-
 						<!-- search{e} -->
 						<br>
 						<!-- table{s} -->
-						<link rel="stylesheet" href="styles.css">
-
-						<table class="table table-striped table-bordered table-custom">
-							<thead>
-								<tr>
-									<th>번호</th>
-									<th>아이디</th>
-									<th>비밀번호</th>
-									<th>이름</th>
-									<th>전화번호</th>
-									<th>이메일</th>
-									<th>우편번호</th>
-									<th>주소</th>
-									<th>상세주소</th>
-									<th>등록일</th>
-									<th>프로필</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="vo" items="${vos}">
+						<div class="table-responsive">
+							<table class="table table-striped table-bordered table-custom">
+								<thead>
 									<tr>
-										<td><a href="m_selectOne.do?num=${vo.num}"><span
-												style="font-size: 10px;">${vo.num}</span></a></td>
-										<td>${vo.member_id}</td>
-										<td>${vo.member_pw}</td>
-										<td>${vo.member_name}</td>
-										<td>${vo.member_tel}</td>
-										<td>${vo.member_email}</td>
-										<td>${vo.member_zipcode}</td>
-										<td>${vo.member_address1}</td>
-										<td>${vo.member_address2}</td>
-										<td>${vo.member_regdate}</td>
-										<td><img width="25px"
-											src="resources/uploadimg/thumb_${vo.member_profile}"></td>
+										<th>번호</th>
+										<th>아이디</th>
+										<th>비밀번호</th>
+										<th>이름</th>
+										<th>전화번호</th>
+										<th>이메일</th>
+										<th>우편번호</th>
+										<th>주소</th>
+										<th>상세주소</th>
+										<th>등록일</th>
+										<th>프로필</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<c:forEach var="vo" items="${vos}">
+										<tr>
+											<td><a href="m_selectOne.do?num=${vo.num}"><span
+													style="font-size: 10px;">${vo.num}</span></a></td>
+											<td>${vo.member_id}</td>
+											<td>${vo.member_pw}</td>
+											<td>${vo.member_name}</td>
+											<td>${vo.member_tel}</td>
+											<td>${vo.member_email}</td>
+											<td>${vo.member_zipcode}</td>
+											<td>${vo.member_address1}</td>
+											<td>${vo.member_address2}</td>
+											<td>${vo.member_regdate}</td>
+											<td><img width="25px"
+												src="resources/uploadimg/thumb_${vo.member_profile}"></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 						<!-- table{e} -->
-
 						<!-- pagination{s} -->
-
-						<div id="paginationBox">
+						<div id="paginationBox" class="d-flex justify-content-center">
 							<ul class="pagination">
 								<c:if test="${pagination.prev}">
 									<li class="page-item"><a class="page-link" href="#"
@@ -185,18 +167,13 @@
 										onClick="fn_next('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}', '${pagination.searchKey }', '${pagination.searchWord}')">Next</a></li>
 								</c:if>
 							</ul>
-
 						</div>
-
 						<!-- pagination{e} -->
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 
 
