@@ -56,6 +56,7 @@
 							row_number() over (partition by ORDER_NUM order by NUM) rn
 					from ORDER_DETAIL) OD on o.NUM = OD.ORDER_NUM and od.rn = 1
 				join PRODUCT p on od.PRODUCT_NUM = p.NUM
+				join MEMBER m on o.MEMBER_NUM = m.NUM
 		where 1 = 1
 		<if test="member_num != null">
 			and o.MEMBER_NUM = #{member_num}
