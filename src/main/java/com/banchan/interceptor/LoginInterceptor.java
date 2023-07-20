@@ -24,9 +24,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		log.info("preHandle()....{}", sPath);
 
 		String user_id = (String) session.getAttribute("user_id");
+		String sns_check = (String) session.getAttribute("sns_check");
 		log.info("preHandle()....user_id : {}", user_id);
+		log.info("preHandle()....sns_check : {}", sns_check);
 
-		if (sPath.equals("/m_selectAll.do")) {
+		if (sPath.equals("/m_selectAll.do") 
+				|| sPath.equals("/m_selectOne.do") 
+				|| sPath.equals("/m_update.do")) {
 			if (user_id == null) {
 				log.info("계정이 null입니다");
 				response.sendRedirect("SNS_Login.do");

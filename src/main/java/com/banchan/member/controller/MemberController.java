@@ -301,7 +301,7 @@ public class MemberController {
 			}
 			else {
 				session.setAttribute("user_id", vo2.getMember_id());
-				session.setAttribute("sns_check", 0);
+				session.setAttribute("sns_check", "email");
 				session.setAttribute("user_num", vo2.getNum());
 				return "redirect:.home";
 			} //user login check

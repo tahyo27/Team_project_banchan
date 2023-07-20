@@ -151,4 +151,10 @@ public class MemberDAOimpl implements MemberDAO {
 		return sqlSession.update("M_USER_DELETE", vo);
 	}
 
+	@Override
+	public MemberVO sns_selectOne(MemberVO vo) {
+		log.info("sns_selectOne()...{}", vo);
+		return sqlSession.selectOne("SNS_SELECT_ONE", vo);
+	}
+
 }

@@ -50,6 +50,12 @@
 			    console.log('ajax...imageUrl:'+ imageUrl);//{}
 			    // 이미지 요소에 URL 설정
 			    $('#profile_img').attr('src', imageUrl);
+			    
+			    if ("${sns_check}" === "sns") {
+			    	console.log('sns체크');
+			        $('#pw').attr('readonly', true);
+			        $('#name').attr('readonly', true);
+			    }
 				
 			},
 			error: function (xhr, status, error) {

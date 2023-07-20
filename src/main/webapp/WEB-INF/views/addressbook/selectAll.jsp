@@ -165,7 +165,7 @@
 						<td colspan="2"><input type="submit" class="btn btn-primary"
 							value="등록">
 							<button type="button" class="btn btn-secondary"
-								onclick="toggleForm()">취소</button></td>
+								onclick="hide_form()">취소</button></td>
 					</tr>
 				</table>
 			</form>

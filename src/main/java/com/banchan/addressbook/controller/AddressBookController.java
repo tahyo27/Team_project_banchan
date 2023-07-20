@@ -23,7 +23,7 @@ public class AddressBookController {
 	
 	@RequestMapping(value = "/ab_selectAll.do", method = RequestMethod.GET)
 	public String ab_selectAll(Model model, AddressBookVO vo) {
-		log.info("/ab_selectAll.do.....");
+		log.info("/ab_selectAll.do.....vo:{}", vo);
 
 		List<AddressBookVO> vos = service.selectAll(vo);
 		

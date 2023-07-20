@@ -44,6 +44,11 @@
 		resultType="com.banchan.member.model.MemberVO">
 		select * from member where num = #{num}
 	</select>
+	
+	<select id="SNS_SELECT_ONE"
+		resultType="com.banchan.member.model.MemberVO">
+		select * from member where member_id = #{member_id}
+	</select>
 
 	<select id="LOGIN"
 		resultType="com.banchan.member.model.MemberVO">

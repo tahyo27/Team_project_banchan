@@ -91,4 +91,8 @@ public class MemberService {
 	public int user_delete(MemberVO vo) {
 		return dao.user_delete(vo);
 	}
+	
+	public MemberVO sns_selectOne(MemberVO vo) {
+		return dao.sns_selectOne(vo);
+	}
 }

@@ -98,17 +98,23 @@ public class SNSLoginController {
 			int result = service.sns_insert(vo);
 			log.info("naverSNS 회원가입 result:{}", result);
 			if (result == 1) {
-				session.setAttribute("user_id", vo.getMember_name());
-				session.setAttribute("sns_check", 1);
-				session.setAttribute("user_num", vo.getNum());
+				log.info("회원가입 num체크 voNum:{}", vo.getNum());
+				MemberVO vo3 = service.sns_selectOne(vo);
+				log.info("sns vo3 불러오기:{}", vo3);
+				session.setAttribute("user_id", vo3.getMember_name());
+				session.setAttribute("sns_check", "sns");
+				session.setAttribute("user_num", vo3.getNum());
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("naver로그인 회원가입 되어있음");
-			session.setAttribute("user_id", vo.getMember_name());
-			session.setAttribute("sns_check", 1); //sns계정 체크용
-			session.setAttribute("user_num", vo.getNum());
+			log.info("회원가입 num체크 voNum:{}", vo.getNum());
+			MemberVO vo3 = service.sns_selectOne(vo);
+			log.info("sns vo3 불러오기:{}", vo3);
+			session.setAttribute("user_id", vo3.getMember_name());
+			session.setAttribute("sns_check", "sns"); //sns계정 체크용
+			session.setAttribute("user_num", vo3.getNum());
 		}
 	
 		model.addAttribute("name", vo.getMember_name());
@@ -136,17 +142,23 @@ public class SNSLoginController {
 			int result = service.sns_insert(vo);
 			log.info("googleSNS 회원가입 result:{}", result);
 			if (result == 1) {
-				session.setAttribute("user_id", vo.getMember_name());
-				session.setAttribute("sns_check", 1);
-				session.setAttribute("user_num", vo.getNum());
+				log.info("회원가입 num체크 voNum:{}", vo.getNum());
+				MemberVO vo3 = service.sns_selectOne(vo);
+				log.info("sns vo3 불러오기:{}", vo3);
+				session.setAttribute("user_id", vo3.getMember_name());
+				session.setAttribute("sns_check", "sns");
+				session.setAttribute("user_num", vo3.getNum());
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("google로그인 회원가입 되어있음");
-			session.setAttribute("user_id", vo.getMember_name());
-			session.setAttribute("sns_check", 1);
-			session.setAttribute("user_num", vo.getNum());
+			log.info("회원가입 num체크 voNum:{}", vo.getNum());
+			MemberVO vo3 = service.sns_selectOne(vo);
+			log.info("sns vo3 불러오기:{}", vo3);
+			session.setAttribute("user_id", vo3.getMember_name());
+			session.setAttribute("sns_check", "sns");
+			session.setAttribute("user_num", vo3.getNum());
 		}
 
 		model.addAttribute("name", vo.getMember_name());
@@ -173,17 +185,23 @@ public class SNSLoginController {
 			int result = service.sns_insert(vo);
 			log.info("kakaoSNS 회원가입 result:{}", result);
 			if (result == 1) {
-				session.setAttribute("user_id", vo.getMember_name());
-				session.setAttribute("sns_check", 1);
-				session.setAttribute("user_num", vo.getNum());
+				log.info("회원가입 num체크 voNum:{}", vo.getNum());
+				MemberVO vo3 = service.sns_selectOne(vo);
+				log.info("sns vo3 불러오기:{}", vo3);
+				session.setAttribute("user_id", vo3.getMember_name());
+				session.setAttribute("sns_check", "sns");
+				session.setAttribute("user_num", vo3.getNum());
 			} else {
 				return "redirect:SNS_Login.do";
 			}
 		} else {
 			log.info("kakao로그인 회원가입 되어있음");
-			session.setAttribute("user_id", vo.getMember_name());
-			session.setAttribute("sns_check", 1);
-			session.setAttribute("user_num", vo.getNum());
+			log.info("회원가입 num체크 voNum:{}", vo.getNum());
+			MemberVO vo3 = service.sns_selectOne(vo);
+			log.info("sns vo3 불러오기:{}", vo3);
+			session.setAttribute("user_id", vo3.getMember_name());
+			session.setAttribute("sns_check", "sns");
+			session.setAttribute("user_num", vo3.getNum());
 		}
 		model.addAttribute("name", vo.getMember_name());
 		model.addAttribute("email", vo.getMember_email());
