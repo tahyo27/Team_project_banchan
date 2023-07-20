@@ -103,7 +103,7 @@ public class MemberController {
 
 		model.addAttribute("vo2", vo2);
 
-		return ".member/selectOne";
+		return ".admin/member/selectOne";
 	}
 
 	@RequestMapping(value = "/m_update.do", method = RequestMethod.GET)
@@ -114,7 +114,7 @@ public class MemberController {
 
 		model.addAttribute("vo2", vo2);
 
-		return ".member/update";
+		return ".admin/member/update";
 	}
 
 	@RequestMapping(value = "/m_updateOK.do", method = RequestMethod.POST)
