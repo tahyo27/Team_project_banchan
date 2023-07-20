@@ -520,15 +520,13 @@ VALUES (SEQ_REVIEW.NEXTVAL, '꽈리멸치볶음', 'user002', '해먹기 귀찮�
 
 -------------------------------
 insert into question(qnum, title, content, writer)
-values (SEQ_QUESTION.nextval, '질문있습니다', '구매는 어떻게하나요', 'user001');
+values (SEQ_QUESTION.nextval, '배송문의', '배송은 얼마나 걸리나요?', 'user001');
 insert into question(qnum, title, content, writer)
-values (SEQ_QUESTION.nextval, '배송질문', '배송은 언제 오나요', 'user001');
+values (SEQ_QUESTION.nextval, '상품문의', '유통기한은 얼마나 되나요?', 'user001');
 insert into question(qnum, title, content, writer)
-values (SEQ_QUESTION.nextval, '주문질문', '배송중인가요?', 'user001');
+values (SEQ_QUESTION.nextval, '기타문의', '고객센터 번호가 어떻게 되나요?', 'user001');
 insert into question(qnum, title, content, writer)
-values (SEQ_QUESTION.nextval, '질문있어요', '맛있나요?', 'user001');
-insert into question(qnum, title, content, writer)
-values (SEQ_QUESTION.nextval, '전화번호가?', '대표번호가뭐죠?', 'user001');
+values (SEQ_QUESTION.nextval, '배송문의', '오늘 주문했는데 언제 배송되나요?', 'user001');
 insert into question(qnum, title, content, writer)
 values (SEQ_QUESTION.nextval, '상품문의', '고기원산지가 어디죠?', 'user002');
 insert into question(qnum, title, content, writer)
@@ -547,14 +545,20 @@ insert into question(qnum, title, content, writer)
 values (SEQ_QUESTION.nextval, '기타문의', '비건메뉴를 만들어주세요', 'user004');
 -------------------------------
 insert into answer(anum, qnum, content, writer)
-values (seq_answer.nextval, 1, '홈페이지에서 주문해주세요~', 'admin');
+values (seq_answer.nextval, 1, '배송은 2~3일 소요됩니다.', 'admin');
 insert into answer(anum, qnum, content, writer)
-values (seq_answer.nextval, 2, '주문시 2~3일 걸립니다', 'admin');
+values (seq_answer.nextval, 2, '냉장보관시 최대 일주일입니다.', 'admin');
 insert into answer(anum, qnum, content, writer)
-values (seq_answer.nextval, 3, '현재 배송준비중으로 확인됩니다', 'admin');
+values (seq_answer.nextval, 3, '010-1111-2222로 전화주시면 상담 도와드리겠습니다!', 'admin');
 insert into answer(anum, qnum, content, writer)
-values (seq_answer.nextval, 4, '맛있습니다!!', 'admin');
+values (seq_answer.nextval, 4, '오늘 출고될 것으로 확인됩니다.', 'admin');
 insert into answer(anum, qnum, content, writer)
-values (seq_answer.nextval, 5, '010-1111-2222입니다!', 'admin');
+values (seq_answer.nextval, 5, '호주산입니다', 'admin');
+insert into answer(anum, qnum, content, writer)
+values (seq_answer.nextval, 6, '관리에 소홀해 죄송합니다. 녹취확인 후 조치를 취하겠습니다.', 'admin');
+insert into answer(anum, qnum, content, writer)
+values (seq_answer.nextval, 7, '9시~18시까지입니다', 'admin');
+insert into answer(anum, qnum, content, writer)
+values (seq_answer.nextval, 8, '국내산', 'admin');
 
 commit;
