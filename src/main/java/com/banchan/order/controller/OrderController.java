@@ -18,6 +18,7 @@ import com.banchan.cart.service.CartService;
 import com.banchan.order.model.OrderVO;
 import com.banchan.order.model.SearchOrderVO;
 import com.banchan.order.service.OrderService;
+import com.banchan.question.model.PagingVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -106,8 +107,8 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/o_mypageOrders.do", method = RequestMethod.GET)
-	public String selectOrdersMypage(SearchOrderVO vo, Model model) {
-		log.info("/o_mypageOrders.do...{}", vo);
+	public String selectOrdersMypage(SearchOrderVO vo, Model model, PagingVO pagingVO) {
+		log.info("/o_mypageOrders.do...{}, {}", vo, pagingVO);
 
 		vo.setMember_num((Integer) session.getAttribute("user_num"));
 		if (vo.getStart_date() == null || "".equals(vo.getStart_date())) {
@@ -117,11 +118,21 @@ public class OrderController {
 			vo.setEnd_date(LocalDate.now().toString());
 		}
 
-		List<OrderVO> result = service.selectOrderList(vo);
+		int total = service.getOrderCount(vo);
+		if (pagingVO.getNowPage() == 0) {
+			pagingVO.setNowPage(1);
+		}
+		if (pagingVO.getCntPerPage() == 0) {
+			pagingVO.setCntPerPage(5);
+		}
+		pagingVO = new PagingVO(total, pagingVO.getNowPage(), pagingVO.getCntPerPage());
+
+		List<OrderVO> result = service.selectOrderList(vo, pagingVO);
 		log.info("{}", result);
 
 		model.addAttribute("vos", result);
 		model.addAttribute("search", vo);
+		model.addAttribute("paging", pagingVO);
 
 		return ".my/order/selectAll";
 	}
@@ -139,8 +150,8 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = "/o_adminOrders.do", method = RequestMethod.GET)
-	public String selectOrdersAdmin(SearchOrderVO vo, Model model) {
-		log.info("/o_adminOrders.do...{}", vo);
+	public String selectOrdersAdmin(SearchOrderVO vo, Model model, PagingVO pagingVO) {
+		log.info("/o_adminOrders.do...{}, {}", vo, pagingVO);
 
 		if (vo.getStart_date() == null || "".equals(vo.getStart_date())) {
 			vo.setStart_date(LocalDate.now().toString());
@@ -152,11 +163,21 @@ public class OrderController {
 			vo.setStatus(null);
 		}
 
-		List<OrderVO> result = service.selectOrderList(vo);
+		int total = service.getOrderCount(vo);
+		if (pagingVO.getNowPage() == 0) {
+			pagingVO.setNowPage(1);
+		}
+		if (pagingVO.getCntPerPage() == 0) {
+			pagingVO.setCntPerPage(5);
+		}
+		pagingVO = new PagingVO(total, pagingVO.getNowPage(), pagingVO.getCntPerPage());
+
+		List<OrderVO> result = service.selectOrderList(vo, pagingVO);
 		log.info("{}", result);
 
 		model.addAttribute("vos", result);
 		model.addAttribute("search", vo);
+		model.addAttribute("paging", pagingVO);
 
 		return ".admin/order/selectAll";
 	}

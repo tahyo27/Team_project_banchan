@@ -2,9 +2,12 @@ package com.banchan.order.model;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.banchan.question.model.PagingVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -76,9 +79,17 @@ public class OrderDAOimpl implements OrderDAO {
 	}
 
 	@Override
-	public List<OrderVO> selectOrderList(SearchOrderVO vo) {
-		log.info("selectOrderList()...{}", vo);
-		return sqlSession.selectList(NAMESPACE + "selectOrderList", vo);
+	public List<OrderVO> selectOrderList(SearchOrderVO vo, PagingVO pagingVO) {
+		log.info("selectOrderList()...{}, {}", vo, pagingVO);
+		RowBounds bounds = new RowBounds((pagingVO.getNowPage() - 1) * pagingVO.getCntPerPage(),
+				pagingVO.getCntPerPage());
+		return sqlSession.selectList(NAMESPACE + "selectOrderList", vo, bounds);
+	}
+
+	@Override
+	public int getOrderCount(SearchOrderVO vo) {
+		log.info("getOrderCount()...{}", vo);
+		return sqlSession.selectOne(NAMESPACE + "getOrderCount", vo);
 	}
 
 	@Override
