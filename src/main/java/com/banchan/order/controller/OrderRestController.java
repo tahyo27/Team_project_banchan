@@ -106,11 +106,11 @@ public class OrderRestController {
 	public Map<String, Integer> updateStatusOk(OrderVO vo) {
 		log.info("/updateStatusOk.do...{}", vo);
 
-		boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+		Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 
 		Map<String, Integer> map = new HashMap<String, Integer>();
 
-		if (!isAdmin && !"취소".equals(vo.getStatus())) {
+		if ((isAdmin == null || !isAdmin) && !"취소".equals(vo.getStatus())) {
 			map.put("result", 0);
 			return map;
 		}

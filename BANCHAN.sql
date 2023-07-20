@@ -372,25 +372,27 @@ ALTER TABLE "MEMBER"
 
 
 ----- INSERT -----
-DECLARE
-  v_uuid VARCHAR2(36);
 BEGIN
-  FOR i IN 1..1000 LOOP
-    v_uuid := SYS_GUID(); -- UUID 생성
-    
-    INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email, member_zipcode, member_address1, member_address2)
-    VALUES (seq_member.NEXTVAL, v_uuid, 'pw' || LPAD(i, 3, '0'), 'User' || LPAD(i, 3, '0'), '010-1234-' || LPAD(i, 2, '0'), 'user' || LPAD(i, 3, '0') || '@example.com', '1000', '경기도' || i, '성남시' || i);
-  END LOOP;
+    FOR i IN 1..1000
+        LOOP
+            INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email, member_zipcode,
+                                member_address1, member_address2)
+            VALUES (seq_member.NEXTVAL, 'id' || LPAD(i, 4, '0'), 'pw' || LPAD(i, 4, '0'), 'User' || LPAD(i, 4, '0'),
+                    '010-1234-' || LPAD(i, 4, '0'), 'user' || LPAD(i, 4, '0') || '@example.com', '1000', '경기도' || i,
+                    '성남시' || i);
+        END LOOP;
 END;
 
-INSERT INTO member (num, member_id, member_pw, member_name, member_tel, member_email, member_zipcode, member_address1, member_address2)
-VALUES (seq_member.NEXTVAL, 'user001', 'pw001', 'User001', '010-1234-01', 'example002@example.com', '1000', '경기도1', '성남시1');
-
-insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin', '1234');
-insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin1', '1234');
-insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin2', '1234');
-insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin3', '1234');
-insert into admin(num, admin_id, admin_pw) values (seq_admin.nextval, 'admin4', '1234');
+insert into admin(num, admin_id, admin_pw)
+values (seq_admin.nextval, 'admin', '1234');
+insert into admin(num, admin_id, admin_pw)
+values (seq_admin.nextval, 'admin1', '1234');
+insert into admin(num, admin_id, admin_pw)
+values (seq_admin.nextval, 'admin2', '1234');
+insert into admin(num, admin_id, admin_pw)
+values (seq_admin.nextval, 'admin3', '1234');
+insert into admin(num, admin_id, admin_pw)
+values (seq_admin.nextval, 'admin4', '1234');
 
 ------------
 INSERT INTO CATEGORY (NUM, CATEGORY_NAME)
@@ -560,5 +562,44 @@ insert into answer(anum, qnum, content, writer)
 values (seq_answer.nextval, 7, '9시~18시까지입니다', 'admin');
 insert into answer(anum, qnum, content, writer)
 values (seq_answer.nextval, 8, '국내산', 'admin');
+
+BEGIN
+    FOR i IN 1..1000
+        LOOP
+            insert into "ORDER" (NUM, MEMBER_NUM, RECEIVER_NAME, TEL, ZIPCODE, ADDRESS1, ADDRESS2, MEMO, ORDER_PRICE,
+                                 DELIVERY_FEE, DISCOUNT_COUPON, USE_POINT, TOTAL_PRICE)
+            select SEQ_ORDER.NEXTVAL,
+                   MOD(i, 20),
+                   A.RECEIVER_NAME,
+                   A.TEL,
+                   A.ZIPCODE,
+                   A.ADDRESS1,
+                   A.ADDRESS2,
+                   'memo' || LPAD(i, 3, '0'),
+                   (select PRODUCT_PRICE from PRODUCT where num = mod(i, 20)),
+                   2500,
+                   0,
+                   0,
+                   2500 + (select PRODUCT_PRICE from PRODUCT where num = mod(i, 20))
+            from (select MEMBER_NAME     as RECEIVER_NAME,
+                         MEMBER_TEL      as TEL,
+                         MEMBER_ZIPCODE  as ZIPCODE,
+                         MEMBER_ADDRESS1 as ADDRESS1,
+                         MEMBER_ADDRESS2 as ADDRESS2
+                  from MEMBER
+                  where NUM = MOD(i, 10)) A;
+        END LOOP;
+END;
+
+BEGIN
+    FOR i IN (select * from "ORDER")
+        LOOP
+            insert into ORDER_DETAIL (NUM, PRODUCT_NUM, ORDER_NUM, AMOUNT, PRICE)
+            select SEQ_ORDER_DETAIL.NEXTVAL, A.PRODUCT_NUM, i.NUM, A.AMOUNT, A.PRICE
+            from (select num as PRODUCT_NUM, 1 as AMOUNT, PRODUCT_PRICE as PRICE
+                  from product
+                  where NUM = i.MEMBER_NUM) A;
+        END LOOP;
+END;
 
 commit;

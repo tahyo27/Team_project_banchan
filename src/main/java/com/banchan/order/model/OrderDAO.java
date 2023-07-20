@@ -2,6 +2,8 @@ package com.banchan.order.model;
 
 import java.util.List;
 
+import com.banchan.question.model.PagingVO;
+
 public interface OrderDAO {
 	String NAMESPACE = "com.banchan.order.";
 
@@ -15,7 +17,9 @@ public interface OrderDAO {
 
 	public List<OrderVO> selectAll();
 
-	public List<OrderVO> selectOrderList(SearchOrderVO vo);
+	public List<OrderVO> selectOrderList(SearchOrderVO vo, PagingVO pagingVO);
+
+	public int getOrderCount(SearchOrderVO vo);
 
 	public int updateStatus(OrderVO vo);
 }
