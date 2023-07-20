@@ -112,7 +112,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:if test="${vo.status eq '배송준비중'}">
-						<button type="button" class="btn btn-danger btn-lg px-3" onclick="setOrderStatus(${vo.num})">취소</button>
+						<button type="button" class="btn btn-danger btn-lg px-3" onclick="setOrderStatus(${vo.num}, '취소')">취소</button>
 					</c:if>
 				</c:otherwise>
 			</c:choose>
