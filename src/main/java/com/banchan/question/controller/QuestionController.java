@@ -98,6 +98,19 @@ public class QuestionController {
 		return ".my/question/selectAll";
 	}
 	
+	@RequestMapping(value = "/admin_q_searchList.do", method = RequestMethod.GET)
+	public String admin_q_searchList(Model model,
+			String searchKey, String searchWord) {
+		log.info("q_searchList.do...");
+		log.info("searchKey:{}",searchKey);
+		log.info("searchWord:{}",searchWord);
+		
+		List<QuestionVO> vos = service.searchList(searchKey,searchWord);
+		model.addAttribute("vos", vos);
+		
+		return ".admin/question/selectAll";
+	}
+	
 	@RequestMapping(value = "/q_selectOne.do", method = RequestMethod.GET)
 	public String q_selectOne(QuestionVO vo, Model model) {
 		log.info("/q_selectOne.do...{}", vo);
@@ -115,6 +128,25 @@ public class QuestionController {
 		model.addAttribute("ans", ans);
 
 		return ".my/question/selectOne";
+	}
+	
+	@RequestMapping(value = "/admin_q_selectOne.do", method = RequestMethod.GET)
+	public String admin_q_selectOne(QuestionVO vo, Model model) {
+		log.info("/q_selectOne.do...{}", vo);
+
+		service.vcountUp(vo);
+		
+		QuestionVO vo2 = service.selectOne(vo);
+		model.addAttribute("vo2", vo2);
+		
+		AnswerVO cvo = new AnswerVO();
+		cvo.setQnum(vo.getQnum());
+		List<AnswerVO> ans = answerService.selectAll(cvo);
+		log.info("{}",ans);
+		
+		model.addAttribute("ans", ans);
+
+		return ".admin/question/selectOne";
 	}
 	
 	@RequestMapping(value = "/q_insert.do", method = RequestMethod.GET)
