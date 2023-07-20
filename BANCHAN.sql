@@ -529,7 +529,23 @@ insert into question(qnum, title, content, writer)
 values (SEQ_QUESTION.nextval, '질문있어요', '맛있나요?', 'user001');
 insert into question(qnum, title, content, writer)
 values (SEQ_QUESTION.nextval, '전화번호가?', '대표번호가뭐죠?', 'user001');
-
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '상품문의', '고기원산지가 어디죠?', 'user002');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '불만문의', '상담원이 불친절합니다', 'user002');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '기타문의', '고객센터 영업시간이 몇시부터 몇시까지인가요?', 'user002');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '상품문의', '김치원산지가 어디죠?', 'user003');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '불만문의', '고객센터 전화연결이 안됩니다', 'user003');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '기타문의', '사이트가 접속시 오류가 뜹니다', 'user003');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '배송문의', '배송비는 무료인가요?', 'user004');
+insert into question(qnum, title, content, writer)
+values (SEQ_QUESTION.nextval, '기타문의', '비건메뉴를 만들어주세요', 'user004');
+-------------------------------
 insert into answer(anum, qnum, content, writer)
 values (seq_answer.nextval, 1, '홈페이지에서 주문해주세요~', 'admin');
 insert into answer(anum, qnum, content, writer)
