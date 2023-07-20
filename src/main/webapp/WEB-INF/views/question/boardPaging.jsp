@@ -30,14 +30,26 @@ a {
 
 <div class="container py-5">
 	<div style="float: left;">
-		<form action="q_searchList.do">
-			<select name="searchKey" id="searchKey">
-				<option value="title">title</option>
-				<option value="content">content</option>
-				<option value="writer">writer</option>
-			</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
-			<input type="submit" class="btn btn-success btn-lg px-3" value="검색">
-		</form>
+		<c:if test="${user_id ne 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
+			<form action="q_searchList.do">
+				<select name="searchKey" id="searchKey">
+					<option value="title">title</option>
+					<option value="content">content</option>
+					<option value="writer">writer</option>
+				</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
+				<input type="submit" class="btn btn-success btn-lg px-3" value="검색">
+			</form>
+		</c:if>
+		<c:if test="${user_id eq 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
+			<form action="admin_q_searchList.do">
+				<select name="searchKey" id="searchKey">
+					<option value="title">title</option>
+					<option value="content">content</option>
+					<option value="writer">writer</option>
+				</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
+				<input type="submit" class="btn btn-success btn-lg px-3" value="검색">
+			</form>
+		</c:if>
 	</div>
 	<div style="float: right;">
 		<select id="cntPerPage" name="sel" onchange="selChange()">
@@ -69,14 +81,26 @@ a {
 		</thead>
 		<tbody>
 		<c:forEach var="list" items="${viewAll}">
-			<tr>
-				<td><a href="q_selectOne.do?qnum=${list.qnum}">${list.qnum}</a></td>
-				<td>${list.title}</td>
-				<td>${list.content}</td>
-				<td>${list.writer}</td>
-				<td>${list.wdate}</td>
-				<td>${list.vcount}</td>
-			</tr>
+			<c:if test="${user_id ne 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
+				<tr>
+					<td><a href="q_selectOne.do?qnum=${list.qnum}">${list.qnum}</a></td>
+					<td>${list.title}</td>
+					<td>${list.content}</td>
+					<td>${list.writer}</td>
+					<td>${list.wdate}</td>
+					<td>${list.vcount}</td>
+				</tr>
+			</c:if>
+			<c:if test="${user_id eq 'admin'}"> <!-- 관리자가 로그인한경우 -->
+				<tr>
+					<td><a href="admin_q_selectOne.do?qnum=${list.qnum}">${list.qnum}</a></td>
+					<td>${list.title}</td>
+					<td>${list.content}</td>
+					<td>${list.writer}</td>
+					<td>${list.wdate}</td>
+					<td>${list.vcount}</td>
+				</tr>
+			</c:if>
 		</c:forEach>
 		</tbody>
 	</table>
