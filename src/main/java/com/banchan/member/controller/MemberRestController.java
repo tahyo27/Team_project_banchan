@@ -1,5 +1,7 @@
 package com.banchan.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ public class MemberRestController {
 	
 	@Autowired
 	MemberService service;
+	
+	@Autowired
+	HttpSession session;
 	
 	@Autowired
 	private MailSendService mailService;
@@ -54,5 +59,25 @@ public class MemberRestController {
 		log.info("이메일 인증 이메일 : "+ email);
 		return mailService.joinEmail(email);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/m_user_deleteOK.do", method = RequestMethod.POST)
+	public String m_user_deleteOK(MemberVO vo) {
+		log.info("/m_user_deleteOK.do....vo:{}", vo);
+		String msg ="";
+		int result = service.user_delete(vo);
+		log.info("m_user_deleteOK result:{}", result);
+		log.info("/m_user_deleteOK.do....delete vo:{}", vo);
+		
+		if (result == 1) {
+			session.invalidate();
+			msg="성공";
+		} else {
+			msg="실패";
+		}
+		return msg;
+	}
+	
+	
 
 }//end class

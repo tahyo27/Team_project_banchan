@@ -19,20 +19,10 @@ public class MemberVO {
 	private String member_address2;
 	private String member_tel;
 	private String member_nickname;
+	private Timestamp member_useryn;
 	private Timestamp member_regdate;
 	private String member_profile;
 	private MultipartFile file;
 	
 	
-//	NUM
-//	MEMBER_ID
-//	MEMBER_PW
-//	MEMBER_NAME
-//	MEMBER_EMAIL
-//	MEMBER_ZIPCODE
-//	MEMBER_ADDRESS1
-//	MEMBER_ADDRESS2
-//	MEMBER_TEL
-//	MEMBER_NICKNAME
-//	MEMBER_PROFILE
 }

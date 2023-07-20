@@ -160,4 +160,10 @@
 		member(num,member_id,member_pw,member_name,member_email)
 		values(seq_member.nextval,#{member_id},#{member_pw},#{member_name},#{member_email})
 	</insert>
+	
+	<update id="M_USER_DELETE"
+		parameterType="com.banchan.member.model.MemberVO">
+		update member set member_useryn=sysdate
+		where num = #{num}
+	</update>
 </mapper>

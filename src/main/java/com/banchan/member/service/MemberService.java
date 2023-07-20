@@ -87,4 +87,8 @@ public class MemberService {
 	public List<MemberVO> searchList(Paging paging) {
 		return dao.selectList(paging);
 	}
+	
+	public int user_delete(MemberVO vo) {
+		return dao.user_delete(vo);
+	}
 }

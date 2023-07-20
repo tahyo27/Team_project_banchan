@@ -4,6 +4,8 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -286,22 +288,30 @@ public class MemberController {
 
 		if (result == 0) {
 			MemberVO vo2 = service.login(vo);
-			log.info("Member login vo3...{}", vo2);
+			log.info("Member login vo2...{}", vo2);
 
 			if (vo2 == null) {
 				return "redirect:SNS_Login.do?message=fail"; // 아이디 비번 다르면 메세지에 실패 넣음
-			} else {
+			} else if (vo2.getMember_useryn() != null) {
+				 Timestamp timestamp = vo2.getMember_useryn();
+				 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				 String dateString = sdf.format(timestamp);
+				 log.info("변환된 useryn() String:" + dateString);
+				return "redirect:SNS_Login.do?message=" + dateString;
+			}
+			else {
 				session.setAttribute("user_id", vo2.getMember_id());
 				session.setAttribute("sns_check", 0);
 				session.setAttribute("user_num", vo2.getNum());
 				return "redirect:.home";
-			}
-		} else {
+			} //user login check
+		} 
+		else {
 			log.info("관리자 계정으로 로그인헀습니다.");
 			session.setAttribute("user_id", vo.getMember_id());
 			session.setAttribute("isAdmin", true);
 			return "redirect:adminpage.do";
-		}
+		}//admin check
 
 	}// end loginOK
 
@@ -320,5 +330,8 @@ public class MemberController {
 
 		return ".my/member/user_update";
 	}
+	
+	
+	
 
 }// end class

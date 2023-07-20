@@ -49,9 +49,16 @@
 
 	function mailCheck() {
 		const email = $('#userEmail').val(); // 이메일 주소값 얻어오기!
+		
+	    if (email.trim() === '') {
+		   alert('이메일을 입력해주세요.');
+		   return;
+		 }
 		console.log('완성된 이메일 : ' + email); // 이메일 오는지 확인
 		const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
-
+		
+		$('#userEmail').attr('readonly', true);
+	
 		$.ajax({
 			url : "mailCheck.do?email=" + email,
 			method : 'GET',
@@ -61,7 +68,10 @@
 				checkInput.attr('disabled', false); //인증번호 입력칸 활성화
 				code = data;
 				alert('인증번호가 전송되었습니다.')
-			}
+			},
+			 error: function () {
+				 $('#userEmail').attr('readonly', false);
+		    }
 		}); // end ajax
 	}; // end send email
 

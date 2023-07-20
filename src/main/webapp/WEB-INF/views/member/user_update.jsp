@@ -21,6 +21,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
+	var userNum;
 	$(function () {
 		$.ajax({
 			url: "m_json_selectOne.do",
@@ -28,6 +29,8 @@
 			method: 'GET',//default get
 			dataType: 'json', //xml,text
 			success: function (vo2) {
+				userNum = vo2.num;
+				console.log('userNum:', userNum);
 				console.log('ajax...success:', vo2);//{}
 				$('#span_id').text(vo2.member_id);
 				$('#span_email').text(vo2.member_email);
@@ -66,6 +69,23 @@
 		$("#member_address2").focus();
 	};
 	
+	function MemberDelete() {
+		console.log('userNum:', userNum);
+		$.ajax({
+			url : 'm_user_deleteOK.do',
+			data : {
+				num : userNum
+			},
+			method : 'POST',
+			success : function(response) {
+				console.log('Delete successful');
+				window.location.href = ".home";
+			},
+			error : function(xhr, status, error) {
+				console.error('Delete failed:', error);
+			}
+		});
+	};
 </script>
 </head>
 <body>
@@ -156,6 +176,11 @@
 				</div>
 				<input type="hidden" name="check" value="user_update">
 			</form>
+			<div class="form-group row" style="margin-top: 20px;">
+					<div class="offset-sm-3 col-sm-9">
+						<button onClick="MemberDelete()">회원탈퇴</button>
+					</div>
+			</div>
 		</div>
 	</div>
 

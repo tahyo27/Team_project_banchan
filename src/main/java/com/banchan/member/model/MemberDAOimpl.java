@@ -145,4 +145,10 @@ public class MemberDAOimpl implements MemberDAO {
 		return sqlSession.selectOne(key, "%" + searchWord + "%");
 	}
 
+	@Override
+	public int user_delete(MemberVO vo) {
+		log.info("user_delete()...vo:{}", vo);
+		return sqlSession.update("M_USER_DELETE", vo);
+	}
+
 }
