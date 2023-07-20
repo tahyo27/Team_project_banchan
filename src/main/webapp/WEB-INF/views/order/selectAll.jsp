@@ -39,6 +39,9 @@
 			<tr>
 				<th>주문번호</th>
 				<th>주문일자</th>
+				<c:if test="${isAdmin}">
+					<th>주문자</th>
+				</c:if>
 				<th>상품정보</th>
 				<th>총결제금액</th>
 				<th>주문상태</th>
@@ -46,9 +49,12 @@
 		</thead>
 		<tbody id="vos">
 			<c:forEach var="vo" items="${vos}">
-				<tr onclick="location.href='o_mypageOrder.do?num=${vo.num}'">
-					<td>${vo.num}</td>
+				<tr>
+					<td><a href="o_mypageOrder.do?num=${vo.num}">${vo.num}</a></td>
 					<td>${vo.order_date}</td>
+					<c:if test="${isAdmin}">
+						<td><a href="m_selectOne.do?num=${vo.member_num}">${vo.member_name}(${vo.member_id})</a></td>
+					</c:if>
 					<td>${vo.product_name} 포함 총 ${vo.count}건</td>
 					<td>${vo.total_price}</td>
 					<td>${vo.status}</td>
@@ -56,7 +62,7 @@
 			</c:forEach>
 			<c:if test="${empty vos}">
 				<tr>
-					<td colspan="5" class="text-center">상품주문내역이 없습니다.</td>
+					<td colspan="6" class="text-center">상품주문내역이 없습니다.</td>
 				</tr>
 			</c:if>
 		</tbody>

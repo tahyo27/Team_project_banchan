@@ -8,9 +8,12 @@ import lombok.Data;
 @Data
 public class OrderVO {
 	private int num;
-	private int member_num;
 	private Date order_date;
 	private String status;
+
+	private int member_num;
+	private String member_id;
+	private String member_name;
 
 	private String receiver_name;
 	private String tel;

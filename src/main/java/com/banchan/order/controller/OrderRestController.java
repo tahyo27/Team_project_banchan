@@ -102,19 +102,18 @@ public class OrderRestController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/cancleOk.do", method = RequestMethod.POST)
-	public Map<String, Integer> cancleOk(OrderVO vo) {
-		log.info("/cancleOk.do...{}", vo);
+	@RequestMapping(value = "/updateStatusOk.do", method = RequestMethod.POST)
+	public Map<String, Integer> updateStatusOk(OrderVO vo) {
+		log.info("/updateStatusOk.do...{}", vo);
+
+		boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 
 		Map<String, Integer> map = new HashMap<String, Integer>();
 
-		OrderVO order = service.selectOne(vo);
-		if (!"배송준비중".equals(order.getStatus())) {
+		if (!isAdmin && !"취소".equals(vo.getStatus())) {
 			map.put("result", 0);
 			return map;
 		}
-
-		vo.setStatus("취소");
 
 		int result = service.updateStatus(vo);
 

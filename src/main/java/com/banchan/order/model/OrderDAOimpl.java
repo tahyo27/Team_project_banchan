@@ -18,20 +18,44 @@ public class OrderDAOimpl implements OrderDAO {
 	@Override
 	public int insert(OrderVO vo) {
 		log.info("insert()...{}", vo);
-		return sqlSession.insert(NAMESPACE + "insertOrder", vo)
-				+ sqlSession.insert(NAMESPACE + "insertOrderDetail", vo);
+		int flag = 0;
+
+		try {
+			flag = sqlSession.insert(NAMESPACE + "insertOrder", vo)
+					+ sqlSession.insert(NAMESPACE + "insertOrderDetail", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
 	}
 
 	@Override
 	public int update(OrderVO vo) {
 		log.info("update()...{}", vo);
-		return sqlSession.update(NAMESPACE + "update", vo);
+		int flag = 0;
+
+		try {
+			flag = sqlSession.update(NAMESPACE + "update", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
 	}
 
 	@Override
 	public int delete(OrderVO vo) {
 		log.info("delete()...{}", vo);
-		return sqlSession.delete(NAMESPACE + "delete", vo);
+		int flag = 0;
+
+		try {
+			flag = sqlSession.delete(NAMESPACE + "delete", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
 	}
 
 	@Override
@@ -60,7 +84,15 @@ public class OrderDAOimpl implements OrderDAO {
 	@Override
 	public int updateStatus(OrderVO vo) {
 		log.info("updateStatus()...{}", vo);
-		return sqlSession.update(NAMESPACE + "updateStatus", vo);
+		int flag = 0;
+
+		try {
+			flag = sqlSession.update(NAMESPACE + "updateStatus", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return flag;
 	}
 
 }

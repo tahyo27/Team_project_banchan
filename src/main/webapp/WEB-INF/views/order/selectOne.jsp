@@ -97,20 +97,38 @@
 	</table>
 	<div class="row">
 		<div class="col text-end mt-2">
-			<c:if test="${vo.status eq '배송준비중'}">
-				<button type="button" class="btn btn-danger btn-lg px-3" onclick="cancleOrder(${vo.num})">취소</button>
-			</c:if>
+			<c:choose>
+				<c:when test="${isAdmin}">
+					<c:if test="${vo.status eq '배송준비중'}">
+						<button type="button" class="btn btn-success btn-lg px-3" onclick="setOrderStatus(${vo.num}, '발송처리')">발송처리</button>
+						<button type="button" class="btn btn-success btn-lg px-3" onclick="setOrderStatus(${vo.num}, '판매취소')">판매취소</button>
+					</c:if>
+					<c:if test="${vo.status eq '반품요청'}">
+						<button type="button" class="btn btn-success btn-lg px-3" onclick="setOrderStatus(${vo.num}, '반품처리')">반품처리</button>
+					</c:if>
+					<c:if test="${vo.status eq '교환요청'}">
+						<button type="button" class="btn btn-success btn-lg px-3" onclick="setOrderStatus(${vo.num}, '교환처리')">교환처리</button>
+					</c:if>
+				</c:when>
+				<c:otherwise>
+					<c:if test="${vo.status eq '배송준비중'}">
+						<button type="button" class="btn btn-danger btn-lg px-3" onclick="setOrderStatus(${vo.num})">취소</button>
+					</c:if>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </section>
 <script type="text/javascript">
-	async function cancleOrder(num) {
+	async function setOrderStatus(num, status) {
 		console.log('order.num:', num);
+		console.log('order.status:', status);
 
 		const formData = new FormData();
 		formData.append('num', num);
+		formData.append('status', status);
 
-		let response = await fetch('order/cancleOk.do', {
+		let response = await fetch('order/updateStatusOk.do', {
 			method: 'POST',
 			body: formData
 		});
@@ -119,10 +137,10 @@
 		console.log(result);
 
 		if (result.result > 0) {
-			alert('주문 취소가 완료되었습니다.');
+			alert('주문 상태 변경이 완료되었습니다.');
 			location.href = 'o_mypageOrder.do?num=' + num;
 		} else {
-			alert('주문 취소가 실패되었습니다.');
+			alert('주문 상태 변경이 실패되었습니다.');
 		}
 	}
 </script>
