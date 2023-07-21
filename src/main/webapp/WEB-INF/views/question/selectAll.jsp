@@ -14,7 +14,7 @@ a {
 <section class="container tab-content">
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
-		<h1 class="h1">검색글</h1>
+		<h1 class="h1">검색결과</h1>
 	</div>
 </div>
 
@@ -22,7 +22,7 @@ a {
 	<div style="float: left;">
 		<form action="q_searchList.do">
 			<select name="searchKey" id="searchKey">
-				<option value="title">제목</option>
+				<option value="title">제목만</option>
 				<option value="content">내용</option>
 				<option value="writer">작성자</option>
 			</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
@@ -34,7 +34,7 @@ a {
 		<thead>
 			<tr>
 				<th>글번호</th>
-				<th>질문</th>
+				<th>제목</th>
 				<th>내용</th>
 				<th>작성자</th>
 				<th>작성날짜</th>

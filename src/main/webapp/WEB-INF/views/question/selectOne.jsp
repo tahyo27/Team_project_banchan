@@ -14,7 +14,7 @@ a {
 <section class="container tab-content">
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
-		<h1 class="h1">질문정보</h1>
+		<h1 class="h1">질문</h1>
 	</div>
 </div>
 
@@ -87,7 +87,7 @@ a {
 </c:if>
 <div class="row text-center pt-5 pb-3">
 	<div class="col-lg-6 m-auto">
-		<h1 class="h1">답변목록 ${user_id }</h1>
+		<h1 class="h1">답변 ${user_id }</h1>
 	</div>
 </div>
 <div class="container py-5">
