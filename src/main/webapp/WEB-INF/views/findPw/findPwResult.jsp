@@ -21,13 +21,13 @@
 		count--;
 		if (count < 0) {
 			clearInterval(countdown);
-			window.location.href = "home";
+			window.location.href = ".home";
 		}
 	}, 1000); // 1초마다 카운트 다운
 
 	window.onload = function() {
 		setTimeout(function() {
-			window.location.href = "home";
+			window.location.href = ".home";
 		}, 5000); // 5초 후에 "home" 페이지로 이동
 	};
 </script>
