@@ -7,12 +7,21 @@
 <meta charset="UTF-8">
 <title>AddressBook selectAll TEST</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#showFormButton').click(function() {
@@ -97,10 +106,10 @@
 }
 
 .table td {
-	vertical-align: middle;
+	text-align: center;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .roboto_font {
@@ -176,7 +185,7 @@
 						<th>우편번호</th>
 						<th>주소</th>
 						<th>상세주소</th>
-						<th>전화번호</th>
+						<th>전화</th>
 						<th>기본</th>
 						<th></th>
 					</tr>
@@ -189,7 +198,13 @@
 							<td>${vo.ab_address1}</td>
 							<td>${vo.ab_address2}</td>
 							<td>${vo.ab_tel}</td>
-							<td>${vo.ab_base}</td>
+							<td>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox"
+										${vo.ab_base == 1 ? 'checked' : ''} disabled> <label
+										class="form-check-label"></label>
+								</div>
+							</td>
 							<td>
 								<button type="button" class="btn btn-sm btn-primary custom-btn "
 									onclick="baseUpdate(${vo.num})">
@@ -199,6 +214,8 @@
 									onclick="baseDelete(${vo.num})" style="margin: 2px auto;">
 									<span class="small">삭제</span>
 								</button>
+
+								</div>
 							</td>
 						</tr>
 					</c:forEach>

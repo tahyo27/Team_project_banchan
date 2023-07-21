@@ -55,6 +55,7 @@
 			    	console.log('sns체크');
 			        $('#pw').attr('readonly', true);
 			        $('#name').attr('readonly', true);
+			        $('#span_id').css('display', 'none');
 			    }
 				
 			},
