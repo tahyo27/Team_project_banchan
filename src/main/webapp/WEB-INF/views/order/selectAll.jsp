@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="selectOrders" value="${isAdmin ? 'o_adminOrders.do' : 'o_mypageOrders.do'}" />
+<c:set var="selectOrder" value="${isAdmin ? 'o_adminOrder.do' : 'o_mypageOrder.do'}" />
 <section class="container tab-content">
 	<h3>주문목록</h3>
 	<form action="${selectOrders}" method="get">
@@ -60,7 +61,7 @@
 		<tbody id="vos">
 			<c:forEach var="vo" items="${vos}">
 				<tr>
-					<td><a href="o_mypageOrder.do?num=${vo.num}">${vo.num}</a></td>
+					<td><a href="${selectOrder}?num=${vo.num}">${vo.num}</a></td>
 					<td>${vo.order_date}</td>
 					<c:if test="${isAdmin}">
 						<td><a href="m_selectOne.do?num=${vo.member_num}">${vo.member_name}(${vo.member_id})</a>
