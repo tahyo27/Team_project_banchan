@@ -47,7 +47,7 @@
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
 		<beans:constructor-arg
-			value="http://multi3team.kro.kr:8080/banchan/naver_callback" />
+			value="http://localhost:8090/banchan/naver_callback" />
 	</beans:bean>
 
 	<beans:bean id="naverSns" class="com.banchan.sns.SnsValue">
@@ -66,7 +66,7 @@
 	</beans:bean>
 	<beans:bean id="kakaoRedirectUrl" class="java.lang.String">
 		<beans:constructor-arg
-			value="http://multi3team.kro.kr:8080/banchan/kakao_callback" />
+			value="http://localhost:8090/banchan/kakao_callback" />
 	</beans:bean>
 
 	<beans:bean id="kakaoSns" class="com.banchan.sns.SnsValue">
@@ -88,7 +88,7 @@
 	</beans:bean>
 	<beans:bean id="googleRedirectUrl" class="java.lang.String">
 		<beans:constructor-arg
-			value="http://multi3team.kro.kr:8080/banchan/google_callback" />
+			value="http://localhost:8090/banchan/google_callback" />
 	</beans:bean>
 
 	<beans:bean id="googleSns"

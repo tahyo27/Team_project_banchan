@@ -56,8 +56,11 @@
 			        $('#pw').attr('readonly', true);
 			        $('#name').attr('readonly', true);
 			        $('#span_id').css('display', 'none');
+			        $('#memberDeleteBtn').on('click', SnsMemberDelete);
+			    } else {
+			    	$('#memberDeleteBtn').on('click', MemberDelete);
 			    }
-				
+
 			},
 			error: function (xhr, status, error) {
 				console.log('xhr.status:', xhr.status);
@@ -85,7 +88,25 @@
 			},
 			method : 'POST',
 			success : function(response) {
-				console.log('Delete successful');
+				console.log('Email Delete successful');
+				window.location.href = ".home";
+			},
+			error : function(xhr, status, error) {
+				console.error('Delete failed:', error);
+			}
+		});
+	};
+	
+	function SnsMemberDelete() {
+		console.log('userNum:', userNum);
+		$.ajax({
+			url : 'm_sns_deleteOK.do',
+			data : {
+				num : userNum
+			},
+			method : 'POST',
+			success : function(response) {
+				console.log('SNS Delete successful');
 				window.location.href = ".home";
 			},
 			error : function(xhr, status, error) {
@@ -185,7 +206,7 @@
 			</form>
 			<div class="form-group row" style="margin-top: 20px;">
 					<div class="offset-sm-3 col-sm-9">
-						<button onClick="MemberDelete()">회원탈퇴</button>
+						<button id="memberDeleteBtn">회원탈퇴</button>
 					</div>
 			</div>
 		</div>

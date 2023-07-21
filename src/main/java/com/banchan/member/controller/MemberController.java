@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -238,7 +239,7 @@ public class MemberController {
 	@RequestMapping(value = "/m_deleteOK.do", method = RequestMethod.GET)
 	public String m_deleteOK(MemberVO vo) {
 		log.info("/m_deleteOK.do");
-
+		
 		int result = service.delete(vo);
 
 		if (result == 1) {

@@ -26,6 +26,14 @@ font-family: 'Roboto', sans-serif;
 font-weight: 400;
 }
 </style>
+<script type="text/javascript">
+	var msg = "${msg}";
+
+	if (msg != "") {
+		alert(msg);
+		window.location.href = "findPwView.do";
+	}
+</script>
 </head>
 <body>
 	<div class="container">

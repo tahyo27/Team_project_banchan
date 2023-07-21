@@ -78,6 +78,24 @@ public class MemberRestController {
 		return msg;
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/m_sns_deleteOK.do", method = RequestMethod.POST)
+	public String m_sns_deleteOK(MemberVO vo) {
+		log.info("/m_sns_deleteOK.do....vo:{}", vo);
+		String msg ="";
+		int result = service.delete(vo);
+		log.info("m_sns_deleteOK result:{}", result);
+		log.info("/m_sns_deleteOK.do....delete vo:{}", vo);
+		
+		if (result == 1) {
+			session.invalidate();
+			msg="성공";
+		} else {
+			msg="실패";
+		}
+		return msg;
+	}
+	
 	
 
 }//end class
