@@ -46,7 +46,7 @@
 				$('#member_profile').val(vo2.member_profile);
 				
 				// 이미지 URL 처리
-			    var imageUrl = "resources/uploadimg/" + vo2.member_profile;
+			    var imageUrl = "resources/uploadimg/thumb_"+ vo2.member_profile;
 			    console.log('ajax...imageUrl:'+ imageUrl);//{}
 			    // 이미지 요소에 URL 설정
 			    $('#profile_img').attr('src', imageUrl);
@@ -164,7 +164,7 @@
 				<div class="form-group row" style="margin-top: 10px;">
 					<label for="profile_img" class="col-sm-3 col-form-label">현재 프로필</label>
 					<div class="col-sm-9">
-						<img width="60px" src="" id="profile_img">
+						<img width="35px" src="" id="profile_img">
 					</div>
 				</div>
 				<div class="form-group row" style="margin-top: 10px;">

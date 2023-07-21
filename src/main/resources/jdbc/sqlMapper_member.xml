@@ -12,7 +12,7 @@
 		ORDER BY num DESC
 		) m WHERE rownum <![CDATA[<=]]>
 		#{startList} + #{listSize}
-		) WHERE rnum <![CDATA[>=]]>
+		) WHERE rnum <![CDATA[>]]>
 		#{startList}
 	</select>
 
@@ -74,7 +74,7 @@
 		ORDER BY num DESC
 		) m WHERE rownum <![CDATA[<=]]>
 		#{startList} + #{listSize}
-		) WHERE rnum <![CDATA[>=]]>
+		) WHERE rnum <![CDATA[>]]>
 		#{startList}
 
 	</select>
@@ -89,7 +89,7 @@
 		ORDER BY num DESC
 		) m WHERE rownum <![CDATA[<=]]>
 		#{startList} + #{listSize}
-		) WHERE rnum <![CDATA[>=]]>
+		) WHERE rnum <![CDATA[>]]>
 		#{startList}
 	</select>
 
@@ -104,7 +104,7 @@
 		) m WHERE
 		rownum <![CDATA[<=]]>
 		#{startList} + #{listSize}
-		) WHERE rnum <![CDATA[>=]]>
+		) WHERE rnum <![CDATA[>]]>
 		#{startList}
 	</select>
 

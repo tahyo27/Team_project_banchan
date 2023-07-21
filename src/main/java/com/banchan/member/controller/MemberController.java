@@ -141,9 +141,9 @@ public class MemberController {
 
 			//// create thumbnail image/////////
 			BufferedImage original_buffer_img = ImageIO.read(f);
-			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+			BufferedImage thumb_buffer_img = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
-			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
+			graphic.drawImage(original_buffer_img, 0, 0, 100, 100, null);
 
 			File thumb_file = new File(realPath + "/thumb_" + vo.getMember_profile());
 			String formatName = vo.getMember_profile().substring(vo.getMember_profile().lastIndexOf(".") + 1);
@@ -213,9 +213,9 @@ public class MemberController {
 
 			//// create thumbnail image/////////
 			BufferedImage original_buffer_img = ImageIO.read(f);
-			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+			BufferedImage thumb_buffer_img = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
-			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
+			graphic.drawImage(original_buffer_img, 0, 0, 100, 100, null);
 
 			File thumb_file = new File(realPath + "/thumb_" + vo.getMember_profile());
 			String formatName = vo.getMember_profile().substring(vo.getMember_profile().lastIndexOf(".") + 1);

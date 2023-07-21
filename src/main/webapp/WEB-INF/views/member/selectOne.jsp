@@ -6,7 +6,7 @@
 			<thead>
 				<tr>
 					<td colspan="10" class="text-center">
-						<img width="300px" src="resources/uploadimg/${vo2.member_profile}">
+						<img width="100px" src="resources/uploadimg/thumb_${vo2.member_profile}">
 					</td>
 				</tr>
 			</thead>
