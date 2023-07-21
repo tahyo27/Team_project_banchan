@@ -33,9 +33,9 @@ a {
 		<c:if test="${user_id ne 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
 			<form action="q_searchList.do">
 				<select name="searchKey" id="searchKey">
-					<option value="title">title</option>
-					<option value="content">content</option>
-					<option value="writer">writer</option>
+					<option value="title">제목만</option>
+					<option value="content">내용</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
 				<input type="submit" class="btn btn-success btn-lg px-3" value="검색">
 			</form>
@@ -43,9 +43,9 @@ a {
 		<c:if test="${user_id eq 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
 			<form action="admin_q_searchList.do">
 				<select name="searchKey" id="searchKey">
-					<option value="title">title</option>
-					<option value="content">content</option>
-					<option value="writer">writer</option>
+					<option value="title">제목만</option>
+					<option value="content">내용</option>
+					<option value="writer">작성자</option>
 				</select> <input type="text" name="searchWord" id="searchWord" placeholder="검색어입력">
 				<input type="submit" class="btn btn-success btn-lg px-3" value="검색">
 			</form>
@@ -72,8 +72,8 @@ a {
 		<thead>
 			<tr>
 				<th>글번호</th>
-				<th>질문</th>
-				<th>내용</th>
+				<th>제목</th>
+<!-- 				<th>내용</th> -->
 				<th>작성자</th>
 				<th>작성날짜</th>
 				<th>조회수</th>
@@ -85,7 +85,7 @@ a {
 				<tr>
 					<td><a href="q_selectOne.do?qnum=${list.qnum}">${list.qnum}</a></td>
 					<td>${list.title}</td>
-					<td>${list.content}</td>
+<%-- 					<td>${list.content}</td> --%>
 					<td>${list.writer}</td>
 					<td>${list.wdate}</td>
 					<td>${list.vcount}</td>
@@ -95,7 +95,7 @@ a {
 				<tr>
 					<td><a href="admin_q_selectOne.do?qnum=${list.qnum}">${list.qnum}</a></td>
 					<td>${list.title}</td>
-					<td>${list.content}</td>
+<%-- 					<td>${list.content}</td> --%>
 					<td>${list.writer}</td>
 					<td>${list.wdate}</td>
 					<td>${list.vcount}</td>
@@ -113,8 +113,31 @@ a {
 		</div>
 	</div>
 	</c:if>
-	
 	<div style="display: block; text-align: center;">
+	
+	<c:if test="${user_id eq 'admin'}"> <!-- 관리자가 로그인한경우 -->
+		<c:if test="${paging.startPage != 1 }">
+			<a
+				href="admin_boardList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach var="p" begin="${paging.startPage }"
+			end="${paging.endPage }">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a
+						href="admin_boardList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a
+				href="boardList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</c:if>
+	<c:if test="${user_id ne 'admin'}"> <!-- 일반사용자가 로그인한경우 -->
 		<c:if test="${paging.startPage != 1 }">
 			<a
 				href="boardList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
@@ -135,6 +158,7 @@ a {
 			<a
 				href="boardList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
 		</c:if>
+	</c:if>
 	</div>
 </div>
 </section>
