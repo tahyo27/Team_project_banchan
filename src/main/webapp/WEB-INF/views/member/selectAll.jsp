@@ -21,7 +21,7 @@
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?searchKey=" + $('#searchKey').val();
 		url = url + "&searchWord=" + $('#searchWord').val();
-		location.href = encodeURI(url);
+		location.href = url;
 		console.log(url);
 
 	});
@@ -33,9 +33,9 @@
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
-		url = url + "&searchKey=" + $('#searchKey').val();
+		url = url + "&searchKey=" + searchKey;
 		url = url + "&searchWord=" + searchWord;
-		location.href = encodeURI(url);
+		location.href = url;
 	}
 
 	//페이지 번호 클릭
@@ -46,7 +46,7 @@
 		url = url + "&range=" + range;
 		url = url + "&searchKey=" + searchKey;
 		url = url + "&searchWord=" + searchWord;
-		location.href = encodeURI(url);
+		location.href = url;
 
 	}
 
@@ -58,9 +58,9 @@
 		var url = "${pageContext.request.contextPath}/m_selectAll.do";
 		url = url + "?page=" + page;
 		url = url + "&range=" + range;
-		url = url + "&searchKey=" + $('#searchKey').val();
+		url = url + "&searchKey=" + searchKey;
 		url = url + "&searchWord=" + searchWord;
-		location.href = encodeURI(url);
+		location.href = url;
 	}
 </script>
 <style>
@@ -75,6 +75,11 @@
 	font-weight: 400;
 	font-size: 10px;
 }
+  .btn-text-horizontal span {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
 </style>
 </head>
 <body>
@@ -83,26 +88,32 @@
 			<div class="col-md-12">
 				<div class="tab-content">
 					<div id="user-info" class="tab-pane fade show active">
-						<h3 class="mb-4">회원정보</h3>
+						<div class="row">
+							<div class="col-md-10">
+								<h2>회원정보</h2>
+							</div>
+							<div class="col-md-2">
+								<a href="adminpage.do" class="btn btn-primary">Admin 페이지로</a>
+							</div>
+						</div>
 						<!-- search{s} -->
 						<div
 							class="form-group row justify-content-center align-items-center">
 							<div class="col-md-3 col-sm-12 mb-2 mb-md-0">
 								<select class="form-control form-control-sm" name="searchKey"
 									id="searchKey">
-									<option value="name">name</option>
-									<option value="email">email</option>
-									<option value="address1">address1</option>
+									<option value="name">이름</option>
+									<option value="email">이메일</option>
+									<option value="address1">주소</option>
 								</select>
 							</div>
-							<div class="col-md-6 col-sm-12 d-flex mb-2 mb-md-0">
-								<!-- Added the d-flex class for flex behavior -->
+							<div class="col-md-4 col-sm-10 d-flex">
 								<input type="text"
-									class="form-control form-control-sm flex-grow-1 mr-2"
-									name="searchWord" id="searchWord">
-								<!-- Added the flex-grow-1 class to allow the input to take the available space and mr-2 class for right margin -->
-								<button class="btn btn-sm btn-primary" name="btnSearch" style="margin-left:10px;"
-									id="btnSearch">검색</button>
+									class="form-control form-control-sm"
+									name="searchWord" id="searchWord"
+									value="${pagination.searchWord}">
+								<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch"
+								style="margin-left:5px;">search</button>
 							</div>
 						</div>
 						<!-- search{e} -->

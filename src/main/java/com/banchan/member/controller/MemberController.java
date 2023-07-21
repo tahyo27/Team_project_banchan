@@ -58,11 +58,12 @@ public class MemberController {
 	@Autowired
 	private SnsValue kakaoSns;
 	
-	@RequestMapping(value = { "/m_selectAll.do", "/m_searchList.do" }, method = RequestMethod.GET)
-	public String m_selectAll(Model model, @RequestParam(required = false, defaultValue = "1") int page,
-	        @RequestParam(required = false, defaultValue = "1") int range,
-	        @RequestParam(required = false, defaultValue = "name") String searchKey,
-	        @RequestParam(required = false) String searchWord) throws Exception {
+	@RequestMapping(value = "/m_selectAll.do" , method = RequestMethod.GET)
+	public String m_selectAll(Model model
+			,@RequestParam(required = false, defaultValue = "1") int page
+			,@RequestParam(required = false, defaultValue = "1") int range
+			,@RequestParam(required = false, defaultValue = "name") String searchKey
+			,@RequestParam(required = false) String searchWord) throws Exception {
 	    log.info("/m_selectAll.do.....");
 	    log.info("/m_searchList.do...searchKey:{}", searchKey);
 	    log.info("/m_searchList.do...searchWord:{}", searchWord);
@@ -71,7 +72,7 @@ public class MemberController {
 	    Paging pagination = new Paging();
 	    pagination.setSearchKey(searchKey);
 	    if (searchWord != null && !searchWord.isEmpty()) {
-	        String wordCheck = searchWord.replaceAll("%", ""); // % 기호 제거
+	        String wordCheck = searchWord; // % 기호 제거
 	        pagination.setSearchWord("%" + wordCheck + "%");
 	        log.info("/m_searchList.do  wordCheck:{}", wordCheck);
 	        int listCnt = service.getListCnt(searchKey, pagination.getSearchWord());
@@ -80,6 +81,8 @@ public class MemberController {
 
 	        List<MemberVO> vos = service.searchList(pagination);
 	        log.info("vos:{}", vos);
+	        pagination.setSearchWord(wordCheck);
+	        log.info(" pagination.setSearchKey:" + searchKey +" pagination.setSearchWord:"+ wordCheck);
 	        model.addAttribute("pagination", pagination);
 	        model.addAttribute("vos", vos);
 	    } else {
@@ -93,7 +96,7 @@ public class MemberController {
 	        model.addAttribute("vos", vos);
 	    }
 
-	    return ".admin/member/selectAll";
+	    return "member/selectAll";
 	}
 
 
