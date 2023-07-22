@@ -124,29 +124,26 @@ public class ProductController {
 		log.info("getOriginalFilename:{}",getOriginalFilename);
 		log.info("fileNameLength:{}",fileNameLength);
 		
-		if(getOriginalFilename.length() != 0) {
+		if (getOriginalFilename.length() != 0) {
+
 			vo.setProduct_img(getOriginalFilename);
-			
-			String realPath=sContext.getRealPath("resources/uploadimg");
-			log.info("realPath:{}",realPath);
-			
-			File f = new File(realPath+"\\"+vo.getProduct_img());
-			vo.getFile().transferTo(f); 
-			
-			
+			String realPath = sContext.getRealPath("resources/uploadimg/product");
+			log.info("realPath : {}", realPath);
+
+			File f = new File(realPath + "\\" + vo.getProduct_img());
+			vo.getFile().transferTo(f);
+
 			BufferedImage original_buffer_img = ImageIO.read(f);
 			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
 			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
-					
+
 			File thumb_file = new File(realPath + "/thumb_" + vo.getProduct_img());
-			String formatName = vo.getProduct_img().substring(vo.getProduct_img().lastIndexOf(".")+1);
-			log.info("formatName:{}",formatName);
-			ImageIO.write(thumb_buffer_img, formatName, thumb_file); 
-			
-		} else {
-			vo.setProduct_img("pro_default.png");
-		}
+			String formatName = vo.getProduct_img().substring(vo.getProduct_img().lastIndexOf(".") + 1);
+			log.info("formatName : {}", formatName);
+			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
+
+		} // end else
 		
 		log.info("{}",vo);
 		
@@ -185,29 +182,26 @@ public class ProductController {
 		log.info("getOriginalFilename:{}",getOriginalFilename);
 		log.info("fileNameLength:{}",fileNameLength);
 		
-		if(getOriginalFilename.length() != 0) {
+		if (getOriginalFilename.length() != 0) {
+
 			vo.setProduct_img(getOriginalFilename);
-			
-			String realPath=sContext.getRealPath("resources/uploadimg");
-			log.info("realPath:{}",realPath);
-			
-			File f = new File(realPath+"\\"+vo.getProduct_img());
-			vo.getFile().transferTo(f); 
-			
-			
+			String realPath = sContext.getRealPath("resources/uploadimg/product");
+			log.info("realPath : {}", realPath);
+
+			File f = new File(realPath + "\\" + vo.getProduct_img());
+			vo.getFile().transferTo(f);
+
 			BufferedImage original_buffer_img = ImageIO.read(f);
 			BufferedImage thumb_buffer_img = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 			Graphics2D graphic = thumb_buffer_img.createGraphics();
 			graphic.drawImage(original_buffer_img, 0, 0, 50, 50, null);
-					
+
 			File thumb_file = new File(realPath + "/thumb_" + vo.getProduct_img());
-			String formatName = vo.getProduct_img().substring(vo.getProduct_img().lastIndexOf(".")+1);
-			log.info("formatName:{}",formatName);
-			ImageIO.write(thumb_buffer_img, formatName, thumb_file); 
-			
-		} else {
-			vo.setProduct_img("pro_default.png");
-		}
+			String formatName = vo.getProduct_img().substring(vo.getProduct_img().lastIndexOf(".") + 1);
+			log.info("formatName : {}", formatName);
+			ImageIO.write(thumb_buffer_img, formatName, thumb_file);
+
+		} // end else
 		
 		log.info("{}",vo);
 		

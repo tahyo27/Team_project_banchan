@@ -75,9 +75,10 @@
 
 											<tr>
 												<td style="width: 150px;">반찬가격</td>
-												<td><input type="text" name="product_price"
+												<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" name="product_price"
 													class="form-control" style="width: 200px;"
-													required="required"></td>
+													required="required">
+													 </td>
 											</tr>
 
 											<tr>
